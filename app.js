@@ -65,7 +65,7 @@ const businessRouter = require('./routes/business');
 //   next();
 // })
 router.use('/business', businessRouter);
-router.use(userRouter);
+router.use('/user',userRouter);
 app.use("/api", router); 
 
 /* ERROR HANDLERS */
