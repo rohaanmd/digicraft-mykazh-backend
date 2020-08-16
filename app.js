@@ -60,9 +60,10 @@ const businessRouter = require('./routes/business');
 
 
 /*  links */
-app.use("/", function (req, res ){
-  res.send("<h1> Welcome to mykazh-backend </h1>");
-})
+// app.use("/", function (req, res,next ){
+//   res.send("<h1> Welcome to mykazh-backend </h1>");
+//   next();
+// })
 router.use('/business', businessRouter);
 router.use(userRouter);
 app.use("/api", router); 
