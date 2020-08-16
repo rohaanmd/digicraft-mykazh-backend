@@ -6,6 +6,7 @@ const errorController = require('./controllers/errors');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const cors = require("cors");
 const port = 3000
 require('dotenv').config();
 const router = express.Router({ mergeParams: true });
@@ -22,7 +23,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
+app.use(cors());
 
 //sessions setup
 app.use(
