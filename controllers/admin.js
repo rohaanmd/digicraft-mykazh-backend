@@ -160,7 +160,7 @@ const getUsers = async (req, res) => {
     const users = await User.find({isApproved: "disapproved"});
     return res.send({
       success: true,
-      message: "disapproved Users Listed",
+      message: "disappr Users Listed",
       responsedata: {
         users,
       },
