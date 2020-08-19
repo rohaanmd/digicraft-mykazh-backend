@@ -10,6 +10,7 @@ const {
     LogOut,
     getUsers,
     Approved,
+    Disapproved,
     getApprovedUser,
     getDisapprovedUser,
     getUndefinedUser,
@@ -18,6 +19,11 @@ const {
 router.post("/signup" , ImgUploader,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
+router.post('/approve',authAdmin,Approved);
+router.post('/disapprove',authAdmin,Disapproved);
+
+
+
 router.get("/userlist",authAdmin,getUsers);
 router.get("/",authAdmin,getAllAdmin);
 router.get("/approveduserlist",authAdmin,getApprovedUser);

@@ -170,9 +170,7 @@ const getUsers = async (req, res) => {
 
 const Approved =  async (req, res, next) =>{
   try  {
-    const user = User.findOne({
-        email: req.body.email
-    })
+    const user = User.findById(req.params.userId)
     if(!user){
         return res.send({
             success: false,
@@ -196,6 +194,32 @@ const Approved =  async (req, res, next) =>{
     
 }
 
+const Disapproved =  async (req, res, next) =>{
+  try  {
+    const user = User.findById(req.params.userId)
+    if(!user){
+        return res.send({
+            success: false,
+            message: "No User found",
+          });
+    }
+    user.isApproved = "disapproved";
+    const updatedUser = await user.save();
+    return res.send({
+      success: true,
+      message: "User disapproved Successfull",
+      responsedata: updatedUser,
+    });}catch (err){
+        console.log(error);
+        return res.send({
+          success: false,
+          message: "something went wrong",
+          responseData: error,
+        });
+    }
+    
+}
+
 
 module.exports = {
     SignUp,
@@ -204,6 +228,7 @@ module.exports = {
     LogOut,
     getUsers,
     Approved,
+    Disapproved,
     getApprovedUser,
     getDisapprovedUser,
     getUndefinedUser,

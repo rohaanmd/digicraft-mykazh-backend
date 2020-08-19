@@ -20,7 +20,6 @@ const UserSchema = new Schema({
         type: Number,   
 },
 picture: String,
-
 isApproved :{
   type: String,
   required: true,
@@ -29,7 +28,7 @@ isApproved :{
    
 },
 
-});
+}, { timestamps: true });
 
 
 UserSchema.methods.generateAuthToken = async function () {
