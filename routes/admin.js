@@ -19,8 +19,11 @@ const {
 router.post("/signup" , ImgUploader,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
-router.post('/approve',authAdmin,Approved);
-router.post('/disapprove',authAdmin,Disapproved);
+
+
+
+router.put('/approve/:userId',authAdmin,Approved);
+router.put('/disapprove/:userId',authAdmin,Disapproved);
 
 
 

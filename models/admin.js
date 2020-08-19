@@ -20,7 +20,7 @@ const AdminSchema = new Schema({
         type: Number,   
 },
 picture: String,
-});
+},{ timestamps: true });
 
 
 AdminSchema.methods.generateAuthToken = async function () {

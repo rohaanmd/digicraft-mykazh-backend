@@ -4,6 +4,7 @@ const fs = require("fs");
 const Joi = require("@hapi/joi"); // Package for validating Admin data
 
 const {hashPassword , comparePassword} = require('../middleware/index');
+const { log } = require('console');
 
 const adminSchema = Joi.object({
     email: Joi.string().email({
@@ -169,57 +170,72 @@ const getUsers = async (req, res) => {
 
 
 const Approved =  async (req, res, next) =>{
-  try  {
-    const user = User.findById(req.params.userId)
-    if(!user){
+
+try{
+  User.findByIdAndUpdate(req.params.userId, { isApproved: 'approved' }, function (err, docs) { 
+    if (err){ 
+        console.log(err) ;
         return res.send({
-            success: false,
-            message: "No User found",
-          });
-    }
-    user.isApproved = "approved";
-    const updatedUser = await user.save();
-    return res.send({
-      success: true,
-      message: "User approve Successfull",
-      responsedata: updatedUser,
-    });}catch (err){
-        console.log(error);
+                  success: false,
+                  message: "approve not successful",
+                  responseData: err,
+                });
+    } 
+    else{ 
+        console.log("Updated User : ", docs); 
+        
         return res.send({
-          success: false,
-          message: "something went wrong",
-          responseData: error,
-        });
-    }
-    
+              success: true,
+              message: "User approve Successful",
+              responsedata: docs,
+            });
+    } 
+}); 
+} catch (err){
+   
+  return res.send({
+    success: false,
+    message: "Something went wrong",
+    responsedata:err,
+  });
+
+}   
 }
+
 
 const Disapproved =  async (req, res, next) =>{
-  try  {
-    const user = User.findById(req.params.userId)
-    if(!user){
-        return res.send({
-            success: false,
-            message: "No User found",
-          });
-    }
-    user.isApproved = "disapproved";
-    const updatedUser = await user.save();
-    return res.send({
-      success: true,
-      message: "User disapproved Successfull",
-      responsedata: updatedUser,
-    });}catch (err){
-        console.log(error);
-        return res.send({
-          success: false,
-          message: "something went wrong",
-          responseData: error,
-        });
-    }
-    
-}
 
+  try{
+    User.findByIdAndUpdate(req.params.userId, { isApproved: 'disapproved' }, function (err, docs) { 
+      if (err){ 
+          console.log(err) ;
+          return res.send({
+                    success: false,
+                    message: "disapprove not successful",
+                    responseData: err,
+                  });
+      } 
+      else{ 
+          console.log("Updated User : ", docs); 
+          
+          return res.send({
+                success: true,
+                message: "User disapprove Successful",
+                responsedata: docs,
+              });
+      } 
+  }); 
+  } catch (err){
+     
+    return res.send({
+      success: false,
+      message: "Something went wrong",
+      responsedata:err,
+    });
+  
+  }   
+  }
+  
 
 module.exports = {
     SignUp,

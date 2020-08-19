@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //mongoose setup
-mongoose.connect(process.env.DB_URI,  { useNewUrlParser: true ,useUnifiedTopology: true},  (err) => {
+mongoose.connect(process.env.DB_URI,  { useNewUrlParser: true ,useUnifiedTopology: true , useFindAndModify: false },  (err) => {
         if (err) throw err; 
         console.log("DB Connected Successfully");
         });
