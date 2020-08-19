@@ -1,6 +1,16 @@
 const User = require('../models/user');
-const bcrypt = require('bcryptjs');
 const fs = require("fs");
+const jwt = require("jsonwebtoken");
+const Joi = require("@hapi/joi"); // Package for validating user data
+const {hashPassword , comparePassword} = require('../middleware/index');
+
+const userSchema = Joi.object({
+    email: Joi.string().email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net"] },
+    }),
+    password: Joi.string(),
+  });
 
 const getAllUser = async (req, res, next) => {
     console.log("api call : get all users")
@@ -9,103 +19,109 @@ const getAllUser = async (req, res, next) => {
     })
 }
 
+const LogOut = async (req, res, next) => {
+        res.send({
+            success: true,
+            message: "user LoggedOut successfully",
+        });  
+} 
+
 const Login = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    const user = await User.findOne({email: email})
-    .then(user =>{
-        if (!user)
-        return res.send({
-            success: false,
-            message: "Unauthorized",
-        });
-        bcrypt.compare(password,user.password).then(doMatch => {
-            if(doMatch){
-                req.session.isLoggedIn = true;
-                req.session.user = user;
-                console.log(req.session);
-                return res.send({
-                    success: true,
-                    message: "user Logged IN successfully",
-                    responseData: {
-                        user,
-                    },
-                });
-            }
-
-
-            return res.send({
-                success: false,
-                message: "Password is Wrong",
-                responseData: {user}
-            })
-
-        }).catch(err=>{
-            console.log(err);
-        })
-    })
   
+    const user = await User.findOne({
+        email: email,
+      });
+    
+      if (!user)
+        return res.send({
+          success: false,
+          message: "Unauthorized",
+        });
+        const isSame = await comparePassword(req.body.password, user.password);
+
+        
+  if (isSame) {
+    const token = await user.generateAuthToken();
+    return res.send({
+      success: true,
+      message: "User logged in successfully",
+      responsedata: {
+        details: {
+          userId: user._id,
+          email: user.email,
+        },
+        token,
+      },
+    });
+  } else {
+    return res.send({
+      success: false,
+      message: "ID or PASSWORD is wrong",
+    });
+  }
 
 }
 
 
 const SignUp = async (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    User.findOne({ email: req.body.email })
-        .then(userDoc => {
-            if (userDoc) {
-                return res.send({
-                    success: false,
-                    message: "User already exist!!",
-                });
-            }
-            return bcrypt
-                .hash(password, 12)
-                .then(hashedPassword => {
-                    const user = User(
-                        {
-                            email: email,
-                            password: hashedPassword,
-                            firstname: req.body.firstname,
-                            lastname: req.body.lastname,
-                            phone: req.body.phone,
-                           
-                        },
-                        (err) => {
-                            if (err)
-                                return res.send({
-                                    success: false,
-                                    message: err.message,
-                                });
-                        },
-                    )
+    validationData = {
+        password: req.body.password,
+        email: req.body.email,
+      };
+      const response = await userSchema.validate(validationData);
+      if (response.error) {
+        return res.send({
+          success: false,
+          message: response.error.details[0].message,
+        });
+      }
+      const checkUser = await User.findOne({
+        email: response.value.email,
+      });
+      if (checkUser) {
+        await fs.unlinkSync(req.file.path);
+        return res.send({
+          success: false,
+          message: "User already exist",
+        });
+      }
+      const { salt, hash } = await hashPassword(response.value.password);
+  response.value.password = hash;
+ 
+  console.log({ ...req.body, ...response.value });
+  const user = new User({
+    ...req.body,
+    ...response.value,
+  });
+    
+
+    
                     // if(req.file.path)
                     // {
                     //     const imgResponse = cloudinary.uploader.upload(req.file.path);
                     //     user.picture=imgResponse.secure_url;
                     //     fs.unlinkSync(req.file.path);
                     // }
-                    user.save();
+                    
+
+                    const token = await  user.generateAuthToken(); 
+                    await user.save();
                     return res.send({
                         success: true,
                         message: "user created successfully",
                         responseData: {
                             user,
+                            token
                         },
                     });
-                })
-        })
-        .catch(error => {
-            console.log(error);
-            return res.send({
-                success: false,
-                message: error.message,
-            });
-        })
+              
+    
 };
 module.exports = {
     SignUp,
     Login,
-    getAllUser
+    getAllUser,
+    LogOut,
 }

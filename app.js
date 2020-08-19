@@ -4,18 +4,11 @@ const path = require('path');
 const app = express()
 const errorController = require('./controllers/errors');
 const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
 const cors = require("cors");
 const port = 3000
 require('dotenv').config();
 const router = express.Router({ mergeParams: true });
-const User = require('./models/user')
 
-const store = new MongoDBStore({
-    uri: process.env.DB_URI,
-    collection: 'sessions'
-  });
 /* ENGINES */
 app.use(
   bodyParser.urlencoded({
@@ -24,29 +17,6 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cors());
-
-//sessions setup
-app.use(
-    session({
-      secret: 'my secret',
-      resave: false,
-      saveUninitialized: false,
-      store: store
-    })
-  );
-  
-  app.use((req, res, next) => {
-    if (!req.session.user) {
-      return next();
-    }
-    User.findById(req.session.user._id)
-      .then(user => {
-        req.user = user;
-        next();
-      })
-      .catch(err => console.log(err));
-  });
-
 
 //mongoose setup
 mongoose.connect(process.env.DB_URI,  { useNewUrlParser: true ,useUnifiedTopology: true},  (err) => {
@@ -58,6 +28,7 @@ mongoose.connect(process.env.DB_URI,  { useNewUrlParser: true ,useUnifiedTopolog
 /* Routers */
 const userRouter = require("./routes/user");
 const businessRouter = require('./routes/business'); 
+const adminRouter = require("./routes/admin");
 
 
 /*  links */
@@ -67,6 +38,7 @@ const businessRouter = require('./routes/business');
 // })
 router.use('/business', businessRouter);
 router.use('/user',userRouter);
+router.use('/admin',adminRouter);
 app.use("/api", router); 
 
 /* ERROR HANDLERS */
