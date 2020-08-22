@@ -32,16 +32,12 @@ CustSrtLink:{
 },
 docs:{
      MedEsti:{
-         
          fileUrl : String,
      },
      LetFrmPatie:{
-        
          fileUrl : String,
-     
      },
-     MedRep: {
-            
+     MedRep: { 
          fileUrl : String,
      },
  
