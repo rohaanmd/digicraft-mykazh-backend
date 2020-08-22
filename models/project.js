@@ -126,9 +126,11 @@ const ProjectSchema = new Schema({
           required:true
      },
      supportEmailaddress:String,
-     campaignTeam:{
+     campaignTeam:[
+          {
           newTeammemberemail:String
-     },
+          }
+     ],
      draftcampaignlink:String,
      facebookshareimage:String,
      marketingimage:String,
