@@ -91,9 +91,109 @@ fundraising:{
                 required:true,
                 default: false,
     },
-if()
 
-}
+    dealType:{
+        exemption:{
+            type: String,
+            enum: ["regA","regB"]
+    
+        } ,
+        equity:{
+            PreMoneyEvaluation: Number
+        },
+        convertableNote:{
+            termLength: Number,
+            conversionDiscount:Number,
+            intrest: Number,
+            valuationCap:Number,
+            warrantCoverage:Number,
+        },
+        safeNote:{
+            valuationCap: Number,
+            conversionDiscount:Number,
+    
+        },
+        debt:{
+            interest: Number,
+            termLength: Number,
+    
+        },
+        revenueShare:{
+            return:Number,
+            paymentFrequency:{
+                type: String,
+                enum: ["monthly","bimonthly","quarterly"]
+            },
+            MaxReturn:Number,
+            return:{
+                type: String,
+                enum: ["profit","revenue"]
+            },
+            PaybackStartDate:
+            {
+                type: String,
+                enum: ["Exact Date","Number Of Month Finance Close" ]
+            }
+    
+    
+        }
+    
+    
+    },
+    PreviousFunding:{
+        source:    {
+            type: String,
+            enum: ["self","friemd","bank","investor", "grant", "other"]
+        },
+        fundingAmount:Number,
+        fundingDate:Date,
+    }
+    
+},
+pitch:{
+    highlight:[{type: String,}],
+    elevatorPitch: String,
+    investor:[
+        {
+            investorType: {
+                type: String,
+                enum: ["individual","institutional" ]
+            },
+            investorId:{
+                type: Schema.Types.ObjectId,
+                ref: "User",
+            }
+        }
+    ]
+
+},
+
+docs:{
+    ExecutiveSummary:{
+        Doctype:{  
+            type: String,
+            enum: ["public","confidential"],
+        },
+        fileUrl : String,
+    },
+    termSheet:{
+        Doctype:{  
+            type: String,
+            enum: ["public","confidential"],
+        },
+        fileUrl : String,
+    
+    },
+    additionalDoc: {
+        Doctype: String,    
+        fileUrl : String,
+    },
+
+},
+
+risk:String,
+
+
 
 });
 
