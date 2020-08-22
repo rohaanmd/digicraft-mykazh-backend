@@ -121,6 +121,10 @@ const ProjectSchema = new Schema({
           type:String,
           required:true
      },
+     ExtraAddress:{
+          type:String,
+          required:true
+     },
      supportEmailaddress:String,
      campaignTeam:{
           newTeammemberemail:String
