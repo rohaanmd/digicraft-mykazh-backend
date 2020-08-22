@@ -19,15 +19,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //mongoose setup
-mongoose.connect(process.env.DB_URI,  { useNewUrlParser: true ,useUnifiedTopology: true , useFindAndModify: false },  (err) => {
-        if (err) throw err; 
-        console.log("DB Connected Successfully");
-        });
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
+  if (err) throw err;
+  console.log("DB Connected Successfully");
+});
 
 
 /* Routers */
 const userRouter = require("./routes/user");
-const businessRouter = require('./routes/business'); 
+const businessRouter = require('./routes/business');
 const adminRouter = require("./routes/admin");
 
 
@@ -37,11 +37,11 @@ const adminRouter = require("./routes/admin");
 //   next();
 // })
 router.use('/business', businessRouter);
-router.use('/user',userRouter);
-router.use('/admin',adminRouter);
-app.use("/api", router); 
+router.use('/user', userRouter);
+router.use('/admin', adminRouter);
+app.use("/api", router);
 
 /* ERROR HANDLERS */
 app.use(errorController.get404);
 
-app .listen(process.env.PORT || port)
+app.listen(process.env.PORT || port)

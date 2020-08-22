@@ -16,7 +16,7 @@ const BusinessSchema = new Schema({
         ref: "User",
         required: true,
     },
-    
+
     location: {
         country: {
             type: String,
@@ -65,136 +65,138 @@ const BusinessSchema = new Schema({
             about: String,
         },
     ],
-    faq:[
+    faq: [
         {
             question: String,
             answer: String,
         }
     ],
-fundraising:{
-    visibility:{
-        type: String,
-        required: true,
-        enum:["private","public"],
-    },
-    goal: Number,
-    maxAmount: Number,
-    minAmount: Number,
-    stage:{
-        type:String,
-        required:true,
-        enum: ["pre-seed","seed","BridgeToSeriesA","SeriesA","BridgeToSeriesB","SeriesB","others"],
-    },
-    closingDate:Date,
-    currentlyFunding: {
-        type: Boolean,
-                required:true,
-                default: false,
+    fundraising: {
+        visibility: {
+            type: String,
+            required: true,
+            enum: ["private", "public"],
+        },
+        goal: Number,
+        maxAmount: Number,
+        minAmount: Number,
+        stage: {
+            type: String,
+            required: true,
+            enum: ["pre-seed", "seed", "BridgeToSeriesA", "SeriesA", "BridgeToSeriesB", "SeriesB", "others"],
+        },
+        closingDate: Date,
+        currentlyFunding: {
+            type: Boolean,
+            required: true,
+            default: false,
+        },
+
+        dealType: {
+            exemption: {
+                type: String,
+                enum: ["regA", "regB"]
+
+            },
+            equity: {
+                PreMoneyEvaluation: Number
+            },
+            convertableNote: {
+                termLength: Number,
+                conversionDiscount: Number,
+                intrest: Number,
+                valuationCap: Number,
+                warrantCoverage: Number,
+            },
+            safeNote: {
+                valuationCap: Number,
+                conversionDiscount: Number,
+
+            },
+            debt: {
+                interest: Number,
+                termLength: Number,
+
+            },
+            revenueShare: {
+                return: Number,
+                paymentFrequency: {
+                    type: String,
+                    enum: ["monthly", "bimonthly", "quarterly"]
+                },
+                MaxReturn: Number,
+                returnType: {
+                    type: String,
+                    enum: ["profit", "revenue"]
+                },
+                PaybackStartDate:
+                {
+                    type: String,
+                    enum: ["Exact Date", "Number Of Month Finance Close"]
+                }
+
+
+            }
+
+
+        },
+        PreviousFunding: {
+            source: {
+                type: String,
+                enum: ["self", "friemd", "bank", "investor", "grant", "other"]
+            },
+            fundingAmount: Number,
+            fundingDate: Date,
+        }
+
     },
 
-    dealType:{
-        exemption:{
-            type: String,
-            enum: ["regA","regB"]
-    
-        } ,
-        equity:{
-            PreMoneyEvaluation: Number
-        },
-        convertableNote:{
-            termLength: Number,
-            conversionDiscount:Number,
-            intrest: Number,
-            valuationCap:Number,
-            warrantCoverage:Number,
-        },
-        safeNote:{
-            valuationCap: Number,
-            conversionDiscount:Number,
-    
-        },
-        debt:{
-            interest: Number,
-            termLength: Number,
-    
-        },
-        revenueShare:{
-            return:Number,
-            paymentFrequency:{
-                type: String,
-                enum: ["monthly","bimonthly","quarterly"]
-            },
-            MaxReturn:Number,
-            return:{
-                type: String,
-                enum: ["profit","revenue"]
-            },
-            PaybackStartDate:
+    pitch: {
+        highlight: [{ type: String, }],
+        elevatorPitch: String,
+        investor: [
+
             {
-                type: String,
-                enum: ["Exact Date","Number Of Month Finance Close" ]
+                investorType: {
+                    type: String,
+                    enum: ["individual", "institutional"]
+                },
+                investorId: {
+                    type: String,
+                    ref: "User",
+                }
             }
-    
-    
-        }
-    
-    
+        ]
+
     },
-    PreviousFunding:{
-        source:    {
-            type: String,
-            enum: ["self","friemd","bank","investor", "grant", "other"]
-        },
-        fundingAmount:Number,
-        fundingDate:Date,
-    }
-    
-},
-pitch:{
-    highlight:[{type: String,}],
-    elevatorPitch: String,
-    investor:[
-        {
-            investorType: {
+
+    docs: {
+        executiveSummary: {
+            Doctype: {
                 type: String,
-                enum: ["individual","institutional" ]
+                enum: ["public", "confidential"],
             },
-            investorId:{
-                type: Schema.Types.ObjectId,
-                ref: "User",
-            }
-        }
-    ]
-
-},
-
-docs:{
-    ExecutiveSummary:{
-        Doctype:{  
-            type: String,
-            enum: ["public","confidential"],
+            fileUrl: String,
         },
-        fileUrl : String,
-    },
-    termSheet:{
-        Doctype:{  
-            type: String,
-            enum: ["public","confidential"],
+        termSheet: {
+            Doctype: {
+                type: String,
+                enum: ["public", "confidential"],
+            },
+            fileUrl: String,
+
         },
-        fileUrl : String,
-    
+        additionalDoc: {
+            Doctype: String,
+            fileUrl: String,
+        },
+
     },
-    additionalDoc: {
-        Doctype: String,    
-        fileUrl : String,
-    },
 
-},
-
-risk:String,
+    risk: String,
 
 
 
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("business", BusinessSchema);
