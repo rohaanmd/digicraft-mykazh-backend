@@ -118,7 +118,7 @@ const createProject = (req, res, next) => {
 
       
     };
-    const project = new Business(projectDetails, (err) => {
+    const project = new Project(projectDetails, (err) => {
       if (err)
         return res.send({
           success: false,
@@ -215,11 +215,11 @@ const updateProject = async (req, res, next) => {
 
 //     const updatedBusiness = await business.save();
 
-     Project.findOneAndUpdate({_id:req.params.projectId},{project})
+     const updatedProject=Project.findOneAndUpdate({_id:req.params.projectId},{project})
      return res.send({
           success: true,
           message: "business Updated Successfull",
-          responseData: updatedBusiness,
+          responseData: updatedProject,
         });
      
   } catch (error) {

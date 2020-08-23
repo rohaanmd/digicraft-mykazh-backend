@@ -29,6 +29,7 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
 const userRouter = require("./routes/user");
 const businessRouter = require('./routes/business');
 const projectRouter=require('./routes/projects');
+const charityRouter=require('./routes/charity');
 const adminRouter = require("./routes/admin");
 
 
@@ -39,6 +40,7 @@ const adminRouter = require("./routes/admin");
 // })
 router.use('/business', businessRouter);
 router.use('/project',projectRouter)
+router.use('/charity',charityRouter)
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 
