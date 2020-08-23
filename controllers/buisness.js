@@ -173,7 +173,7 @@ const createBusiness = (req, res, next) => {
     });
     console.log(JSON.stringify(businessDetails, null, 4));
     business.createdBy = req.user.userId;
-    await business.save();
+    business.save();
     return res.send({
       success: true,
       message: "company successfully created",

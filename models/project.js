@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
+const { string } = require("@hapi/joi");
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
+     createdBy: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+      },
      compaigntitle:{
           type:String,
           required:true
@@ -35,7 +41,7 @@ const ProjectSchema = new Schema({
           type:String,
           required:true
      },
-     FAQ:[
+     faq:[
           {
                Question:String,
                Anwser:String
