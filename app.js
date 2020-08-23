@@ -41,9 +41,11 @@ router.use('/business', businessRouter);
 router.use('/project',projectRouter)
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
+
 app.use("/api", router);
 
 /* ERROR HANDLERS */
-app.use(errorController.get404);
+// app.use(errorController.get404);
+app.use(express.static(path.join(__dirname, '../')));
 
 app.listen(process.env.PORT || port)
