@@ -8,14 +8,14 @@ const { deleteProjectById,
      getProjectByUser,
      getProjectById,
      getAllProject,
-     getProject
-} = require("../controllers/projects")
+     getProject,
+} = require("../controllers/projects");  
 
 
 router.get('/projectapi', getProject);
 router.get('/getall', authUser, getAllProject);
 router.get('/', authUser, getProjectByUser);
-router.get('/:businessId', authUser, getProjectById);
+router.get('/:projectId', authUser, getProjectById);
 router.post('/create', ImgUploader, createProject);
 router.put('/update/:projectId', ImgUploader, updateProject);
 router.delete('/deleteall', deleteAllProject);
