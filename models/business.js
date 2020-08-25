@@ -4,23 +4,23 @@ const Schema = mongoose.Schema;
 const BusinessSchema = new Schema({
     comanyName: {
         type: String,
-        required: true,
+        // required: true,
     },
     companyOverview: {
         type: String,
-        required: true,
+        // required: true,
     },
 
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: "User",
-        required: true,
+        // required: true,
     },
 
     location: {
         country: {
             type: String,
-            required: true,
+            // required: true,
         },
         city: String,
     },
@@ -34,7 +34,7 @@ const BusinessSchema = new Schema({
     twitter: String,
     logo: {
         type: String,
-        required: true,
+        // required: true,
     },
 
     featuredImg: {
@@ -74,7 +74,7 @@ const BusinessSchema = new Schema({
     fundraising: {
         visibility: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["private", "public"],
         },
         goal: Number,
@@ -82,13 +82,13 @@ const BusinessSchema = new Schema({
         minAmount: Number,
         stage: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["pre-seed", "seed", "BridgeToSeriesA", "SeriesA", "BridgeToSeriesB", "SeriesB", "others"],
         },
         closingDate: Date,
         currentlyFunding: {
             type: Boolean,
-            required: true,
+            // required: true,
             default: false,
         },
 

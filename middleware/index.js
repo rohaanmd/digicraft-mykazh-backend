@@ -41,10 +41,12 @@ const authUser = async (req, res, next) => {
         return res.status(401).json({
           message: "Auth failed",
         });
+        
       req.user = {
         userId: user[0]._id,
         userEmail: user[0].email,
       };
+      // console.log(req.user);   
       next();
     }
   } catch (error) {
@@ -82,10 +84,19 @@ const authAdmin = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     return res.status(401).json({
-      error: "Unauthorized",
+      error: "Unauthorized",xsz
     });
   }
 };
+
+const checkUser= (objectId,IncomingId)=>{
+  if(objectId==IncomingId){
+    return true;
+
+  }
+  else return false;
+
+}
 
 
 // multer storage engine
@@ -108,4 +119,5 @@ module.exports = {
   authAdmin,
   comparePassword,
   hashPassword,
+  checkUser,
 }
