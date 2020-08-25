@@ -5,6 +5,7 @@ const app = express()
 const errorController = require('./controllers/errors');
 const mongoose = require('mongoose');
 const cors = require("cors");
+const compression = require("compression");
 const port = 3000
 require('dotenv').config();
 const router = express.Router({ mergeParams: true });
@@ -17,6 +18,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cors());
+app.use(compression());
 
 //mongoose setup
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
