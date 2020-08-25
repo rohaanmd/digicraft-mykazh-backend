@@ -337,7 +337,7 @@ const updateBusiness = async (req, res, next) => {
             return res.send({
               success: true,
               message: "business Updated Successfull",
-              responseData: updatedBuissness,
+            
             });
 
       }
