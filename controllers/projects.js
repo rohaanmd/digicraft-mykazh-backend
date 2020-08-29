@@ -114,10 +114,12 @@ const createProject = (req, res, next) => {
           videosgallery:{
                youtubeorvimeourl:req.body.youtubeorvimeourl
           },
-          imagegallery:req.body.imagegallery
+          imagegallery:req.body.imagegallery,
+          perks
 
       
     };
+    console.log(JSON.stringify(projectDetails, null, 4));     
     const project = new Project(projectDetails, (err) => {
       if (err)
         return res.send({
@@ -127,7 +129,7 @@ const createProject = (req, res, next) => {
         });
     });
     console.log(JSON.stringify(projectDetails, null, 4));
-    project.createdBy = req.user.userId;
+    // project.createdBy = req.user.userId;
     project.save();
     return res.send({
       success: true,

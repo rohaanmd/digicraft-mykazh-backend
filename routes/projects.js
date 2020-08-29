@@ -16,8 +16,8 @@ router.get('/projectapi', getProject);
 router.get('/getall', authUser, getAllProject);
 router.get('/', authUser, getProjectByUser);
 router.get('/:projectId', authUser, getProjectById);
-router.post('/create', ImgUploader, createProject);
-router.put('/update/:projectId', ImgUploader, updateProject);
+router.post('/create',  createProject);
+router.put('/update/:projectId', updateProject);
 router.delete('/deleteall', deleteAllProject);
 router.delete('/delete/:projectId', authUser, deleteProjectById);
 

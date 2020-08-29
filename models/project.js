@@ -10,36 +10,36 @@ const ProjectSchema = new Schema({
       },
      compaigntitle:{
           type:String,
-          required:true
+          // required:true
      },
      compaigntagline:{
           type:String,
-          required:true
+          // required:true
      },
      compaigncardimage:{
           type:String,
-          required:true
+          // required:true
      },
      location:{
           type:String,
-          required:true
+          // required:true
      },
      catergory:{
           type:String,
-          required:true
+          // required:true
      },
      tags:{
           type:String,
-          required:true
+          // required:true
      },
      videourl:{
           type:String,
-          required:true
+          // required:true
      },
      videooverlayimg:String,
      story:{
           type:String,
-          required:true
+          // required:true
      },
      faq:[
           {
@@ -55,17 +55,17 @@ const ProjectSchema = new Schema({
                },
                price:{
                     type:Number,
-                    required:true
+                    // required:true
                },
                retailprice:Number,
                title:{
                     type:String,
-                    required:true
+                    // required:true
                },
                includeditems:{
                     itemname:{
                     type:String,
-                    required:true
+                    // required:true
                     },
                     option:{
                          OptionName:String,
@@ -74,7 +74,7 @@ const ProjectSchema = new Schema({
                },
                Description:{
                     type:String,
-                    required:true
+                    // required:true
                },
                perk:String,
                Quantity:String,
@@ -93,7 +93,7 @@ const ProjectSchema = new Schema({
      },
      campaigngoalAmountCurrency:{
           type:Number,
-          required:true
+          // required:true
      },
      countryoflegalresidence:{
           countryname:String,
@@ -101,35 +101,35 @@ const ProjectSchema = new Schema({
      },
      customerBillingStatement:{
           type:String,
-          required:true
+          // required:true
      },
      legalFirstname:{
           type:String,
-          required:true
+          // required:true
      },
      legalLastname:{
           type:String,
-          required:true
+          // required:true
      },
      dateofbirth:{
           type:Date,
-          required:true
+          // required:true
      },
      phonenumber:{
           type:Number,
-          required:true
+          // required:true
      },
      country:{
           type:String,
-          required:true
+          // required:true
      },
      streetAddress:{
           type:String,
-          required:true
+          // required:true
      },
      ExtraAddress:{
           type:String,
-          required:true
+          // required:true
      },
      supportEmailaddress:String,
      campaignTeam:[
