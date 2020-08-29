@@ -6,7 +6,7 @@ const User = require('../models/user');
 const Admin = require('../models/admin');
 const hashPassword = async (password) => {
   try {
-    const salt = await bcrypt.genSalt(15);
+    const salt = await bcrypt.genSalt(7);
     const hash = await bcrypt.hash(password, salt);
     return { salt, hash };
   } catch (error) {

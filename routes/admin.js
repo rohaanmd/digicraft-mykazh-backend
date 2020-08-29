@@ -16,6 +16,18 @@ const {
     getUndefinedUser,
 } = require ("../controllers/admin");
 
+const {
+    getTerms,
+      updateTerms,
+      postInfo,
+      getRisk,
+      updateRisk,
+      getPrivacy,
+      updatePrivacy,
+
+} = require("../controllers/info");
+const { get } = require("mongoose");
+
 router.post("/signup" , ImgUploader,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
@@ -32,4 +44,22 @@ router.get("/",authAdmin,getAllAdmin);
 router.get("/approveduserlist",authAdmin,getApprovedUser);
 router.get("/undefineduserlist",authAdmin,getUndefinedUser);
 router.get("/disapproveduserlist",authAdmin,getDisapprovedUser);
+
+
+router.post("/info/create", postInfo);
+
+router.get("/terms", getTerms);
+router.put("/terms/update",updateTerms);
+
+router.get("/risk", getRisk);
+router.put("/risk/update",updateRisk);
+
+router.get("/privacy", getPrivacy);
+router.put("/privacy/update",updatePrivacy);
+
+
+
+
+
+
 module.exports = router ;
