@@ -26,6 +26,14 @@ const {
       updatePrivacy,
 
 } = require("../controllers/info");
+
+const {
+    postFaq,
+    getInvestor ,
+    getKnowledge,
+    getEntrepreneur,
+    
+} = require("../controllers/faq");
 const { get } = require("mongoose");
 
 router.post("/signup" , ImgUploader,SignUp);
@@ -58,6 +66,18 @@ router.get("/privacy", getPrivacy);
 router.put("/privacy/update",updatePrivacy);
 
 
+
+
+router.post("/faq/create", postFaq);
+
+router.get("/knowledge", getKnowledge);
+// router.put("/terms/update",updateTerms);
+
+router.get("/investor", getInvestor);
+// router.put("/risk/update",updateRisk);
+
+router.get("/entrepreneur", getEntrepreneur);
+// router.put("/privacy/update",updatePrivacy);
 
 
 
