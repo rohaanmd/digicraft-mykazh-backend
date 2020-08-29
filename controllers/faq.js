@@ -95,7 +95,10 @@ const updateKnowledge = async (req, res, next) => {
           message: "Unauthorized",
         });
 
-      knowledge.InfoHtml = req.body.info;
+        
+            knowledge.faq.question= req.body.question;
+            knowledge.faq.answer= req.body.answer;
+        
 
       const updatedknowledge = await knowledge.save();
       return res.send({
@@ -126,8 +129,8 @@ const updateKnowledge = async (req, res, next) => {
           message: "Unauthorized",
         });
 
-      investor.question = req.body.question;
-        investor.answer= req.body.answer;
+      investor.faq.question = req.body.question;
+        investor.faq.answer= req.body.answer;
       const updatedinvestor = await investor.save();
       return res.send({
         success: true,
@@ -147,7 +150,7 @@ const updateKnowledge = async (req, res, next) => {
   
 
   
-const updateentrepreneur = async (req, res, next) => {
+const updateEntrepreneur = async (req, res, next) => {
     try {
       const entrepreneur = await Info.findOne({
           type: "entrepreneur"
@@ -158,7 +161,9 @@ const updateentrepreneur = async (req, res, next) => {
           message: "Unauthorized",
         });
 
-      entrepreneur.InfoHtml = req.body.info;
+      
+        entrepreneur.faq.question= req.body.question;
+        entrepreneur.faq.answer= req.body.answer;
 
       const updatedentrepreneur = await entrepreneur.save();
       return res.send({
@@ -184,6 +189,9 @@ const updateentrepreneur = async (req, res, next) => {
   getInvestor ,
   getKnowledge,
   getEntrepreneur,
+  updateKnowledge,
+  updateEntrepreneur,
+  updateInvestor
 
 
 

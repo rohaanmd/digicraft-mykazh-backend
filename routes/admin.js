@@ -32,6 +32,9 @@ const {
     getInvestor ,
     getKnowledge,
     getEntrepreneur,
+    updateKnowledge,
+  updateEntrepreneur,
+  updateInvestor,
     
 } = require("../controllers/faq");
 const { get } = require("mongoose");
@@ -71,13 +74,13 @@ router.put("/privacy/update",updatePrivacy);
 router.post("/faq/create", postFaq);
 
 router.get("/knowledge", getKnowledge);
-// router.put("/terms/update",updateTerms);
+router.put("/knowledge/update/:faqId",updateKnowledge);
 
 router.get("/investor", getInvestor);
-// router.put("/risk/update",updateRisk);
+router.put("/investor/update/:faqId",updateInvestor);
 
 router.get("/entrepreneur", getEntrepreneur);
-// router.put("/privacy/update",updatePrivacy);
+router.put("/entrepreneur/update/:faqId",updateEntrepreneur);
 
 
 
