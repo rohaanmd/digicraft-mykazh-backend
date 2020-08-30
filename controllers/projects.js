@@ -115,12 +115,12 @@ const createProject = (req, res, next) => {
           videosgallery:{
                youtubeorvimeourl:req.body.youtubeorvimeourl
           },
-          imagegallery:req.body.imagegallery,
-          perks
+          imagegallery:req.body.imagegallery
+          
 
       
     };
-    console.log(JSON.stringify(projectDetails, null, 4));     
+  
     const project = new Project(projectDetails, (err) => {
       if (err)
         return res.send({
@@ -181,11 +181,12 @@ const updateProject = async (req, res, next) => {
         message: "Unauthorized",
       });
 
-          project.compaigntitle= req.body.compaigntitle||project.compaigntitle,
-          project.compaigntagline= req.body.compaigntagline||project.compaigntagline,
-          project.location= req.body.country||project.location,
+          project.compaigntitle= req.body.CampaignTitle||project.compaigntitle,
+          project.compaigntagline= req.body.CampaignTagline||project.compaigntagline,
+          project.location= req.body.Location||project.location,
           project.compaigncardimage= req.body.compaigncardimage||project.compaigncardimage,
-          project.catergory= req.body.catergory||project.catergory,
+          project.selectCatergory= req.body.selectCatergory||project.catergory,
+          project.SubCatatergory= req.body.SubCatatergory||project.catergory,
           project.tags= req.body.tags||project.tags,
           project.videourl= req.body.videourl||project.videourl,
           project.videooverlayimg= req.body.vidOvlayimg||project.videooverlayimg,

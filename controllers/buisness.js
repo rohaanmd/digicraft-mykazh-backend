@@ -234,10 +234,10 @@ const updateBusiness = async (req, res, next) => {
                 companyOverview: req.body.companyOverview ,
                 location: {
                   country: req.body.country,
-                  city: req.body.city,
+                  stateAndCity: req.body.stateAndCity,
                 },
-                company_tagline: req.body.company_tagline,
-                company_keyword: req.body.company_keyword,
+                companyTagline: req.body.companyTagline,
+                companyKeywords: req.body.companyKeywords,
                 email: req.body.email,
                 website: req.body.website,
                 mobile: req.body.number,
@@ -321,7 +321,7 @@ const updateBusiness = async (req, res, next) => {
                 risk: req.body.risk,
               };
 
-            await business.updateOne(req.body,function(
+            await business.updateOne(businessDetails,function(
                 err,
                 result
               ) {

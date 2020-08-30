@@ -6,7 +6,7 @@ const ProjectSchema = new Schema({
      createdBy: {
           type: Schema.Types.ObjectId,
           ref: "User",
-          required: true,
+          required: false,
       },
      compaigntitle:{
           type:String,

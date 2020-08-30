@@ -154,18 +154,18 @@ const updateCharity = async (req, res, next) => {
         success: false,
         message: "Unauthorized",
       });
-      charity.Picture= req.body.Picture,
-     charity.VideoAppeal= req.body.VideoAppeal,
-     charity.PatientsAge= req.body.PatientsAge,
-     charity.GoalAmount= req.body.GoalAmount,
-     charity.PatientsName= req.body.PatientsName,
-     charity.PatientsGender= req.body.PatientsGender,
-     charity.MedicalCon= req.body.MedicalCon,
-     charity.Story= req.body.Story,
-     charity.CustSrtLink=req.body.CustSrtLink,
-     charity.docs.MedEsti.fileUrl=req.body.MedEsti
-     charity.docs.LetFrmPatie.fileUrl=req.body.LetFrmPatie
-     charity.docs.MedRep.fileUrl=req.body.MedRep
+      charity.Picture= req.body.Picture||charity.Picture,
+     charity.VideoAppeal= req.body.VideoAppeal||charity.VideoAppeal,
+     charity.PatientsAge= req.body.PatientsAge||charity.PatientsAge,
+     charity.GoalAmount= req.body.GoalAmount||charity.GoalAmount,
+     charity.PatientsName= req.body.PatientsName||charity.PatientsName,
+     charity.PatientsGender= req.body.PatientsGender||charity.PatientsGender,
+     charity.MedicalCon= req.body.MedicalCon||charity.MedicalCon,
+     charity.Story= req.body.Story||charity.Story,
+     charity.CustSrtLink=req.body.CustSrtLink||charity.CustSrtLink,
+     charity.docs.MedEsti.fileUrl=req.body.MedEsti||charity.docs.MedEsti.fileUr,
+     charity.docs.LetFrmPatie.fileUrl=req.body.LetFrmPatie||charity.docs.LetFrmPatie.fileUrl,
+     charity.docs.MedRep.fileUrl=req.body.MedRep||charity.docs.MedRep.fileUrl
   
           
 
