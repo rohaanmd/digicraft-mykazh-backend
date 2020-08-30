@@ -24,7 +24,11 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
-     catergory:{
+     selectCatergory:{
+          type:String,
+          // required:true
+     },
+     SubCatergory:{
           type:String,
           // required:true
      },

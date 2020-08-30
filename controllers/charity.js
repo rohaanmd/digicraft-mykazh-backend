@@ -73,13 +73,13 @@ const getCharityByUser = async (req, res, next) => {
 const createCharity = (req, res, next) => {
   try {
     const charityDetails = {
-     Picture: req.body.Picture,
+     Picture: req.body.uploadImage,
      VideoAppeal: req.body.VideoAppeal,
-     PatientsAge: req.body.PatientsAge,
+     PatientsAge: req.body.PatientAge,
      GoalAmount: req.body.GoalAmount,
-     PatientsName: req.body.PatientsName,
-     PatientsGender: req.body.PatientsGender,
-     MedicalCon: req.body.MedicalCon,
+     PatientsName: req.body.PatientName,
+     PatientsGender: req.body.PatientGender,
+     MedicalCon: req.body.MedicalCondition,
      Story: req.body.Story,
      CustSrtLink:req.body.CustSrtLink,
      docs:{

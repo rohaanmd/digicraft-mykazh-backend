@@ -77,10 +77,10 @@ const createBusiness = async (req, res, next) => {
       companyOverview: req.body.companyOverview,
       location: {
         country: req.body.country,
-        city: req.body.city,
+        city: req.body.stateAndCit
       },
-      company_tagline: req.body.company_tagline,
-      company_keyword: req.body.company_keyword,
+      company_tagline: req.body.companyTagline,
+      company_keyword: req.body.companyKeywords,
       email: req.body.email,
       website: req.body.website,
       mobile: req.body.number,

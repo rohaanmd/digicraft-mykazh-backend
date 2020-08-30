@@ -73,12 +73,13 @@ const getProjectByUser = async (req, res, next) => {
 const createProject = (req, res, next) => {
   try {
     const projectDetails = {
-          compaigntitle: req.body.compaigntitle,
-          compaigntagline: req.body.compaigntagline,
-          location: req.body.state+','+req.body.country,
+          compaigntitle: req.body.CampaignTitle,
+          compaigntagline: req.body.CampaignTagline,
+          location: req.body.Location,
           compaigncardimage: req.body.compaigncardimage,
-          catergory: req.body.catergory,
-          tags: req.body.tags,
+          selectCategory: req.body.selectCategory,
+          SubCategory: req.body.SubCategory,
+          tags: req.body.Tags,
           videourl: req.body.videourl,
           videooverlayimg: req.body.vidOvlayimg,
           FAQ:req.body.faq,
