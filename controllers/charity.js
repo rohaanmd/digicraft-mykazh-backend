@@ -104,7 +104,7 @@ const createCharity = (req, res, next) => {
         });
     });
     console.log(JSON.stringify(charityDetails, null, 4));
-    charity.createdBy = req.user.userId;
+    // charity.createdBy = req.user.userId;
     charity.save();
     return res.send({
       success: true,
@@ -147,8 +147,8 @@ const updateCharity = async (req, res, next) => {
     const charity = await Charity.findOne({
       _id: req.params.charityId,
     })
-      .where("createdBy")
-      .equals(req.user.userId);
+      // .where("createdBy")
+      // .equals(req.user.userId);
     if (!charity || !req.body)
       return res.send({
         success: false,
@@ -170,12 +170,12 @@ const updateCharity = async (req, res, next) => {
           
 
 //     const updatedBusiness = await business.save();
-
-    const updatedCharity= Charity.findOneAndUpdate({_id:req.params.charityId},{project})
+      console.log(charity)
+    await Charity.findOneAndUpdate({_id:req.params.charityId},charity)
      return res.send({
           success: true,
           message: "charity Updated Successfull",
-          responseData: updatedCharity,
+          responseData: charity,
         });
      
   } catch (error) {

@@ -16,10 +16,10 @@ router.get('/charityapi', getCharity);
 router.get('/getall', authUser, getAllCharity);
 router.get('/', authUser, getCharityByUser);
 router.get('/:charityId', authUser, getCharityById);
-router.post('/create', ImgUploader, createCharity);
-router.put('/update/charityId', ImgUploader, updateCharity);
+router.post('/create',  createCharity);
+router.put('/update/:charityId', updateCharity);
 router.delete('/deleteall', deleteAllCharity);
-router.delete('/delete/charityId', authUser, deleteCharityById);
+router.delete('/delete/:charityId', authUser, deleteCharityById);
 
 
 module.exports = router;

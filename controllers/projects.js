@@ -173,14 +173,13 @@ const updateProject = async (req, res, next) => {
     const project = await Project.findOne({
       _id: req.params.projectId,
     })
-      .where("createdBy")
-      .equals(req.user.userId);
+      // .where("createdBy")
+      // .equals(req.user.userId);
     if (!project || !req.body)
       return res.send({
         success: false,
         message: "Unauthorized",
       });
-
           project.compaigntitle= req.body.CampaignTitle||project.compaigntitle,
           project.compaigntagline= req.body.CampaignTagline||project.compaigntagline,
           project.location= req.body.Location||project.location,
@@ -218,12 +217,12 @@ const updateProject = async (req, res, next) => {
          project.imagegallery=req.body.imagegallery||project.imagegallery
 
 //     const updatedBusiness = await business.save();
-
-     const updatedProject=Project.findOneAndUpdate({_id:req.params.projectId},{project})
+      console.log(project)
+     await Project.findOneAndUpdate({_id:req.params.projectId},project)
      return res.send({
           success: true,
-          message: "business Updated Successfull",
-          responseData: updatedProject,
+          message: "project Updated Successfull",
+          responseData: project,
         });
      
   } catch (error) {

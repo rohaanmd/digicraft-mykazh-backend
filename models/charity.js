@@ -5,35 +5,35 @@ const CharitySchema = new Schema({
 createdBy: {
      type: Schema.Types.ObjectId,
      ref: "User",
-      required: true,
+     //  required: true,
 },
 Picture:String,
 VideoAppeal:{
      type:String,
-     required:true
+     // required:true
 },
 PatientsAge:Date,
 GoalAmount:{
      type:Number,
-     required:true
+     // required:true
 },
 PatientsName:{
      type:String,
-     required:true
+     // required:true
 },
 PatientsGender:{
      type:String,
      enum:["male","Female","Transgender"],
-     required:true
+     // required:true
 },
 MedicalCon:{
      type:String,
-     required:true
+     // required:true
 },
 Story:String,
 CustSrtLink:{
      type:String,
-     required:true
+     // required:true
 },
 docs:{
      MedEsti:{
