@@ -77,93 +77,14 @@ const createBusiness = async (req, res, next) => {
      
       location: {
         country: req.body.country,
-        city: req.body.stateAndCit
+        stateAndCity: req.body.stateAndCity,
       },
-      company_tagline: req.body.companyTagline,
-      company_keyword: req.body.companyKeywords,
-      email: req.body.email,
-      website: req.body.website,
-      mobile: req.body.number,
-      linkedin: req.body.linkedin,
-      facebook: req.body.facebook,
-      twitter: req.body.twitter,
-      logo: req.body.logo,
-      featuredImg: req.body.featuredImg,
-      video: req.body.video,
-      youtubeUrls: req.body.youtubeUrls,
-      testimonials: req.body.testimonials,
-      traction: req.body.traction,
-      faq: req.body.faq,
-      fundraising: {
-        visibility: req.body.visibility,
-        goal: req.body.goal,
-        maxAmount: req.body.maxAmount,
-        minAmount: req.body.minAmount,
-        stage: req.body.stage,
-        closingDate: req.body.closingDate,
-        currentlyFunding: req.body.currentlyFunding,
-        dealType: {
-          exemption: req.body.exemption,
-          equity: {
-            PreMoneyEvaluation: req.body.PreMoneyEvaluation,
-          },
-          convertableNote: {
-            termLength: req.body.termLength,
-            conversionDiscount: req.body.conversionDiscount,
-            intrest: req.body.convertableNoteIntrest,
-            valuationCap: req.body.valuationCap,
-            warrantCoverage: req.body.warrantCoverage,
-          },
-          safeNote: {
-            valuationCap: req.body.valuationCap,
-            conversionDiscount: req.body.conversionDiscount,
-
-          },
-          debt: {
-            interest: req.body.interest,
-            termLength: req.body.termLength,
-
-          },
-
-          revenueShare: {
-            return: req.body.revenueShareReturn,
-            paymentFrequency: req.body.paymentFrequency,
-            MaxReturn: req.body.MaxReturn,
-            returnType: req.body.revenueShareReturnType,
-            PaybackStartDate: req.body.paymentStartDate
-
-          }
-
-
-        },
-        PreviousFunding: {
-          source: req.body.previousFundingSource,
-          fundingAmount: req.body.fundingAmount,
-          fundingDate: req.body.fundingDate,
-        }
-
-      },
-
-      pitch: {
-        highlight: req.body.pitchHighlights,
-        elevatorPitch: req.body.elevatorPitch,
-        investor: req.body.investor,
-      },
-
-      docs: {
-        executiveSummary: { Doctype: req.body.ExecutiveSummaryType, fileUrl: req.body.ExecutiveSummaryUrl },
-        termSheet: {
-          Doctype: req.body.termSheetType,
-          fileUrl: req.body.termSheetUrl,
-        },
-        additionalDoc: {
-          Doctype: req.body.additionalDocType,
-          fileUrl: req.body.additionalDocUrl,
-        }
-      },
-      risk: req.body.risk,
+      companyTagline: req.body.companyTagline,
+      companyKeyword: req.body.companyKeywords,
+      
+      url: req.body.url,
     };
-    console.log(req.user);
+    // console.log(req.user);
     const business = new Business(businessDetails, (err) => {
       if (err)
         return res.send({
@@ -172,10 +93,10 @@ const createBusiness = async (req, res, next) => {
           responsedata: err,
         });
     });
-    // business.createdBy = req.user.userId;
+    business.createdBy = req.user.userId;
    
     await business.save();
-    console.log(JSON.stringify(businessDetails, null, 4));
+    // console.log(JSON.stringify(businessDetails, null, 4));
     return res.send({
       success: true,
       message: "company successfully created",
@@ -227,97 +148,78 @@ const updateBusiness = async (req, res, next) => {
             });}
           
 
-            const businessDetails = {
-                comanyName: req.body.comanyName || business.comanyName ,
-                companyOverview: req.body.companyOverview ,
-                location: {
-                  country: req.body.country,
-                  stateAndCity: req.body.stateAndCity,
+            const businessDetails =  {
+              companyName: req.body.companyName,
+              companyOverview: req.body.companyOverview,
+              customContentInput: req.body.customContentInput,
+              customContentTextarea: req.body.customContentTextarea,
+              location: {
+                country: req.body.country,
+                stateAndCity: req.body.stateAndCity,
+              },
+              press: req.body.press,
+              companyTagline: req.body.companyTagline,
+              companyKeyword: req.body.companyKeyword,
+              email: req.body.email,
+              canSms: req.body.canSms,
+              websiteURL: req.body.websiteURL,
+              conatctPhone: req.body.conatctPhone,
+              linkedinURL: req.body.linkedinURL,
+              facebookURL: req.body.facebookURL,
+              twitterURL: req.body.twitterURL,
+              url: req.body.url,
+              team: req.body.team,
+              kpi: req.body.kpi,
+              featuredImg: req.body.featuredImg,
+              video: req.body.video,
+              youtubeURL:req.body.youtubeURL,
+              test:req.body.test,
+              traction: req.body.traction,
+              qus: req.body.qus,
+              CampaignVisibility: req.body.campaignVisibility,
+              goal:req.body.goal,
+              MaximumInvestmentAmount: req.body.MaximumInvestmentAmount,
+              MinimumInvestmentAmount: req.body.MinimumInvestmentAmount,
+              deal_stage: req.body.deal_stage,
+              ClosingDate: req.body.ClosingDate,
+              currentlyFunding: req.body.currentlyFunding,
+              ExemptionType: req.body.ExemptionType,
+              PreMoneyEvaluation: req.body.PreMoneyEvaluation,
+              TermLength: req.body.TermLength,
+              ConversionDiscount: req.body.ConversionDiscount,
+              Intrest: req.body.Intrest,
+              ValuationCap: req.body.ValuationCap,
+              WarrantCoverage: req.body.WarrantCoverage,
+              return: req.body.return,
+              PaymentFrequency: req.body.PaymentFrequency,
+              MaximumReturn: req.body.MaximumReturn,
+              ReturnType: req.body.ReturnType,
+              PaybackStartDate: req.body.PaybackStartDate,
+              FundingSource: req.body.FundingSource,
+              FundingAmount: req.body.FundingAmount,
+              FundingDate: req.body.FundingDate,
+              FundingType: req.body.FundingType,
+              dealHighligths: req.body.dealHighligths,
+              ElevatorPitch: req.body.ElevatorPitch,
+              investor: req.body.investor,
+              ExecutiveSummaryToogle: req.body.ExecutiveSummaryToogle,
+              TermSheetToogle: req.body.TermSheetToogle,
+              AdditionalToogle: req.body.AdditionalToogle,
+              docs: {
+                executiveSummary: {
+                   Doctype: req.body.ExecutiveSummaryType, fileUrl: req.body.ExecutiveSummaryUrl },
+                termSheet: {
+                  Doctype:req.body.termSheetType,
+                  fileUrl: req.body.termSheetUrl,
                 },
-                companyTagline: req.body.companyTagline,
-                companyKeywords: req.body.companyKeywords,
-                email: req.body.email,
-                website: req.body.website,
-                mobile: req.body.number,
-                linkedin: req.body.linkedin,
-                facebook: req.body.facebook,
-                twitter: req.body.twitter,
-                logo: req.body.logo,
-                featuredImg: req.body.featuredImg,
-                video: req.body.video,
-                youtubeUrls: req.body.youtubeUrls,
-                testimonials: req.body.testimonials,
-               
-                faq: req.body.faq,
-                fundraising: {
-                  visibility: req.body.visibility,
-                  goal: req.body.goal,
-                  maxAmount: req.body.maxAmount,
-                  minAmount: req.body.minAmount,
-                  stage: req.body.stage,
-                  closingDate: req.body.closingDate,
-                  currentlyFunding: req.body.currentlyFunding,
-                  dealType: {
-                    exemption: req.body.exemption,
-                    equity: {
-                      PreMoneyEvaluation: req.body.PreMoneyEvaluation,
-                    },
-                    convertableNote: {
-                      termLength: req.body.termLength,
-                      conversionDiscount: req.body.conversionDiscount,
-                      intrest: req.body.convertableNoteIntrest,
-                      valuationCap: req.body.valuationCap,
-                      warrantCoverage: req.body.warrantCoverage,
-                    },
-                    safeNote: {
-                      valuationCap: req.body.valuationCap,
-                      conversionDiscount: req.body.conversionDiscount,
-          
-                    },
-                    debt: {
-                      interest: req.body.interest,
-                      termLength: req.body.termLength,
-          
-                    },
-          
-                    revenueShare: {
-                      return: req.body.revenueShareReturn,
-                      paymentFrequency: req.body.paymentFrequency,
-                      MaxReturn: req.body.MaxReturn,
-                      returnType: req.body.revenueShareReturnType,
-                      PaybackStartDate: req.body.paymentStartDate
-          
-                    }
-          
-          
-                  },
-                  PreviousFunding: {
-                    source: req.body.previousFundingSource,
-                    fundingAmount: req.body.fundingAmount,
-                    fundingDate: req.body.fundingDate,
-                  }
-          
+                additionalDoc: {
+                  Doctype:req.body.additionalDocType,
+                  fileUrl: req.body.additionalDocUrl,
                 },
+              },
           
-                pitch: {
-                  highlight: req.body.pitchHighlights,
-                  elevatorPitch: req.body.elevatorPitch,
-                  investor: req.body.investor,
-                },
-          
-                docs: {
-                  executiveSummary: { Doctype: req.body.ExecutiveSummaryType, fileUrl: req.body.ExecutiveSummaryUrl },
-                  termSheet: {
-                    Doctype: req.body.termSheetType,
-                    fileUrl: req.body.termSheetUrl,
-                  },
-                  additionalDoc: {
-                    Doctype: req.body.additionalDocType,
-                    fileUrl: req.body.additionalDocUrl,
-                  }
-                },
-                risk: req.body.risk,
-              };
+              RisksDisclosures: req.body.RiskDisclosures,
+            };
 
             await business.updateOne(businessDetails,function(
                 err,

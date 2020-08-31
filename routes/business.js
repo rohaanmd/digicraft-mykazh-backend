@@ -17,7 +17,7 @@ router.get('/getall',  getAllBusiness);
 router.get('/', getBusinessByUser);
 router.get('/:businessId', getBusinessById);
 router.post('/create', createBusiness);
-router.put('/update/:businessId',ImgUploader, updateBusiness);
+router.put('/update/:businessId', updateBusiness);
 router.delete('/deleteall', deleteAllBusiness);
 router.delete('/delete/:businessId', deleteBusinessById);
 

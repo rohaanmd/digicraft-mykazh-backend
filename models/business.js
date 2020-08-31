@@ -1,202 +1,208 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const BusinessSchema = new Schema({
+const BusinessSchema = new Schema(
+  {
     companyName: {
-        type: String,
-        // required: true,
+      type: String,
+      // required: true,
     },
     companyOverview: {
-        type: String,
-        // required: true,
+      type: String,
+      // required: true,
     },
 
     createdBy: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        // required: true,
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      // required: true,
     },
-
+    customContentInput: String,
+    customContentTextarea: String,
     location: {
-        country: {
-            type: String,
-            // required: true,
-        },
-        stateAndCity: String,
-    },
-    company_tagline: String,
-    company_keyword: String,
-    email: String,
-    website: String,
-    mobile: Number,
-    linkedin: String,
-    facebook: String,
-    twitter: String,
-    logo: {
+      country: {
         type: String,
         // required: true,
+      },
+      stateAndCity: String,
     },
+    press: String,
+
+    companyTagline: String,
+    companyKeyword: String,
+    email: String,
+    canSms: Boolean,
+    websiteURL: String,
+    conatctPhone: Number,
+    linkedinURL: String,
+    facebookURL: String,
+    twitterURL: String,
+    url: {
+      type: String,
+      // required: true,
+    },
+    team: [
+      {
+        level: Boolean,
+        visible: Boolean,
+        role: String,
+        name: String,
+      },
+    ],
+    kpi: [
+      {
+        option: Number,
+        role: String,
+        text: String,
+      },
+    ],
 
     featuredImg: {
-        type: String,
+      type: String,
     },
     video: {
-        type: String,
+      type: String,
     },
     youtubeUrls: [
-        {
-            url: String,
-        },
+      {
+        url: String,
+      },
     ],
-    testimonials: [
-        {
-            user: {
-                type: Schema.Types.ObjectId,
-                ref: "User",
-            },
-            role: String,
-            quote: String,
+    test: [
+      {
+        name: {
+          type: String,
         },
+        role: String,
+        text: String,
+      },
     ],
 
     traction: [
-        {
-            date: Date,
-            about: String,
-        },
+      {
+        date: Date,
+        text: String,
+      },
     ],
-    faq: [
-        {
-            question: String,
-            answer: String,
-        }
+    qus: [
+      {
+        qus: String,
+        ans: String,
+      },
     ],
-    fundraising: {
-        visibility: {
-            type: String,
-            // required: true,
-            enum: ["private", "public"],
-        },
-        goal: Number,
-        maxAmount: Number,
-        minAmount: Number,
-        stage: {
-            type: String,
-            // required: true,
-            enum: ["pre-seed", "seed", "BridgeToSeriesA", "SeriesA", "BridgeToSeriesB", "SeriesB", "others"],
-        },
-        closingDate: Date,
-        currentlyFunding: {
-            type: Boolean,
-            // required: true,
-            default: false,
-        },
 
-        dealType: {
-            exemption: {
-                type: String,
-                enum: ["regA", "regB"]
-
-            },
-            equity: {
-                PreMoneyEvaluation: Number
-            },
-            convertableNote: {
-                termLength: Number,
-                conversionDiscount: Number,
-                intrest: Number,
-                valuationCap: Number,
-                warrantCoverage: Number,
-            },
-            safeNote: {
-                valuationCap: Number,
-                conversionDiscount: Number,
-
-            },
-            debt: {
-                interest: Number,
-                termLength: Number,
-
-            },
-            revenueShare: {
-                return: Number,
-                paymentFrequency: {
-                    type: String,
-                    enum: ["monthly", "bimonthly", "quarterly"]
-                },
-                MaxReturn: Number,
-                returnType: {
-                    type: String,
-                    enum: ["profit", "revenue"]
-                },
-                PaybackStartDate:
-                {
-                    type: String,
-                    enum: ["Exact Date", "Number Of Month Finance Close"]
-                }
-
-
-            }
-
-
-        },
-        PreviousFunding: {
-            source: {
-                type: String,
-                enum: ["self", "friemd", "bank", "investor", "grant", "other"]
-            },
-            fundingAmount: Number,
-            fundingDate: Date,
-        }
-
+    CampaignVisibility: {
+      type: String,
+      // required: true,
+      enum: ["private", "public"],
+    },
+    goal: Number,
+    MaximumInvestmentAmount: Number,
+    MinimumInvestmentAmount: Number,
+    deal_stage: {
+      type: Number,
+      // type: String,
+      // required: true,
+      // enum: ["pre-seed", "seed", "BridgeToSeriesA", "SeriesA", "BridgeToSeriesB", "SeriesB", "others"],
+    },
+    ClosingDate: Date,
+    currentlyFunding: {
+      type: Boolean,
+      // required: true,
+      default: false,
     },
 
-    pitch: {
-        highlight: [{ type: String, }],
-        elevatorPitch: String,
-        investor: [
-
-            {
-                investorType: {
-                    type: String,
-                    enum: ["individual", "institutional"]
-                },
-                investorId: {
-                    type: String,
-                    ref: "User",
-                }
-            }
-        ]
-
+    ExemptionType: {
+      type: String,
+      // enum: ["regA", "regB"]
     },
+    equity: {
+      PreMoneyEvaluation: Number,
+    },
+
+    TermLength: Number,
+    ConversionDiscount: Number,
+    Intrest: Number,
+    ValuationCap: Number,
+    WarrantCoverage: Number,
+
+    safeNote: {
+      valuationCap: Number,
+      conversionDiscount: Number,
+    },
+    debt: {
+      interest: Number,
+      termLength: Number,
+    },
+
+    return: Number,
+    PaymentFrequency: {
+      type: Number,
+      // type: String,
+      // enum: ["monthly", "bimonthly", "quarterly"]
+    },
+    MaximumReturn: Number,
+    ReturnType: {
+      type: Number,
+      // type: String,
+      // enum: ["profit", "revenue"]
+    },
+    PaybackStartDate: {
+      type: String,
+      enum: ["Exact Date", "Number Of Month Finance Close"],
+    },
+
+    FundingSource: {
+      type: Number,
+      // type: String,
+      // enum: ["self", "friemd", "bank", "investor", "grant", "other"]
+    },
+    FundingAmount: Number,
+    FundingDate: Date,
+    FundingType: Number,
+
+    dealHighligths: [{ type: String }],
+    ElevatorPitch: String,
+    investor: [
+      {
+        InvestorType: {
+          type: Number,
+          // type: String,
+          // enum: ["individual", "institutional"]
+        },
+        InvestorName: {
+          type: String,
+        },
+      },
+    ],
+    ExecutiveSummaryToogle: Boolean,
+    TermSheetToogle: Boolean,
+    AdditionalToogle: Boolean,
 
     docs: {
-        executiveSummary: {
-            Doctype: {
-                type: String,
-                enum: ["public", "confidential"],
-            },
-            fileUrl: String,
+      executiveSummary: {
+        Doctype: {
+          type: String,
+          enum: ["public", "confidential"],
         },
-        termSheet: {
-            Doctype: {
-                type: String,
-                enum: ["public", "confidential"],
-            },
-            fileUrl: String,
-
+        fileUrl: String,
+      },
+      termSheet: {
+        Doctype: {
+          type: String,
+          enum: ["public", "confidential"],
         },
-        additionalDoc: {
-            Doctype: String,
-            fileUrl: String,
-        },
-
+        fileUrl: String,
+      },
+      additionalDoc: {
+        Doctype: String,
+        fileUrl: String,
+      },
     },
 
-    risk: String,
-
-
-
-}, { timestamps: true });
+    RisksDisclosures: String,
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("business", BusinessSchema);
