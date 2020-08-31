@@ -83,7 +83,7 @@ const createProject = async (req, res, next) => {
           tags: req.body.tags,
           videourl: req.body.videourl,
           videooverlayimg: req.body.videooverlayimg,
-          fac:req.body.faq,
+          faq:req.body.faq,
           perk:req.body.perk,
           fundingType:req.body.fundingType,
           campaigngoalAmountCurrency:req.body.campaigngoalAmountCurrency,
