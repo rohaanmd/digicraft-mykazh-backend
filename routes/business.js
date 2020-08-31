@@ -14,7 +14,7 @@ const { getBusiness,
 
 router.get('/businessapi', getBusiness);
 router.get('/getall',  getAllBusiness);
-router.get('/', authUser, getBusinessByUser);
+router.get('/', getBusinessByUser);
 router.get('/:businessId', getBusinessById);
 router.post('/create', createBusiness);
 router.put('/update/:businessId',ImgUploader, updateBusiness);
