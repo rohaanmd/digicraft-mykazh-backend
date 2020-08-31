@@ -103,18 +103,18 @@ const createProject = async (req, res, next) => {
           marketingimage:req.body.marketingimage,
           customshorturl:req.body.customshorturl,
           googleAnalytics:{
-               trackingid:req.body.trackingid
+               trackingid:req.body.googleAnalytics.trackingid
           },
           googleAdtracking:{
-               conversionid:req.body.conversionid,
-               conversionlabel:req.body.conversionlabel,
-               remarketingid:req.body.remarketingid
+               conversionid:req.body.googleAdtracking.conversionid,
+               conversionlabel:req.body.googleAdtracking.conversionlabel,
+               remarketingid:req.body.googleAdtracking.remarketingid
           },
           facebookAdtracking:{
-               Facebookpixelid:req.body.Facebookpixelid
+               Facebookpixelid:req.body.facebookAdtracking.Facebookpixelid
           },
           videosgallery:{
-               youtubeorvimeourl:req.body.youtubeorvimeourl
+               youtubeorvimeourl:req.body.videosgallery.youtubeorvimeourl
           },
           imagegallery:req.body.imagegallery
           
