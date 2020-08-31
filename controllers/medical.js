@@ -1,4 +1,4 @@
-const Charity = require('../models/charity');
+const Charity = require('../models/medical');
 
 const getCharity = (req, res, next) => {
   console.log("GET Request")
