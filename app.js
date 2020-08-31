@@ -31,10 +31,10 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
 const userRouter = require("./routes/user");
 const businessRouter = require('./routes/business');
 const projectRouter=require('./routes/projects');
-const charityRouter=require('./routes/charity');
+const medicalRouter=require('./routes/medical');
 const adminRouter = require("./routes/admin");
-
-
+const ngoRouter = require("./routes/ngo");
+const othersRouter = require("./routes/others");
 /*  links */
 // app.use("/", function (req, res,next ){
 //   res.send("<h1> Welcome to mykazh-backend </h1>");
@@ -42,10 +42,13 @@ const adminRouter = require("./routes/admin");
 // })
 router.use('/business', businessRouter);
 router.use('/project',projectRouter)
-router.use('/charity',charityRouter)
+router.use('/medical',medicalRouter)
+
+
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
-
+router.use('/ngo',ngoRouter);
+router.use('/others',othersRouter);
 app.use("/api", router);
 
 /* ERROR HANDLERS */

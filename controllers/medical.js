@@ -1,4 +1,4 @@
-const Charity = require('../models/charity');
+const Charity = require('../models/medical');
 
 const getCharity = (req, res, next) => {
   console.log("GET Request")
@@ -81,19 +81,7 @@ const createCharity = (req, res, next) => {
      PatientsGender: req.body.PatientGender,
      MedicalCon: req.body.MedicalCondition,
      Story: req.body.Story,
-     CustSrtLink:req.body.CustSrtLink,
-     docs:{
-          MedEsti:{
-               fileUrl : req.body.MedEsti,
-           },
-           LetFrmPatie:{
-               fileUrl : req.body.LetFrmPatie,
-           },
-           MedRep: { 
-               fileUrl :req.body.MedRep,
-           }, 
-     }
-      
+       
     };
     const charity = new Charity(charityDetails, (err) => {
       if (err)

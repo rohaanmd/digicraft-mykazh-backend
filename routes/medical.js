@@ -9,7 +9,7 @@ const {  deleteCharityById,
      getCharityById,
      getAllCharity,
      getCharity
-} = require("../controllers/charity")
+} = require("../controllers/medical")
 
 
 router.get('/charityapi', getCharity);

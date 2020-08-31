@@ -28,17 +28,17 @@ const getBusinessById = async (req, res, next) => {
   try {
     const business = await Business.findOne({
       _id: req.params.businessId,
-    }).populate("createdBy");
+    })
     if (!business)
       return res.send({
         success: false,
         message: "business Not Found",
       });
-    const isAuthor = business.created_by.equals(req.user.userId);
+  
     return res.send({
       success: true,
       message: "business Found successfully",
-      responseData: { business, isAuthor },
+      responseData: { business},
     });
   } catch (error) {
     console.log(error);
@@ -73,8 +73,8 @@ const getBusinessByUser = async (req, res, next) => {
 const createBusiness = async (req, res, next) => {
   try {
     const businessDetails = {
-      comanyName: req.body.companyName ,
-      companyOverview: req.body.companyOverview,
+      companyName: req.body.companyName ,
+     
       location: {
         country: req.body.country,
         city: req.body.stateAndCit
@@ -220,8 +220,6 @@ const updateBusiness = async (req, res, next) => {
     if(JSON.stringify(userId)==JSON.stringify(createdBy))
       // if(business.createdBy = req.user.userId)
       {
-        console.log(business.createdBy);
-        console.log(req.user.userId);
         if (!business || !req.body){
             return res.send({
               success: false,
@@ -249,7 +247,7 @@ const updateBusiness = async (req, res, next) => {
                 video: req.body.video,
                 youtubeUrls: req.body.youtubeUrls,
                 testimonials: req.body.testimonials,
-                traction: req.body.traction,
+               
                 faq: req.body.faq,
                 fundraising: {
                   visibility: req.body.visibility,
@@ -328,12 +326,13 @@ const updateBusiness = async (req, res, next) => {
                 if (err) {
                   res.send(err);
                 }
-              });    
-
+               
+              });  
+              
             return res.send({
               success: true,
               message: "business Updated Successfull",
-            
+              responseData: Getbusiness,            
             });
 
       }

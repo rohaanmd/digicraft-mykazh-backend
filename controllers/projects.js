@@ -70,7 +70,7 @@ const getProjectByUser = async (req, res, next) => {
 };
 
 
-const createProject = (req, res, next) => {
+const createProject = async (req, res, next) => {
   try {
     const projectDetails = {
           compaigntitle: req.body.CampaignTitle,
@@ -131,7 +131,7 @@ const createProject = (req, res, next) => {
     });
     console.log(JSON.stringify(projectDetails, null, 4));
     // project.createdBy = req.user.userId;
-    project.save();
+    await project.save();
     return res.send({
       success: true,
       message: "Project successfully created",

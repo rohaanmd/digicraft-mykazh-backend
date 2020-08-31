@@ -8,6 +8,7 @@ const ProjectSchema = new Schema({
           ref: "User",
           required: false,
       },
+      bigList:Number,
      compaigntitle:{
           type:String,
           // required:true

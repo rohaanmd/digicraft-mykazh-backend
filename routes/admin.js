@@ -26,6 +26,17 @@ const {
       updatePrivacy,
 
 } = require("../controllers/info");
+
+const {
+    postFaq,
+    getInvestor ,
+    getKnowledge,
+    getEntrepreneur,
+    updateKnowledge,
+  updateEntrepreneur,
+  updateInvestor,
+    
+} = require("../controllers/faq");
 const { get } = require("mongoose");
 
 router.post("/signup" , ImgUploader,SignUp);
@@ -58,6 +69,18 @@ router.get("/privacy", getPrivacy);
 router.put("/privacy/update",updatePrivacy);
 
 
+
+
+router.post("/faq/create", postFaq);
+
+router.get("/knowledge", getKnowledge);
+router.put("/knowledge/update/:faqId",updateKnowledge);
+
+router.get("/investor", getInvestor);
+router.put("/investor/update/:faqId",updateInvestor);
+
+router.get("/entrepreneur", getEntrepreneur);
+router.put("/entrepreneur/update/:faqId",updateEntrepreneur);
 
 
 
