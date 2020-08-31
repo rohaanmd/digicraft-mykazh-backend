@@ -172,8 +172,8 @@ const createBusiness = async (req, res, next) => {
           responsedata: err,
         });
     });
-    business.createdBy = req.user.userId;
-    // console.log(JSON.stringify(businessDetails, null, 4));
+    // business.createdBy = req.user.userId;
+   
     await business.save();
     console.log(JSON.stringify(businessDetails, null, 4));
     return res.send({
