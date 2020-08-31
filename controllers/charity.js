@@ -73,27 +73,16 @@ const getCharityByUser = async (req, res, next) => {
 const createCharity = (req, res, next) => {
   try {
     const charityDetails = {
-     Picture: req.body.Picture,
+      title: req.body.fundraiserTitle,
+     Picture: req.body.uploadImage,
      VideoAppeal: req.body.VideoAppeal,
      PatientsAge: req.body.PatientsAge,
      GoalAmount: req.body.GoalAmount,
      PatientsName: req.body.PatientsName,
-     PatientsGender: req.body.PatientsGender,
-     MedicalCon: req.body.MedicalCon,
+     PatientsGender: req.body.PatientGender,
+     MedicalCon: req.body.MedicalCondition,
      Story: req.body.Story,
-     CustSrtLink:req.body.CustSrtLink,
-     docs:{
-          MedEsti:{
-               fileUrl : req.body.MedEsti,
-           },
-           LetFrmPatie:{
-               fileUrl : req.body.LetFrmPatie,
-           },
-           MedRep: { 
-               fileUrl :req.body.MedRep,
-           }, 
-     }
-      
+       
     };
     const charity = new Charity(charityDetails, (err) => {
       if (err)
@@ -154,20 +143,20 @@ const updateCharity = async (req, res, next) => {
         success: false,
         message: "Unauthorized",
       });
-      charity.Picture= req.body.Picture,
-     charity.VideoAppeal= req.body.VideoAppeal,
-     charity.PatientsAge= req.body.PatientsAge,
-     charity.GoalAmount= req.body.GoalAmount,
-     charity.PatientsName= req.body.PatientsName,
-     charity.PatientsGender= req.body.PatientsGender,
-     charity.MedicalCon= req.body.MedicalCon,
-     charity.Story= req.body.Story,
-     charity.CustSrtLink=req.body.CustSrtLink,
-     charity.docs.MedEsti.fileUrl=req.body.MedEsti
-     charity.docs.LetFrmPatie.fileUrl=req.body.LetFrmPatie
-     charity.docs.MedRep.fileUrl=req.body.MedRep
-  
-          
+      
+      charity.Picture= req.body.Picture;
+     charity.VideoAppeal= req.body.VideoAppeal;
+     charity.PatientsAge= req.body.PatientsAge;
+     charity.GoalAmount= req.body.GoalAmount;
+     charity.PatientsName= req.body.PatientsName;
+     charity.PatientsGender= req.body.PatientsGender;
+     charity.MedicalCon= req.body.MedicalCon;
+     charity.Story= req.body.Story;
+     charity.CustSrtLink=req.body.CustSrtLink;
+     charity.docs.MedEsti.fileUrl=req.body.MedEsti;
+     charity.docs.LetFrmPatie.fileUrl=req.body.LetFrmPatie;
+     charity.docs.MedRep.fileUrl=req.body.MedRep;
+
 
 //     const updatedBusiness = await business.save();
 

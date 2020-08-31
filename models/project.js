@@ -8,6 +8,7 @@ const ProjectSchema = new Schema({
           ref: "User",
           required: true,
       },
+      bigList:Number,
      compaigntitle:{
           type:String,
           // required:true
@@ -24,7 +25,11 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
-     catergory:{
+     category:{
+          type:String,
+          // required:true
+     },
+     subCategory:{
           type:String,
           // required:true
      },

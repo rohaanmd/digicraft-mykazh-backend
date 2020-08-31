@@ -22,7 +22,7 @@ const BusinessSchema = new Schema({
             type: String,
             // required: true,
         },
-        city: String,
+        stateAndCity: String,
     },
     company_tagline: String,
     company_keyword: String,

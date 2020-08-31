@@ -7,6 +7,7 @@ createdBy: {
      ref: "User",
       required: true,
 },
+title: String,
 Picture:String,
 VideoAppeal:{
      type:String,

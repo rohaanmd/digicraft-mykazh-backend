@@ -73,49 +73,16 @@ const getProjectByUser = async (req, res, next) => {
 const createProject = async (req, res, next) => {
   try {
     const projectDetails = {
-          compaigntitle: req.body.compaigntitle,
-          compaigntagline: req.body.compaigntagline,
+          compaigntitle: req.body.CampaignTitle,
+          compaigntagline: req.body.CampaignTagline,
           location: req.body.state+','+req.body.country,
-          compaigncardimage: req.body.compaigncardimage,
-          catergory: req.body.catergory,
-          tags: req.body.tags,
-          videourl: req.body.videourl,
-          videooverlayimg: req.body.vidOvlayimg,
-          FAQ:req.body.faq,
-          perk:req.body.perk,
-          fundingType:req.body.fundingType,
-          campaigngoalAmountCurrency:req.body.campaigngoalAmountCurrency,
-          countryoflegalresidence:req.body.countryoflegalresidence,
-          customerBillingStatement:req.bodycustomerBillingStatement,
-          legalFirstname:req.body.legalFirstname,
-          legalLastname:req.body.legalLastname,
-          dateofbirth:req.body.dateofbirth,
-          phonenumber:req.body.phonenumber,
-          country:req.body.country,
-          streetAddress:req.body.streetAddress,
-          ExtraAddress:req.body.ExtraAddress,
-          supportEmailaddress:req.body.supportEmailaddress,
-          campaignTeam:req.body.campaignTeam,
-          draftcampaignlink:req.body.draftcampaignlink,
-          facebookshareimage:req.body.facebookshareimage,
-          marketingimage:req.body.marketingimage,
-          customshorturl:req.body.customshorturl,
-          googleAnalytics:{
-               trackingid:req.body.trackingid
-          },
-          googleAdtracking:{
-               conversionid:req.body.conversionid,
-               conversionlabel:req.body.conversionlabel,
-               remarketingid:req.body.remarketingid
-          },
-          facebookAdtracking:{
-               Facebookpixelid:req.body.Facebookpixelid
-          },
-          videosgallery:{
-               youtubeorvimeourl:req.body.youtubeorvimeourl
-          },
-          imagegallery:req.body.imagegallery,
-          perks
+          category: req.body.selectCategory,
+          subCategory:req.body.subCategory,
+          tags: req.body.Tags,
+          country:req.body.location,
+          imagegallery:req.body.uploadImage,
+          bigList: req.nody.bigList,
+        
 
       
     };
