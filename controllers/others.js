@@ -1,44 +1,44 @@
-const Ngo = require('../models/ngo');
+const Others = require('../models/others');
 
-const getNgo = (req, res, next) => {
+const getOthers = (req, res, next) => {
   console.log("GET Request")
   res.json({
-    message: 'this is home route of ngo'
+    message: 'this is home route of others'
   })
 };
 
-const getAllNgo = async (req, res, next) => {
-  const ngo = await Ngo.find({})
+const getAllOthers = async (req, res, next) => {
+  const others = await Others.find({})
     .populate("createdBy")
-  if (!ngo)
+  if (!others)
     return res.send({
       success: false,
-      message: "ngo not found",
+      message: "others not found",
     });
 
   return res.send({
     success: true,
-    message: " ngo Found successfull",
-    responseData: ngo,
+    message: " others Found successfull",
+    responseData: others,
   });
 };
 
 
-const getNgoById = async (req, res, next) => {
+const getOthersById = async (req, res, next) => {
   try {
-    const ngo = await Ngo.findOne({
-      _id: req.params.ngoId,
+    const others = await Others.findOne({
+      _id: req.params.othersId,
     })
-    if (!ngo)
+    if (!others)
       return res.send({
         success: false,
-        message: "ngo Not Found",
+        message: "others Not Found",
       });
   
     return res.send({
       success: true,
-      message: "ngo Found successfully",
-      responseData: { ngo},
+      message: "others Found successfully",
+      responseData: { others},
     });
   } catch (error) {
     console.log(error);
@@ -50,35 +50,35 @@ const getNgoById = async (req, res, next) => {
   }
 };
 
-const getNgoByUser = async (req, res, next) => {
+const getOthersByUser = async (req, res, next) => {
   console.log(req.user);
-  const ngo = await ngo.find()
+  const others = await Others.find()
     .where("createdBy")
     .equals(req.user.userId)
     .populate("createdBy")
     .exec();
-  if (ngo)
+  if (others)
     return res.send({
       success: true,
-      message: "ngo Found successfully",
-      responseData: { ngo },
+      message: "others Found successfully",
+      responseData: { others },
     });
   return res.send({
     success: false,
-    message: "ngo Not Found",
+    message: "others Not Found",
   });
 };
 
 
-const createNgo = async (req, res, next) => {
+const createOthers = async (req, res, next) => {
   try {
-    const ngoDetails = {
-        GoalAmount:req.body.amount,
+    const othersDetails = {
+        GoalAmount:req.body.GoalAmount,
         purpose:req.body.purpose,
-        ngoName:req.body.ngoname,
+        fundFor:req.body.fundFor,
         cause:req.body.cause,
     };
-    const ngo = new Ngo(ngoDetails, (err) => {
+    const others = new Others(othersDetails, (err) => {
       if (err)
         return res.send({
           success: false,
@@ -86,15 +86,15 @@ const createNgo = async (req, res, next) => {
           responsedata: err,
         });
     });
-    ngo.createdBy = req.user.userId;
-    // console.log(JSON.stringify(ngoDetails, null, 4));
-    await ngo.save();
-    console.log(JSON.stringify(ngoDetails, null, 4));
+    Others.createdBy = req.user.userId;
+    // console.log(JSON.stringify(othersDetails, null, 4));
+    await Others.save();
+    console.log(JSON.stringify(othersDetails, null, 4));
     return res.send({
       success: true,
       message: "company successfully created",
       responsedata: {
-        ngo,
+        others,
       },
     })
   }
@@ -108,12 +108,12 @@ const createNgo = async (req, res, next) => {
 }
 
 // DEV purpose
-const deleteAllNgo = async (req, res, next) => {
+const deleteAllOthers = async (req, res, next) => {
   try {
-    await ngo.deleteMany({});
+    await Others.deleteMany({});
     return res.send({
       success: true,
-      message: "ngo deleted successfully",
+      message: "others deleted successfully",
     });
   } catch (error) {
     console.log(error);
@@ -126,26 +126,26 @@ const deleteAllNgo = async (req, res, next) => {
 };
 
 
-const updateNgo = async (req, res, next) => {
+const updateOthers = async (req, res, next) => {
   try {
-    const ngo = await Ngo.findById(req.params.ngoId)
+    const others = await Others.findById(req.params.othersId)
     const userId = req.user.userId;
-    const createdBy = ngo.createdBy;
+    const createdBy = Others.createdBy;
 
     if(JSON.stringify(userId)==JSON.stringify(createdBy))
-      // if(ngo.createdBy = req.user.userId)
+      // if(Others.createdBy = req.user.userId)
       {
-        if (!ngo || !req.body){
+        if (!others || !req.body){
             return res.send({
               success: false,
               message: "Buisness not found",
             });}
           
 
-            const ngoDetails = {
+            const othersDetails = {
                 GoalAmount:req.body.amount,
                 purpose:req.body.purpose,
-                ngoName:req.body.ngoname,
+                fundFor:req.body.fundFor,
                 cause:req.body.cause,
                 mediaLink:{url:req.body.url},
                 location:req.body.location,
@@ -153,7 +153,7 @@ const updateNgo = async (req, res, next) => {
              
               };
 
-           const Getngo = await Ngo.updateOne(ngoDetails,function(
+           const Getothers = await Others.updateOne(othersDetails,function(
                 err,
                 result
               ) {
@@ -165,8 +165,8 @@ const updateNgo = async (req, res, next) => {
               
             return res.send({
               success: true,
-              message: "ngo Updated Successfull",
-              responseData: Getngo,            
+              message: "others Updated Successfull",
+              responseData: Getothers,            
             });
 
       }
@@ -187,32 +187,32 @@ const updateNgo = async (req, res, next) => {
   }
 };
 
-const deleteNgoById = async (req, res, next) => {
-  const ngo = await Ngo.findByIdAndDelete(req.params.ngoId)
+const deleteOthersById = async (req, res, next) => {
+  const others = await Others.findByIdAndDelete(req.params.othersId)
     .where("createdBy")
     .equals(req.user.userId);
-  console.log(ngo);
-  if (ngo)
+  console.log(others);
+  if (others)
     return res.send({
       success: true,
-      message: "ngo Delete Successfully",
-      responsedata: ngo,
+      message: "others Delete Successfully",
+      responsedata: others,
     });
   else
     return res.send({
       success: false,
-      message: "ngo not found",
+      message: "others not found",
     });
 };
 
 
 module.exports = {
-  getNgo,
-  createNgo,
-  updateNgo,
-  deleteNgoById,
-  deleteAllNgo,
-  getNgoByUser,
-  getNgoById,
-  getAllNgo,
+    getOthers,
+    createOthers,
+    updateOthers,
+    deleteOthersById,
+    deleteAllOthers,
+    getOthersByUser,
+    getOthersById,
+    getAllOthers,
 }

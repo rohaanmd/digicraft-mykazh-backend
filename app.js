@@ -34,7 +34,7 @@ const projectRouter=require('./routes/projects');
 const charityRouter=require('./routes/charity');
 const adminRouter = require("./routes/admin");
 const ngoRouter = require("./routes/ngo");
-
+const othersRouter = require("./routes/others");
 /*  links */
 // app.use("/", function (req, res,next ){
 //   res.send("<h1> Welcome to mykazh-backend </h1>");
@@ -46,6 +46,7 @@ router.use('/charity',charityRouter)
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 router.use('/ngo',ngoRouter);
+router.use('/others',othersRouter);
 app.use("/api", router);
 
 /* ERROR HANDLERS */
