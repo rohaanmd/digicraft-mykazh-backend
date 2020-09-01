@@ -74,11 +74,7 @@ const createBusiness = async (req, res, next) => {
   try {
     const businessDetails = {
       companyName: req.body.companyName ,
-     
-      location: {
-        country: req.body.country,
-        stateAndCity: req.body.stateAndCity,
-      },
+      location: req.body.location,
       companyTagline: req.body.companyTagline,
       companyKeyword: req.body.companyKeywords,
       
@@ -153,10 +149,7 @@ const updateBusiness = async (req, res, next) => {
               companyOverview: req.body.companyOverview,
               customContentInput: req.body.customContentInput,
               customContentTextarea: req.body.customContentTextarea,
-              location: {
-                country: req.body.country,
-                stateAndCity: req.body.stateAndCity,
-              },
+              location: Request.body.location,
               press: req.body.press,
               companyTagline: req.body.companyTagline,
               companyKeyword: req.body.companyKeyword,
