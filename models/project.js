@@ -60,6 +60,8 @@ const ProjectSchema = new Schema({
                     type:String,
                     enum: ["Visible","Hidden"],
                },
+
+               perkimage:String,
                price:{
                     type:Number,
                     // required:true
