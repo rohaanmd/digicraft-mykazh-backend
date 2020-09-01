@@ -86,7 +86,7 @@ const createNgo = async (req, res, next) => {
           responsedata: err,
         });
     });
-    ngo.createdBy = req.user.userId;
+    // ngo.createdBy = req.user.userId;
     // console.log(JSON.stringify(ngoDetails, null, 4));
     await ngo.save();
     console.log(JSON.stringify(ngoDetails, null, 4));

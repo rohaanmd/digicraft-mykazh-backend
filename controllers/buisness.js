@@ -77,7 +77,6 @@ const createBusiness = async (req, res, next) => {
       location: req.body.location,
       companyTagline: req.body.companyTagline,
       companyKeyword: req.body.companyKeywords,
-      
       url: req.body.url,
     };
     // console.log(req.user);
@@ -89,7 +88,7 @@ const createBusiness = async (req, res, next) => {
           responsedata: err,
         });
     });
-    business.createdBy = req.user.userId;
+    // business.createdBy = req.user.userId;
    
     await business.save();
     // console.log(JSON.stringify(businessDetails, null, 4));
