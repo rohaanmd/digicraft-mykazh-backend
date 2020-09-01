@@ -71,8 +71,7 @@ const getProjectByUser = async (req, res, next) => {
 
 
 const createProject = async (req, res, next) => {
-  try {
-    const projectDetails = {
+  try { const projectDetails = {
           bigList:req.body.bigList,
           compaigntitle: req.body.campaigntitle,
           compaigntagline: req.body.campaigntagline,
@@ -80,48 +79,17 @@ const createProject = async (req, res, next) => {
           compaigncardimage: req.body.compaigncardimage,
           selectCategory: req.body.selectCategory,
           SubCategory: req.body.SubCategory,
+
           tags: req.body.tags,
-          videourl: req.body.videourl,
-          videooverlayimg: req.body.videooverlayimg,
-          faq:req.body.faq,
-          perk:req.body.perk,
-          fundingType:req.body.fundingType,
-          campaigngoalAmountCurrency:req.body.campaigngoalAmountCurrency,
-          countryoflegalresidence:req.body.countryoflegalresidence,
-          customerBillingStatement:req.bodycustomerBillingStatement,
-          legalFirstname:req.body.legalFirstname,
-          legalLastname:req.body.legalLastname,
-          dateofbirth:req.body.dateofbirth,
-          phonenumber:req.body.phonenumber,
-          country:req.body.country,
-          streetAddress:req.body.streetAddress,
-          ExtraAddress:req.body.ExtraAddress,
-          supportEmailaddress:req.body.supportEmailaddress,
-          campaignTeam:req.body.campaignTeam,
-          draftcampaignlink:req.body.draftcampaignlink,
-          facebookshareimage:req.body.facebookshareimage,
-          marketingimage:req.body.marketingimage,
-          customshorturl:req.body.customshorturl,
-          googleAnalytics:{
-               trackingid:req.body.googleAnalytics.trackingid
-          },
-          googleAdtracking:{
-               conversionid:req.body.googleAdtracking.conversionid,
-               conversionlabel:req.body.googleAdtracking.conversionlabel,
-               remarketingid:req.body.googleAdtracking.remarketingid
-          },
-          facebookAdtracking:{
-               Facebookpixelid:req.body.facebookAdtracking.Facebookpixelid
-          },
-          videosgallery:{
-               youtubeorvimeourl:req.body.videosgallery.youtubeorvimeourl
-          },
-          imagegallery:req.body.imagegallery
+          uploadImage:req.body.uploadImage,
+       
           
+   
 
       
     };
-  
+   
+    console.log(JSON.stringify(projectDetails, null, 4));
     const project = new Project(projectDetails, (err) => {
       if (err)
         return res.send({
@@ -130,9 +98,10 @@ const createProject = async (req, res, next) => {
           responsedata: err,
         });
     });
-    console.log(JSON.stringify(projectDetails, null, 4));
+   
     // project.createdBy = req.user.userId;
     await project.save();
+   
     return res.send({
       success: true,
       message: "Project successfully created",
@@ -140,6 +109,7 @@ const createProject = async (req, res, next) => {
           project,
       },
     })
+ 
   }
   catch (err) {
     return res.send({
@@ -209,12 +179,11 @@ const updateProject = async (req, res, next) => {
           project.facebookshareimage=req.body.facebookshareimage||project.facebookshareimage,
           project.marketingimage=req.body.marketingimage||project.marketingimage,
           project.customshorturl=req.body.customshorturl||project.customshorturl,
-          project.googleAnalytics.trackingid=req.body.trackingid||project.googleAnalytics.trackingid,
-          project.googleAdtracking.conversionid=req.body.conversionid||project.googleAdtracking.conversionid,
-          project.googleAdtracking.conversionlabel=req.body.conversionlabel||project.googleAdtracking.conversionlabel,
-          project.googleAdtracking.remarketingid=req.body.remarketingid||project.googleAdtracking.remarketingid,
-          project.facebookAdtracking.Facebookpixelid=req.body.Facebookpixelid||project.facebookAdtracking.Facebookpixelid,
-          project.videosgallery.youtubeorvimeourl=req.body.youtubeorvimeourl||project.videosgallery.youtubeorvimeourl,
+          project.googleAnalytics=req.body.googleAnalytics||project.googleAnalytics,
+          project.googleAdtracking=req.body.googleAdtracking|project.googleAdtracking,
+        
+          project.facebookAdtracking=req.body.facebookAdtracking||project.facebookAdtracking,
+          project.videosgallery=req.body.videosgallery||project.videosgallery,
          project.imagegallery=req.body.imagegallery||project.imagegallery
 
 //     const updatedBusiness = await business.save();
