@@ -74,15 +74,15 @@ const getProjectByUser = async (req, res, next) => {
 const createProject = async (req, res, next) => {
   try { const projectDetails = {
           bigList:req.body.bigList,
-          compaigntitle: req.body.campaigntitle,
-          compaigntagline: req.body.campaigntagline,
+          campaigntitle: req.body.campaigntitle,
+          campaigntagline: req.body.campaigntagline,
           location: req.body.location,
-          compaigncardimage: req.body.compaigncardimage,
+          campaigncardimage: req.body.campaigncardimage,
           selectCategory: req.body.selectCategory,
           SubCategory: req.body.SubCategory,
 
           tags: req.body.tags,
-          uploadImage:req.body.uploadImage,
+          uploadImage:req.body.uploadImage
        
           
    
@@ -152,10 +152,10 @@ const updateProject = async (req, res, next) => {
         success: false,
         message: "Unauthorized",
       });
-          project.compaigntitle= req.body.campaigntitle||project.compaigntitle,
-          project.compaigntagline= req.body.campaigntagline||project.compaigntagline,
+          project.campaigntitle= req.body.campaigntitle||project.campaigntitle,
+          project.campaigntagline= req.body.campaigntagline||project.campaigntagline,
           project.location= req.body.location||project.location,
-          project.compaigncardimage= req.body.compaigncardimage||project.compaigncardimage,
+          project.campaigncardimage= req.body.compaigncardimage||project.campaigncardimage,
           project.selectCatergory= req.body.selectCatergory||project.catergory,
           project.SubCatatergory= req.body.SubCatatergory||project.catergory,
           project.tags= req.body.tags||project.tags,

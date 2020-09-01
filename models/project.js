@@ -9,15 +9,15 @@ const ProjectSchema = new Schema({
           required: false,
       },
       bigList:Number,
-     compaigntitle:{
+     campaigntitle:{
           type:String,
           // required:true
      },
-     compaigntagline:{
+     campaigntagline:{
           type:String,
           // required:true
      },
-     compaigncardimage:{
+     campaigncardimage:{
           type:String,
           // required:true
      },
