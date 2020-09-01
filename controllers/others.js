@@ -86,7 +86,7 @@ const createOthers = async (req, res, next) => {
           responsedata: err,
         });
     });
-    Others.createdBy = req.user.userId;
+    // Others.createdBy = req.user.userId;
     // console.log(JSON.stringify(othersDetails, null, 4));
     await Others.save();
     console.log(JSON.stringify(othersDetails, null, 4));
