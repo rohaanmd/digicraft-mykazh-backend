@@ -72,7 +72,8 @@ const getProjectByUser = async (req, res, next) => {
 
 
 const createProject = async (req, res, next) => {
-  try { const projectDetails = {
+  try {
+     const projectDetails = {
           bigList:req.body.bigList,
           campaigntitle: req.body.campaigntitle,
           campaigntagline: req.body.campaigntagline,
@@ -80,7 +81,7 @@ const createProject = async (req, res, next) => {
           campaigncardimage: req.body.campaigncardimage,
           selectCategory: req.body.selectCategory,
           SubCategory: req.body.SubCategory,
-          campaignDuration:req.body.campaignDuration,
+
           tags: req.body.tags,
           uploadImage:req.body.uploadImage
        

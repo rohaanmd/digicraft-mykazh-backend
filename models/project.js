@@ -22,12 +22,9 @@ const ProjectSchema = new Schema({
           // required:true
      },
      location: {
-          country: {
-            type: String,
-            // required: true,
-          },
-          stateAndCity: String,
-        },
+        type:String
+        // required:true
+     },
      selectCatergory:{
           type:String,
           // required:true
@@ -102,14 +99,42 @@ const ProjectSchema = new Schema({
      updates: [{type:String}],
      media: String,
      comments: String,
-     phonenumber:{
-          type:Number,
-          // required:true
-     },
-     supportEmailaddress:String,
+    
+     
      campaignTeam:[
           {
-          newTeammemberemail:String
+         
+          legalFirstname:{
+          type:String,
+          // required:true
+          },
+          legalLastname:{
+          type:String,
+          // required:true
+          },
+          dateofbirth:{
+          type:Date,
+          // required:true
+          },
+          phonenumber:{
+               type:Number,
+               // required:true
+          },
+          country:{
+               type:String,
+               // required:true
+          },
+          streetAddress:{
+               type:String,
+               // required:true
+          },
+          extraAddress:{
+               type:String,
+               // required:true
+          },
+          supportEmailaddress:String,
+          newTeammemberemail:String,
+
           }
      ],
      // uploadImage:String,
@@ -134,18 +159,7 @@ const ProjectSchema = new Schema({
      //      type:String,
      //      // required:true
      // },
-     // legalFirstname:{
-     //      type:String,
-     //      // required:true
-     // },
-     // legalLastname:{
-     //      type:String,
-     //      // required:true
-     // },
-     // dateofbirth:{
-     //      type:Date,
-     //      // required:true
-     // },
+     
   
      // draftcampaignlink:String,
      // facebookshareimage:String,
@@ -163,8 +177,8 @@ const ProjectSchema = new Schema({
      //      Facebookpixelid:String
      // },
      // videosgallery:{
-          // youtubeorvimeourl:String
-     // },
+     //      youtubeorvimeourl:String
+     // }
 
 
 
