@@ -89,8 +89,10 @@ const createProject = async (req, res, next) => {
 
       
     };
+
+    console.log(req.body);
    
-    console.log(JSON.stringify(projectDetails, null, 4));
+    // console.log(JSON.stringify(projectDetails, null, 4));
     const project = new Project(projectDetails, (err) => {
       if (err)
         return res.send({
