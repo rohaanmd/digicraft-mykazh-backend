@@ -37,6 +37,7 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
+     uploadImage:String,
      videourl:{
           type:String,
           // required:true
