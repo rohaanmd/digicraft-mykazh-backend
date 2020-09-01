@@ -13,13 +13,13 @@ const { deleteProjectById,
 
 
 router.get('/projectapi', getProject);
-router.get('/getall', authUser, getAllProject);
-router.get('/', authUser, getProjectByUser);
-router.get('/:projectId', authUser, getProjectById);
+router.get('/getall',  getAllProject);
+router.get('/',  getProjectByUser);
+router.get('/:projectId',  getProjectById);
 router.post('/create',  createProject);
 router.put('/update/:projectId', updateProject);
 router.delete('/deleteall', deleteAllProject);
-router.delete('/delete/:projectId', authUser, deleteProjectById);
+router.delete('/delete/:projectId', deleteProjectById);
 
 
 module.exports = router;     
