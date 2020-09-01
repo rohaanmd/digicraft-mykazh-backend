@@ -8,6 +8,9 @@ const ProjectSchema = new Schema({
           ref: "User",
           required: false,
       },
+      companyName:String,
+      companyOverview:String,
+      companyLogo: String,
      //  bigList:Number,
      campaigntitle:{
           type:String,
@@ -48,7 +51,7 @@ const ProjectSchema = new Schema({
      faq:[
           {
                Question:String,
-               Anwser:String
+               Answer:String
           }
      ],
      perk:[
@@ -81,11 +84,11 @@ const ProjectSchema = new Schema({
                     // required:true
                },
                perk:String,
-               Quantity:String,
+               Quantity:Number,
                EstimateDeliverydate:Date,
                Shipping:{
                     Shippinglocation:String,
-                    ShippingFee:String
+                    ShippingFee:Number
                }
 
 
@@ -97,10 +100,7 @@ const ProjectSchema = new Schema({
      twitterURL: String,
      linkedinURL: String,
      updates: [{type:String}],
-     media: String,
      comments: String,
-    
-     
      campaignTeam:[
           {
          
@@ -137,20 +137,23 @@ const ProjectSchema = new Schema({
 
           }
      ],
+     youtubeURL:{
+          type:String,
+          // required:true
+     },
+     
+ 
      // uploadImage:String,
-     // videourl:{
-     //      type:String,
-     //      // required:true
-     // },
      // videooverlayimg:String,
      // fundingType:{
      //      type:String,
      //      enum:['Fixible Funding',"Fixed Funding"]
      // },
-     // campaigngoalAmountCurrency:{
-     //      type:Number,
-     //      // required:true
-     // },
+     FundingAmount:{
+          type:Number,
+          default: 0
+          // required:true
+     },
      // countryoflegalresidence:{
      //      countryname:String,
      //      BankAccountCountry:String
