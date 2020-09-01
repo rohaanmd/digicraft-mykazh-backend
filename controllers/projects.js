@@ -159,6 +159,7 @@ const updateProject = async (req, res, next) => {
           project.selectCatergory= req.body.selectCatergory||project.catergory,
           project.SubCatatergory= req.body.SubCatatergory||project.catergory,
           project.tags= req.body.tags||project.tags,
+          project.campaignDuration=req.body.campaignDuration||project.campaignDuration
           project.videourl= req.body.videourl||project.videourl,
           project.videooverlayimg= req.body.videooverlayimg||project.videooverlayimg,
           project.faq=req.body.faq||project.faq,
