@@ -33,6 +33,9 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
+     campaignDuration:{
+          type:String
+     },
      tags:{
           type:String,
           // required:true
