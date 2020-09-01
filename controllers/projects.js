@@ -80,7 +80,7 @@ const createProject = async (req, res, next) => {
           campaigncardimage: req.body.campaigncardimage,
           selectCategory: req.body.selectCategory,
           SubCategory: req.body.SubCategory,
-
+          campaignDuration:req.body.campaignDuration,
           tags: req.body.tags,
           uploadImage:req.body.uploadImage
        
