@@ -28,17 +28,18 @@ const getProjectById = async (req, res, next) => {
   try {
     const project = await Project.findOne({
       _id: req.params.projectId,
-    }).populate("createdBy");
+    })
+    // .populate("createdBy");
     if (!project)
       return res.send({
         success: false,
         message: "Project Not Found",
       });
-    const isAuthor = project.createdby.equals(req.user.userId);
+    // const isAuthor = project.createdby.equals(req.user.userId);
     return res.send({
       success: true,
       message: "Project Found successfully",
-      responseData: { project, isAuthor },
+      responseData: { project },
     });
   } catch (error) {
     console.log(error);
@@ -53,10 +54,10 @@ const getProjectById = async (req, res, next) => {
 const getProjectByUser = async (req, res, next) => {
   console.log(req.user);
   const project = await Project.find()
-    .where("createdBy")
-    .equals(req.user.userId)
-    .populate("createdBy")
-    .exec();
+    // .where("createdBy")
+    // .equals(req.user.userId)
+    // .populate("createdBy")
+    // .exec();
   if (project)
     return res.send({
       success: true,
