@@ -8,7 +8,7 @@ const ProjectSchema = new Schema({
           ref: "User",
           required: false,
       },
-      bigList:Number,
+     //  bigList:Number,
      campaigntitle:{
           type:String,
           // required:true
@@ -21,10 +21,13 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
-     location:{
-          type:String,
-          // required:true
-     },
+     location: {
+          country: {
+            type: String,
+            // required: true,
+          },
+          stateAndCity: String,
+        },
      selectCatergory:{
           type:String,
           // required:true
@@ -40,12 +43,7 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
-     uploadImage:String,
-     videourl:{
-          type:String,
-          // required:true
-     },
-     videooverlayimg:String,
+     
      story:{
           type:String,
           // required:true
@@ -96,48 +94,16 @@ const ProjectSchema = new Schema({
 
           }
      ],
-     fundingType:{
-          type:String,
-          enum:['Fixible Funding',"Fixed Funding"]
-     },
-     campaigngoalAmountCurrency:{
-          type:Number,
-          // required:true
-     },
-     countryoflegalresidence:{
-          countryname:String,
-          BankAccountCountry:String
-     },
-     customerBillingStatement:{
-          type:String,
-          // required:true
-     },
-     legalFirstname:{
-          type:String,
-          // required:true
-     },
-     legalLastname:{
-          type:String,
-          // required:true
-     },
-     dateofbirth:{
-          type:Date,
-          // required:true
-     },
+     
+     imagegallery:[{type:String}],
+     facebookURL : String,
+     twitterURL: String,
+     linkedinURL: String,
+     updates: [{type:String}],
+     media: String,
+     comments: String,
      phonenumber:{
           type:Number,
-          // required:true
-     },
-     country:{
-          type:String,
-          // required:true
-     },
-     streetAddress:{
-          type:String,
-          // required:true
-     },
-     ExtraAddress:{
-          type:String,
           // required:true
      },
      supportEmailaddress:String,
@@ -146,28 +112,59 @@ const ProjectSchema = new Schema({
           newTeammemberemail:String
           }
      ],
-     draftcampaignlink:String,
-     facebookshareimage:String,
-     marketingimage:String,
-     customshorturl:String,
-     googleAnalytics:{
-          trackingid:String
-     },
-     googleAdtracking:{
-          conversionid:String,
-          conversionlabel:String,
-          remarketingid:String
-     },
-     facebookAdtracking:{
-          Facebookpixelid:String
-     },
-     videosgallery:{
-          youtubeorvimeourl:String
-     },
-     imagegallery:String
-
-
-
+     // uploadImage:String,
+     // videourl:{
+     //      type:String,
+     //      // required:true
+     // },
+     // videooverlayimg:String,
+     // fundingType:{
+     //      type:String,
+     //      enum:['Fixible Funding',"Fixed Funding"]
+     // },
+     // campaigngoalAmountCurrency:{
+     //      type:Number,
+     //      // required:true
+     // },
+     // countryoflegalresidence:{
+     //      countryname:String,
+     //      BankAccountCountry:String
+     // },
+     // customerBillingStatement:{
+     //      type:String,
+     //      // required:true
+     // },
+     // legalFirstname:{
+     //      type:String,
+     //      // required:true
+     // },
+     // legalLastname:{
+     //      type:String,
+     //      // required:true
+     // },
+     // dateofbirth:{
+     //      type:Date,
+     //      // required:true
+     // },
+  
+     // draftcampaignlink:String,
+     // facebookshareimage:String,
+     // marketingimage:String,
+     // customshorturl:String,
+     // googleAnalytics:{
+     //      trackingid:String
+     // },
+     // googleAdtracking:{
+     //      conversionid:String,
+     //      conversionlabel:String,
+     //      remarketingid:String
+     // },
+     // facebookAdtracking:{
+     //      Facebookpixelid:String
+     // },
+     // videosgallery:{
+          // youtubeorvimeourl:String
+     // },
 
 
 
