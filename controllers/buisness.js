@@ -130,12 +130,13 @@ const deleteAllBusiness = async (req, res, next) => {
 const updateBusiness = async (req, res, next) => {
   try {
     const business = await Business.findById(req.params.businessId)
-    const userId = req.user.userId;
-    const createdBy = business.createdBy;
+    // const userId = req.user.userId;
+    // const createdBy = business.createdBy;
 
-    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
       // if(business.createdBy = req.user.userId)
-      {
+      // {
+        console.log(business);
         if (!business || !req.body){
             return res.send({
               success: false,
@@ -146,15 +147,15 @@ const updateBusiness = async (req, res, next) => {
             const businessDetails =  {
               companyName: req.body.companyName,
               companyOverview: req.body.companyOverview,
+              companyLogo:req.body.companyLogo,
               customContentInput: req.body.customContentInput,
               customContentTextarea: req.body.customContentTextarea,
-              location: Request.body.location,
+              location: req.body.location,
               press: req.body.press,
               companyTagline: req.body.companyTagline,
               companyKeyword: req.body.companyKeyword,
               email: req.body.email,
               canSms: req.body.canSms,
-              websiteURL: req.body.websiteURL,
               conatctPhone: req.body.conatctPhone,
               linkedinURL: req.body.linkedinURL,
               facebookURL: req.body.facebookURL,
@@ -212,30 +213,28 @@ const updateBusiness = async (req, res, next) => {
           
               RisksDisclosures: req.body.RiskDisclosures,
             };
+            // console.log(req.body);
 
-            await business.updateOne(businessDetails,function(
-                err,
-                result
-              ) {
-                if (err) {
-                  res.send(err);
-                }
-               
-              });  
+          const UpdateBusiness = await Business.findOneAndUpdate({_id:req.params.businessId},businessDetails)
+            return res.send({
+                 success: true,
+                 message: "project Updated Successfull",
+                 responseData: UpdateBusiness,
+               });           
               
             return res.send({
               success: true,
               message: "business Updated Successfull",
-              responseData: Getbusiness,            
+              // responseData: GetBusiness,            
             });
 
-      }
-      else{
-        return res.send({
-              success: false,
-              message: "Unauthorized",
-            });
-      }
+      // }
+      // else{
+      //   return res.send({
+      //         success: false,
+      //         message: "Unauthorized",
+      //       });
+      // }
 
   } catch (error) {
     console.log(error);

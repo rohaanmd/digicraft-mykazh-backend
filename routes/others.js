@@ -13,13 +13,13 @@ const {   getOthers,
 
 
 router.get('/otherapi', getOthers);
-router.get('/getall', authUser, getAllOthers);
-router.get('/', authUser, getOthersByUser);
+router.get('/getall',  getAllOthers);
+router.get('/',  getOthersByUser);
 router.get('/:othersId',  getOthersById);
-router.post('/create', authUser, createOthers);
-router.put('/update/:othersId',authUser, updateOthers);
+router.post('/create',  createOthers);
+router.put('/update/:othersId', updateOthers);
 router.delete('/deleteall', deleteAllOthers);
-router.delete('/delete/:othersId', authUser, deleteOthersById);
+router.delete('/delete/:othersId',  deleteOthersById);
 
 
 module.exports = router;

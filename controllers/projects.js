@@ -198,11 +198,12 @@ const updateProject = async (req, res, next) => {
           // project.videosgallery=req.body.videosgallery||project.videosgallery,
          project.imagegallery=req.body.imagegallery||project.imagegallery;
          project.campaignTeam=req.body.campaignTeam;
-         project.update=req.body.update;
+         project.updates=req.body.updates;
+
 
 
 //     const updatedBusiness = await business.save();
-      console.log(project)
+      // console.log(project)
      await Project.findOneAndUpdate({_id:req.params.projectId},project)
      return res.send({
           success: true,

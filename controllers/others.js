@@ -86,9 +86,10 @@ const createOthers = async (req, res, next) => {
           responsedata: err,
         });
     });
+    console.log(JSON.stringify(others, null, 4));
     // Others.createdBy = req.user.userId;
     // console.log(JSON.stringify(othersDetails, null, 4));
-    await Others.save();
+    await others.save();
     console.log(JSON.stringify(othersDetails, null, 4));
     return res.send({
       success: true,
@@ -129,12 +130,12 @@ const deleteAllOthers = async (req, res, next) => {
 const updateOthers = async (req, res, next) => {
   try {
     const others = await Others.findById(req.params.othersId)
-    const userId = req.user.userId;
-    const createdBy = Others.createdBy;
+    // const userId = req.user.userId;
+    // const createdBy = Others.createdBy;
 
-    if(JSON.stringify(userId)==JSON.stringify(createdBy))
-      // if(Others.createdBy = req.user.userId)
-      {
+    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
+    //   // if(Others.createdBy = req.user.userId)
+    //   {
         if (!others || !req.body){
             return res.send({
               success: false,
@@ -147,21 +148,13 @@ const updateOthers = async (req, res, next) => {
                 purpose:req.body.purpose,
                 fundFor:req.body.fundFor,
                 cause:req.body.cause,
-                mediaLink:{url:req.body.url},
+                mediaLink:req.body.mediaLink,
                 location:req.body.location,
                  story: req.body.story,
              
               };
 
-           const Getothers = await Others.updateOne(othersDetails,function(
-                err,
-                result
-              ) {
-                if (err) {
-                  res.send(err);
-                }
-               
-              });  
+           const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails);  
               
             return res.send({
               success: true,
@@ -169,13 +162,13 @@ const updateOthers = async (req, res, next) => {
               responseData: Getothers,            
             });
 
-      }
-      else{
-        return res.send({
-              success: false,
-              message: "Unauthorized",
-            });
-      }
+      // }
+      // else{
+      //   return res.send({
+      //         success: false,
+      //         message: "Unauthorized",
+      //       });
+      // }
 
   } catch (error) {
     console.log(error);

@@ -73,9 +73,9 @@ const getNgoByUser = async (req, res, next) => {
 const createNgo = async (req, res, next) => {
   try {
     const ngoDetails = {
-        GoalAmount:req.body.amount,
+        GoalAmount:req.body.GoalAmount,
         purpose:req.body.purpose,
-        ngoName:req.body.ngoname,
+        ngoName:req.body.ngoName,
         cause:req.body.cause,
     };
     const ngo = new Ngo(ngoDetails, (err) => {
@@ -129,12 +129,12 @@ const deleteAllNgo = async (req, res, next) => {
 const updateNgo = async (req, res, next) => {
   try {
     const ngo = await Ngo.findById(req.params.ngoId)
-    const userId = req.user.userId;
-    const createdBy = ngo.createdBy;
+    // const userId = req.user.userId;
+    // const createdBy = ngo.createdBy;
 
-    if(JSON.stringify(userId)==JSON.stringify(createdBy))
-      // if(ngo.createdBy = req.user.userId)
-      {
+    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
+    //   // if(ngo.createdBy = req.user.userId)
+    //   {
         if (!ngo || !req.body){
             return res.send({
               success: false,
@@ -143,25 +143,17 @@ const updateNgo = async (req, res, next) => {
           
 
             const ngoDetails = {
-                GoalAmount:req.body.amount,
-                purpose:req.body.purpose,
-                ngoName:req.body.ngoname,
-                cause:req.body.cause,
-                mediaLink:{url:req.body.url},
+              GoalAmount:req.body.GoalAmount,
+              purpose:req.body.purpose,
+              ngoName:req.body.ngoName,
+              cause:req.body.cause,
+                mediaLink:req.body.mediaLink,
                 location:req.body.location,
                  story: req.body.story,
              
               };
 
-           const Getngo = await Ngo.updateOne(ngoDetails,function(
-                err,
-                result
-              ) {
-                if (err) {
-                  res.send(err);
-                }
-               
-              });  
+           const Getngo = await Ngo.findOneAndUpdate({_id:req.params.ngoId},ngoDetails)
               
             return res.send({
               success: true,
@@ -169,13 +161,13 @@ const updateNgo = async (req, res, next) => {
               responseData: Getngo,            
             });
 
-      }
-      else{
-        return res.send({
-              success: false,
-              message: "Unauthorized",
-            });
-      }
+      // }
+      // else{
+      //   return res.send({
+      //         success: false,
+      //         message: "Unauthorized",
+      //       });
+      // }
 
   } catch (error) {
     console.log(error);
