@@ -25,6 +25,11 @@ const others = new Schema({
      type:String 
     },
     story: String,
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        // required: true,
+      },
 
 },{timestamp:true});
 // Compile model from schema

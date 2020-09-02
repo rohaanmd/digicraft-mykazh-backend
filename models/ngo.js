@@ -29,7 +29,12 @@ const ngo = new Schema({
     GoalAmount:Number,
 
     ngoCreater:String,
-    creatorbio:String
+    creatorbio:String,
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        // required: true,
+      },
 
 
 },{timestamp:true});

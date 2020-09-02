@@ -16,10 +16,10 @@ router.get('/vgoapi', getNgo);
 router.get('/getall',  getAllNgo);
 router.get('/',  getNgoByUser);
 router.get('/:ngoId',  getNgoById);
-router.post('/create', createNgo);
-router.put('/update/:ngoId', updateNgo);
+router.post('/create',authUser, createNgo);
+router.put('/update/:ngoId',authUser, updateNgo);
 router.delete('/deleteall', deleteAllNgo);
-router.delete('/delete/:ngoId',  deleteNgoById);
+router.delete('/delete/:ngoId', authUser, deleteNgoById);
 
 
 module.exports = router;

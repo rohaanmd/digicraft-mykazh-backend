@@ -88,7 +88,7 @@ const createBusiness = async (req, res, next) => {
           responsedata: err,
         });
     });
-    // business.createdBy = req.user.userId;
+    business.createdBy = req.user.userId;
    
     await business.save();
     // console.log(JSON.stringify(businessDetails, null, 4));
@@ -130,12 +130,12 @@ const deleteAllBusiness = async (req, res, next) => {
 const updateBusiness = async (req, res, next) => {
   try {
     const business = await Business.findById(req.params.businessId)
-    // const userId = req.user.userId;
-    // const createdBy = business.createdBy;
+    const userId = req.user.userId;
+    const createdBy = business.createdBy;
 
-    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
-      // if(business.createdBy = req.user.userId)
-      // {
+    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+      if(business.createdBy = req.user.userId)
+      {
         console.log(business);
         if (!business || !req.body){
             return res.send({
@@ -228,13 +228,13 @@ const updateBusiness = async (req, res, next) => {
               // responseData: GetBusiness,            
             });
 
-      // }
-      // else{
-      //   return res.send({
-      //         success: false,
-      //         message: "Unauthorized",
-      //       });
-      // }
+      }
+      else{
+        return res.send({
+              success: false,
+              message: "Unauthorized",
+            });
+      }
 
   } catch (error) {
     console.log(error);

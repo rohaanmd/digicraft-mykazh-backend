@@ -16,10 +16,10 @@ router.get('/projectapi', getProject);
 router.get('/getall',  getAllProject);
 router.get('/',  getProjectByUser);
 router.get('/:projectId',  getProjectById);
-router.post('/create',  createProject);
-router.put('/update/:projectId', updateProject);
+router.post('/create',authUser,  createProject);
+router.put('/update/:projectId',authUser, updateProject);
 router.delete('/deleteall', deleteAllProject);
-router.delete('/delete/:projectId', deleteProjectById);
+router.delete('/delete/:projectId',authUser, deleteProjectById);
 
 
 module.exports = router;     

@@ -6,7 +6,7 @@ const ProjectSchema = new Schema({
      createdBy: {
           type: Schema.Types.ObjectId,
           ref: "User",
-          required: false,
+          // required: true,
       },
       companyName:String,
       companyOverview:String,

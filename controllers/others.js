@@ -87,7 +87,7 @@ const createOthers = async (req, res, next) => {
         });
     });
     console.log(JSON.stringify(others, null, 4));
-    // Others.createdBy = req.user.userId;
+    Others.createdBy = req.user.userId;
     // console.log(JSON.stringify(othersDetails, null, 4));
     await others.save();
     console.log(JSON.stringify(othersDetails, null, 4));
@@ -130,12 +130,12 @@ const deleteAllOthers = async (req, res, next) => {
 const updateOthers = async (req, res, next) => {
   try {
     const others = await Others.findById(req.params.othersId)
-    // const userId = req.user.userId;
-    // const createdBy = Others.createdBy;
+    const userId = req.user.userId;
+    const createdBy = Others.createdBy;
 
-    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
-    //   // if(Others.createdBy = req.user.userId)
-    //   {
+    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+      // if(Others.createdBy = req.user.userId)
+      {
         if (!others || !req.body){
             return res.send({
               success: false,
@@ -162,13 +162,13 @@ const updateOthers = async (req, res, next) => {
               responseData: Getothers,            
             });
 
-      // }
-      // else{
-      //   return res.send({
-      //         success: false,
-      //         message: "Unauthorized",
-      //       });
-      // }
+      }
+      else{
+        return res.send({
+              success: false,
+              message: "Unauthorized",
+            });
+      }
 
   } catch (error) {
     console.log(error);

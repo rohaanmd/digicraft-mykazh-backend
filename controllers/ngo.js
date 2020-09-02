@@ -86,7 +86,7 @@ const createNgo = async (req, res, next) => {
           responsedata: err,
         });
     });
-    // ngo.createdBy = req.user.userId;
+    ngo.createdBy = req.user.userId;
     // console.log(JSON.stringify(ngoDetails, null, 4));
     await ngo.save();
     console.log(JSON.stringify(ngoDetails, null, 4));
@@ -129,12 +129,12 @@ const deleteAllNgo = async (req, res, next) => {
 const updateNgo = async (req, res, next) => {
   try {
     const ngo = await Ngo.findById(req.params.ngoId)
-    // const userId = req.user.userId;
-    // const createdBy = ngo.createdBy;
+    const userId = req.user.userId;
+    const createdBy = ngo.createdBy;
 
-    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
-    //   // if(ngo.createdBy = req.user.userId)
-    //   {
+    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+      // if(ngo.createdBy = req.user.userId)
+      {
         if (!ngo || !req.body){
             return res.send({
               success: false,
@@ -161,13 +161,13 @@ const updateNgo = async (req, res, next) => {
               responseData: Getngo,            
             });
 
-      // }
-      // else{
-      //   return res.send({
-      //         success: false,
-      //         message: "Unauthorized",
-      //       });
-      // }
+      }
+      else{
+        return res.send({
+              success: false,
+              message: "Unauthorized",
+            });
+      }
 
   } catch (error) {
     console.log(error);

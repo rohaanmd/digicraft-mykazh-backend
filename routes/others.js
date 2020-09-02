@@ -16,10 +16,10 @@ router.get('/otherapi', getOthers);
 router.get('/getall',  getAllOthers);
 router.get('/',  getOthersByUser);
 router.get('/:othersId',  getOthersById);
-router.post('/create',  createOthers);
-router.put('/update/:othersId', updateOthers);
+router.post('/create',authUser,  createOthers);
+router.put('/update/:othersId',authUser, updateOthers);
 router.delete('/deleteall', deleteAllOthers);
-router.delete('/delete/:othersId',  deleteOthersById);
+router.delete('/delete/:othersId', authUser,deleteOthersById);
 
 
 module.exports = router;
