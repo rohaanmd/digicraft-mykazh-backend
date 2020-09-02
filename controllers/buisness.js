@@ -130,12 +130,12 @@ const deleteAllBusiness = async (req, res, next) => {
 const updateBusiness = async (req, res, next) => {
   try {
     const business = await Business.findById(req.params.businessId)
-    const userId = req.user.userId;
-    const createdBy = business.createdBy;
+    // const userId = req.user.userId;
+    // const createdBy = business.createdBy;
 
-    if(JSON.stringify(userId)==JSON.stringify(createdBy))
-      // if(business.createdBy = req.user.userId)
-      {
+    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
+    //   // if(business.createdBy = req.user.userId)
+    //   {
         if (!business || !req.body){
             return res.send({
               success: false,
@@ -229,13 +229,13 @@ const updateBusiness = async (req, res, next) => {
               responseData: Getbusiness,            
             });
 
-      }
-      else{
-        return res.send({
-              success: false,
-              message: "Unauthorized",
-            });
-      }
+      // }
+      // else{
+      //   return res.send({
+      //         success: false,
+      //         message: "Unauthorized",
+      //       });
+      // }
 
   } catch (error) {
     console.log(error);
