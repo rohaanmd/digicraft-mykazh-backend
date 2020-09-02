@@ -25,7 +25,12 @@ const ngo = new Schema({
      type:String 
     },
     story: String,
+
     GoalAmount:Number,
+
+    ngoCreater:String,
+    creatorbio:String
+
 
 },{timestamp:true});
 // Compile model from schema

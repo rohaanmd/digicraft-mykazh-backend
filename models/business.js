@@ -43,11 +43,14 @@ const BusinessSchema = new Schema(
       // required: true,
     },
     team: [
-      {
+      { 
+        
         level: Boolean,
         visible: Boolean,
         role: String,
         name: String,
+        photo:String,
+        bio:String
       },
     ],
     kpi: [
@@ -160,7 +163,10 @@ const BusinessSchema = new Schema(
         InvestorName: {
           type: String,
         },
+
+        
         InvestorImage: String,
+
       },
     ],
     ExecutiveSummaryToogle: Boolean,
