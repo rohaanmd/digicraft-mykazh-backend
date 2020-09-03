@@ -54,7 +54,7 @@ const postInfo = async (req,res, next) =>{
         
         const info = new Info({
             type:req.body.type,
-           InfoHtml: req.body.info,
+           InfoHtml: req.body.InfoHtml,
           },
           (err) => {
             if (err)
@@ -174,7 +174,6 @@ const updateRisk = async (req, res, next) => {
     }
   };
   
-
 
   module.exports={
       getTerms,
