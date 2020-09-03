@@ -132,7 +132,7 @@ const updateOthers = async (req, res, next) => {
     const others = await Others.findById(req.params.othersId)
     const userId = req.user.userId;
     const createdBy = Others.createdBy;
-
+console.log(req.user);
     if(JSON.stringify(userId)==JSON.stringify(createdBy))
       // if(Others.createdBy = req.user.userId)
       {
@@ -150,27 +150,23 @@ const updateOthers = async (req, res, next) => {
                 cause:req.body.cause||others.cause,
                 mediaLink:req.body.mediaLink||others.mediaLink,
                 location:req.body.location||others.location,
-                 story: req.body.story||others.story,
-                 cardImage:req.body.cardImage || others.cardImage,
-             
+                story: req.body.story||others.story,
+                cardImage:req.body.cardImage || others.cardImage,
               };
-
-           const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails);  
+          const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails);  
               
             return res.send({
               success: true,
               message: "others Updated Successfull",
               responseData: Getothers,            
             });
-
       }
       else{
         return res.send({
               success: false,
-              message: "Unauthorized",
+              message: "Unauthorized kutter",
             });
       }
-
   } catch (error) {
     console.log(error);
     return res.send({

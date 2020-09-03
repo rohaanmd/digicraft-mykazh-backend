@@ -54,10 +54,7 @@ const postFaq = async (req,res, next) =>{
         
         const faq = new Faq({
             type:req.body.type,
-            faq:{
-                question: req.body.question,
-                answer: req.body.answer,
-            }
+            faq:req.body.faq
           },
           (err) => {
             if (err)
