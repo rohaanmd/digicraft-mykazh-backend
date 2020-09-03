@@ -143,13 +143,16 @@ const updateNgo = async (req, res, next) => {
           
 
             const ngoDetails = {
-              GoalAmount:req.body.GoalAmount,
-              purpose:req.body.purpose,
-              ngoName:req.body.ngoName,
-              cause:req.body.cause,
-                mediaLink:req.body.mediaLink,
-                location:req.body.location,
-                 story: req.body.story,
+              GoalAmount:req.body.GoalAmount||ngo.GoalAmount,
+              purpose:req.body.purpose||ngo.purpose,
+              ngoName:req.body.ngoName||ngo.ngoName,
+              cause:req.body.cause||ngo.cause,
+                mediaLink:req.body.mediaLink||ngo.mediaLink,
+                location:req.body.location||ngo.location,
+                 story: req.body.story||ngo.story,
+                 cardImage:req.body.cardImage || ngo.cardImage,
+                 ngoCreater:req.body.ngoCreater||ngo.ngoCreater,
+                 creatorbio:req.body.creatorbio||ngo.creatorbio,
              
               };
 

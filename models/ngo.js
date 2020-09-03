@@ -27,6 +27,7 @@ const ngo = new Schema({
     story: String,
 
     GoalAmount:Number,
+    cardImage:String,
 
     ngoCreater:String,
     creatorbio:String,

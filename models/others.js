@@ -24,6 +24,7 @@ const others = new Schema({
    location: {
      type:String 
     },
+    cardImage:String,
     story: String,
     createdBy: {
         type: Schema.Types.ObjectId,

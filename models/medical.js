@@ -48,6 +48,7 @@ docs:{
      },
  
  },
+ cardImage:String,
  
 
 

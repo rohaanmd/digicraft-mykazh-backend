@@ -144,13 +144,14 @@ const updateOthers = async (req, res, next) => {
           
 
             const othersDetails = {
-                GoalAmount:req.body.amount,
-                purpose:req.body.purpose,
-                fundFor:req.body.fundFor,
-                cause:req.body.cause,
-                mediaLink:req.body.mediaLink,
-                location:req.body.location,
-                 story: req.body.story,
+                GoalAmount:req.body.amount||others.amount,
+                purpose:req.body.purpose||others.purpose,
+                fundFor:req.body.fundFor||others.fundFor,
+                cause:req.body.cause||others.cause,
+                mediaLink:req.body.mediaLink||others.mediaLink,
+                location:req.body.location||others.location,
+                 story: req.body.story||others.story,
+                 cardImage:req.body.cardImage || others.cardImage,
              
               };
 
