@@ -192,7 +192,20 @@ const BusinessSchema = new Schema(
         Doctype: String,
         fileUrl: String,
       },
+     
     },
+    sideshareURL:String,
+    PreMoneyValuation:Number,
+    fundraisingGoal:Number,
+    DateRoundOpened:Date,
+    websiteURL:String,
+    AmountRaised:{
+      type:Number,
+      default:0,
+    },
+    tranctionDate:Date,
+
+
 
     RisksDisclosures: String,
   },
