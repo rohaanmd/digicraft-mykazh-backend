@@ -73,9 +73,9 @@ const getNgoByUser = async (req, res, next) => {
 const createNgo = async (req, res, next) => {
   try {
     const ngoDetails = {
-        GoalAmount:req.body.amount,
+        GoalAmount:req.body.GoalAmount,
         purpose:req.body.purpose,
-        ngoName:req.body.ngoname,
+        ngoName:req.body.ngoName,
         cause:req.body.cause,
     };
     const ngo = new Ngo(ngoDetails, (err) => {
@@ -86,7 +86,7 @@ const createNgo = async (req, res, next) => {
           responsedata: err,
         });
     });
-    // ngo.createdBy = req.user.userId;
+    ngo.createdBy = req.user.userId;
     // console.log(JSON.stringify(ngoDetails, null, 4));
     await ngo.save();
     console.log(JSON.stringify(ngoDetails, null, 4));
@@ -143,25 +143,20 @@ const updateNgo = async (req, res, next) => {
           
 
             const ngoDetails = {
-                GoalAmount:req.body.amount,
-                purpose:req.body.purpose,
-                ngoName:req.body.ngoname,
-                cause:req.body.cause,
-                mediaLink:{url:req.body.url},
-                location:req.body.location,
-                 story: req.body.story,
+              GoalAmount:req.body.GoalAmount||ngo.GoalAmount,
+              purpose:req.body.purpose||ngo.purpose,
+              ngoName:req.body.ngoName||ngo.ngoName,
+              cause:req.body.cause||ngo.cause,
+                mediaLink:req.body.mediaLink||ngo.mediaLink,
+                location:req.body.location||ngo.location,
+                 story: req.body.story||ngo.story,
+                 cardImage:req.body.cardImage || ngo.cardImage,
+                 ngoCreater:req.body.ngoCreater||ngo.ngoCreater,
+                 creatorbio:req.body.creatorbio||ngo.creatorbio,
              
               };
 
-           const Getngo = await Ngo.updateOne(ngoDetails,function(
-                err,
-                result
-              ) {
-                if (err) {
-                  res.send(err);
-                }
-               
-              });  
+           const Getngo = await Ngo.findOneAndUpdate({_id:req.params.ngoId},ngoDetails)
               
             return res.send({
               success: true,

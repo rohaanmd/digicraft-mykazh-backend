@@ -6,7 +6,7 @@ const ProjectSchema = new Schema({
      createdBy: {
           type: Schema.Types.ObjectId,
           ref: "User",
-          required: false,
+          // required: true,
       },
       companyName:String,
       companyOverview:String,
@@ -97,11 +97,15 @@ const ProjectSchema = new Schema({
           }
      ],
      
-     imagegallery:[{type:String}],
+     imagegallery:[
+          {url:String}
+     ],
      facebookURL : String,
      twitterURL: String,
      linkedinURL: String,
-     updates: [{type:String}],
+     updates: [
+          {text:String}
+     ],
      comments: String,
      campaignTeam:[
           {

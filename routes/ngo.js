@@ -13,11 +13,11 @@ const {   getNgo,
 
 
 router.get('/vgoapi', getNgo);
-router.get('/getall', authUser, getAllNgo);
-router.get('/', authUser, getNgoByUser);
+router.get('/getall',  getAllNgo);
+router.get('/',  getNgoByUser);
 router.get('/:ngoId',  getNgoById);
-router.post('/create', authUser,ImgUploader, createNgo);
-router.put('/update/:ngoId',authUser,ImgUploader, updateNgo);
+router.post('/create',authUser, createNgo);
+router.put('/update/:ngoId',authUser, updateNgo);
 router.delete('/deleteall', deleteAllNgo);
 router.delete('/delete/:ngoId', authUser, deleteNgoById);
 

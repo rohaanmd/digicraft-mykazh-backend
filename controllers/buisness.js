@@ -88,7 +88,7 @@ const createBusiness = async (req, res, next) => {
           responsedata: err,
         });
     });
-    // business.createdBy = req.user.userId;
+    business.createdBy = req.user.userId;
    
     await business.save();
     // console.log(JSON.stringify(businessDetails, null, 4));
@@ -130,12 +130,13 @@ const deleteAllBusiness = async (req, res, next) => {
 const updateBusiness = async (req, res, next) => {
   try {
     const business = await Business.findById(req.params.businessId)
-    // const userId = req.user.userId;
-    // const createdBy = business.createdBy;
+    const userId = req.user.userId;
+    const createdBy = business.createdBy;
 
-    // if(JSON.stringify(userId)==JSON.stringify(createdBy))
-    //   // if(business.createdBy = req.user.userId)
-    //   {
+    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+      if(business.createdBy = req.user.userId)
+      {
+        console.log(business);
         if (!business || !req.body){
             return res.send({
               success: false,
@@ -144,98 +145,100 @@ const updateBusiness = async (req, res, next) => {
           
 
             const businessDetails =  {
-              companyName: req.body.companyName,
-              companyOverview: req.body.companyOverview,
-              customContentInput: req.body.customContentInput,
-              customContentTextarea: req.body.customContentTextarea,
-              location: Request.body.location,
-              press: req.body.press,
-              companyTagline: req.body.companyTagline,
-              companyKeyword: req.body.companyKeyword,
-              email: req.body.email,
-              canSms: req.body.canSms,
-              websiteURL: req.body.websiteURL,
-              conatctPhone: req.body.conatctPhone,
-              linkedinURL: req.body.linkedinURL,
-              facebookURL: req.body.facebookURL,
-              twitterURL: req.body.twitterURL,
-              url: req.body.url,
-              team: req.body.team,
-              kpi: req.body.kpi,
-              featuredImg: req.body.featuredImg,
-              video: req.body.video,
-              youtubeURL:req.body.youtubeURL,
-              test:req.body.test,
-              traction: req.body.traction,
-              qus: req.body.qus,
-              CampaignVisibility: req.body.campaignVisibility,
-              goal:req.body.goal,
-              MaximumInvestmentAmount: req.body.MaximumInvestmentAmount,
-              MinimumInvestmentAmount: req.body.MinimumInvestmentAmount,
-              deal_stage: req.body.deal_stage,
-              ClosingDate: req.body.ClosingDate,
-              currentlyFunding: req.body.currentlyFunding,
-              ExemptionType: req.body.ExemptionType,
-              PreMoneyEvaluation: req.body.PreMoneyEvaluation,
-              TermLength: req.body.TermLength,
-              ConversionDiscount: req.body.ConversionDiscount,
-              Intrest: req.body.Intrest,
-              ValuationCap: req.body.ValuationCap,
-              WarrantCoverage: req.body.WarrantCoverage,
-              return: req.body.return,
-              PaymentFrequency: req.body.PaymentFrequency,
-              MaximumReturn: req.body.MaximumReturn,
-              ReturnType: req.body.ReturnType,
-              PaybackStartDate: req.body.PaybackStartDate,
-              FundingSource: req.body.FundingSource,
-              FundingAmount: req.body.FundingAmount,
-              FundingDate: req.body.FundingDate,
-              FundingType: req.body.FundingType,
-              dealHighligths: req.body.dealHighligths,
-              ElevatorPitch: req.body.ElevatorPitch,
-              investor: req.body.investor,
-              ExecutiveSummaryToogle: req.body.ExecutiveSummaryToogle,
-              TermSheetToogle: req.body.TermSheetToogle,
-              AdditionalToogle: req.body.AdditionalToogle,
-              docs: {
-                executiveSummary: {
-                   Doctype: req.body.ExecutiveSummaryType, fileUrl: req.body.ExecutiveSummaryUrl },
-                termSheet: {
-                  Doctype:req.body.termSheetType,
-                  fileUrl: req.body.termSheetUrl,
-                },
-                additionalDoc: {
-                  Doctype:req.body.additionalDocType,
-                  fileUrl: req.body.additionalDocUrl,
-                },
-              },
-          
-              RisksDisclosures: req.body.RiskDisclosures,
+              companyName: req.body.companyName||business.companyName,
+              companyOverview: req.body.companyOverview||business.companyOverview,
+              companyLogo:req.body.companyLogo||business.companyLogo,
+              customContentInput: req.body.customContentInput||business.customContentInput,
+              customContentTextarea: req.body.customContentTextarea||business.customContentTextarea,
+              location: req.body.location||business.location,
+              press: req.body.press||business.press,
+              companyTagline: req.body.companyTagline||business.companyTagline,
+              companyKeyword: req.body.companyKeyword||business.companyKeyword,
+              email: req.body.email||business.email,
+              canSms: req.body.canSms||business.canSms,
+              conatctPhone: req.body.conatctPhone||business.conatctPhone,
+              linkedinURL: req.body.linkedinURL||business.linkedinURL,
+              facebookURL: req.body.facebookURL||business.facebookURL,
+              twitterURL: req.body.twitterURL||business.twitterURL,
+              url: req.body.url||business.url,
+              team: req.body.team||business.team,
+              kpi: req.body.kpi||business.kpi,
+              featuredImg: req.body.featuredImg||business.featuredImg,
+              video: req.body.video||business.video,
+              youtubeURL:req.body.youtubeURL||business.youtubeURL,
+              test:req.body.test||business.test,
+              traction: req.body.traction||business.traction,
+              qus: req.body.qus||business.qus,
+              CampaignVisibility: req.body.campaignVisibility||business.campaignVisibility,
+              goal:req.body.goal||business.goal,
+              MaximumInvestmentAmount: req.body.MaximumInvestmentAmount||business.MaximumInvestmentAmount,
+              MinimumInvestmentAmount: req.body.MinimumInvestmentAmount||business.MinimumInvestmentAmount,
+              deal_stage: req.body.deal_stage||business.deal_stage,
+              ClosingDate: req.body.ClosingDate||business.closingDate,
+              currentlyFunding: req.body.currentlyFunding||business.currentlyFunding,
+              ExemptionType: req.body.ExemptionType||business.ExemptionType,
+              PreMoneyEvaluation: req.body.PreMoneyEvaluation||business.PreMoneyEvaluation,
+              TermLength: req.body.TermLength||business.TermLength,
+              ConversionDiscount: req.body.ConversionDiscount||business.ConversionDiscount,
+              Intrest: req.body.Intrest||business.Intrest,
+              ValuationCap: req.body.ValuationCap||business.ValuationCap,
+              WarrantCoverage: req.body.WarrantCoverage||business.WarrantCoverage,
+              return: req.body.return||business.return,
+              PaymentFrequency: req.body.PaymentFrequency||business.PaymentFrequency,
+              MaximumReturn: req.body.MaximumReturn||business.MaximumReturn,
+              ReturnType: req.body.ReturnType||business.ReturnType,
+              PaybackStartDate: req.body.PaybackStartDate||business.PaybackStartDate,
+              FundingSource: req.body.FundingSource||business.FundingSource,
+              FundingAmount: req.body.FundingAmount||business.FundingAmount,
+              FundingDate: req.body.FundingDate||business.FundingDate,
+              FundingType: req.body.FundingType||business.FundingType,
+              dealHighligths: req.body.dealHighligths||business.dealHighligths,
+              ElevatorPitch: req.body.ElevatorPitch||business.ElevatorPitch,
+              investor: req.body.investor||business.investor,
+              ExecutiveSummaryToogle: req.body.ExecutiveSummaryToogle||business.ExecutiveSummaryToogle,
+              TermSheetToogle: req.body.TermSheetToogle||business.TermSheetToogle,
+              AdditionalToogle: req.body.AdditionalToogle||business.AdditionalToogle,
+              // docs: {
+              //   executiveSummary: {
+              //      Doctype: req.body.ExecutiveSummaryType, fileUrl: req.body.ExecutiveSummaryUrl },
+              //   termSheet: {
+              //     Doctype:req.body.termSheetType,
+              //     fileUrl: req.body.termSheetUrl,
+              //   },
+              //   additionalDoc: {
+              //     Doctype:req.body.additionalDocType,
+              //     fileUrl: req.body.additionalDocUrl,
+              //   },
+              // },
+              RisksDisclosures: req.body.RiskDisclosures||business.RiskDisclosures,
+              sideshareURL:req.body.sideshareURL||business.sideshareURL,
+              PreMoneyValuation:req.body.PreMoneyEvaluation||business.PreMoneyEvaluation,
+              fundraisingGoal:req.body.fundraisingGoal||business.fundraisingGoal,
+              DateRoundOpened:req.body.DateRoundOpened||business.DateRoundOpened,
+              websiteURL:req.body.websiteURL||business.websiteURL,
             };
+            // console.log(req.body);
 
-            await business.updateOne(businessDetails,function(
-                err,
-                result
-              ) {
-                if (err) {
-                  res.send(err);
-                }
-               
-              });  
+          const UpdateBusiness = await Business.findOneAndUpdate({_id:req.params.businessId},businessDetails)
+            return res.send({
+                 success: true,
+                 message: "project Updated Successfull",
+                 responseData: UpdateBusiness,
+               });           
               
             return res.send({
               success: true,
               message: "business Updated Successfull",
-              responseData: Getbusiness,            
+              // responseData: GetBusiness,            
             });
 
-      // }
-      // else{
-      //   return res.send({
-      //         success: false,
-      //         message: "Unauthorized",
-      //       });
-      // }
+      }
+      else{
+        return res.send({
+              success: false,
+              message: "Unauthorized",
+            });
+      }
 
   } catch (error) {
     console.log(error);

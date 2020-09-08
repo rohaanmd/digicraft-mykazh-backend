@@ -86,9 +86,10 @@ const createOthers = async (req, res, next) => {
           responsedata: err,
         });
     });
-    // Others.createdBy = req.user.userId;
+    console.log(JSON.stringify(others, null, 4));
+    Others.createdBy = req.user.userId;
     // console.log(JSON.stringify(othersDetails, null, 4));
-    await Others.save();
+    await others.save();
     console.log(JSON.stringify(othersDetails, null, 4));
     return res.send({
       success: true,
@@ -131,7 +132,7 @@ const updateOthers = async (req, res, next) => {
     const others = await Others.findById(req.params.othersId)
     const userId = req.user.userId;
     const createdBy = Others.createdBy;
-
+console.log(req.user);
     if(JSON.stringify(userId)==JSON.stringify(createdBy))
       // if(Others.createdBy = req.user.userId)
       {
@@ -143,40 +144,29 @@ const updateOthers = async (req, res, next) => {
           
 
             const othersDetails = {
-                GoalAmount:req.body.amount,
-                purpose:req.body.purpose,
-                fundFor:req.body.fundFor,
-                cause:req.body.cause,
-                mediaLink:{url:req.body.url},
-                location:req.body.location,
-                 story: req.body.story,
-             
+                GoalAmount:req.body.amount||others.amount,
+                purpose:req.body.purpose||others.purpose,
+                fundFor:req.body.fundFor||others.fundFor,
+                cause:req.body.cause||others.cause,
+                mediaLink:req.body.mediaLink||others.mediaLink,
+                location:req.body.location||others.location,
+                story: req.body.story||others.story,
+                cardImage:req.body.cardImage || others.cardImage,
               };
-
-           const Getothers = await Others.updateOne(othersDetails,function(
-                err,
-                result
-              ) {
-                if (err) {
-                  res.send(err);
-                }
-               
-              });  
+          const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails);  
               
             return res.send({
               success: true,
               message: "others Updated Successfull",
               responseData: Getothers,            
             });
-
       }
       else{
         return res.send({
               success: false,
-              message: "Unauthorized",
+              message: "Unauthorized kutter",
             });
       }
-
   } catch (error) {
     console.log(error);
     return res.send({

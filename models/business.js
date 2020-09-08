@@ -11,6 +11,7 @@ const BusinessSchema = new Schema(
       type: String,
       // required: true,
     },
+    companyLogo: { type:String },
 
     createdBy: {
       type: Schema.Types.ObjectId,
@@ -32,7 +33,7 @@ const BusinessSchema = new Schema(
     companyKeyword: String,
     email: String,
     canSms: Boolean,
-    websiteURL: String,
+    
     conatctPhone: Number,
     linkedinURL: String,
     facebookURL: String,
@@ -66,11 +67,7 @@ const BusinessSchema = new Schema(
     video: {
       type: String,
     },
-    youtubeUrls: [
-      {
-        url: String,
-      },
-    ],
+    youtubeUrls: String,
     test: [
       {
         name: {
@@ -129,16 +126,6 @@ const BusinessSchema = new Schema(
     Intrest: Number,
     ValuationCap: Number,
     WarrantCoverage: Number,
-
-    safeNote: {
-      valuationCap: Number,
-      conversionDiscount: Number,
-    },
-    debt: {
-      interest: Number,
-      termLength: Number,
-    },
-
     return: Number,
     PaymentFrequency: {
       type: Number,
@@ -165,7 +152,7 @@ const BusinessSchema = new Schema(
     FundingDate: Date,
     FundingType: Number,
 
-    dealHighligths: [{ type: String }],
+    dealHighligths: [{ highlight: String }],
     ElevatorPitch: String,
     investor: [
       {
@@ -207,7 +194,20 @@ const BusinessSchema = new Schema(
         Doctype: String,
         fileUrl: String,
       },
+     
     },
+    sideshareURL:String,
+    PreMoneyValuation:Number,
+    fundraisingGoal:Number,
+    DateRoundOpened:Date,
+    websiteURL:String,
+    AmountRaised:{
+      type:Number,
+      default:0,
+    },
+    tranctionDate:Date,
+
+
 
     RisksDisclosures: String,
     Risk:String

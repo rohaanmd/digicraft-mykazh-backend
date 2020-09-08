@@ -14,12 +14,12 @@ const { getBusiness,
 
 router.get('/businessapi', getBusiness);
 router.get('/getall',  getAllBusiness);
-router.get('/', getBusinessByUser);
+router.get('/',authUser, getBusinessByUser);
 router.get('/:businessId', getBusinessById);
-router.post('/create', createBusiness);
-router.put('/update/:businessId', updateBusiness);
+router.post('/create',authUser, createBusiness);
+router.put('/update/:businessId',authUser, updateBusiness);
 router.delete('/deleteall', deleteAllBusiness);
-router.delete('/delete/:businessId', deleteBusinessById);
+router.delete('/delete/:businessId',authUser, deleteBusinessById);
 
 
 module.exports = router;

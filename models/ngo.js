@@ -25,8 +25,17 @@ const ngo = new Schema({
      type:String 
     },
     story: String,
+
+    GoalAmount:Number,
+    cardImage:String,
+
     ngoCreater:String,
-    creatorbio:String
+    creatorbio:String,
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        // required: true,
+      },
 
 
 },{timestamp:true});

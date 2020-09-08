@@ -73,13 +73,13 @@ const getCharityByUser = async (req, res, next) => {
 const createCharity = (req, res, next) => {
   try {
     const charityDetails = {
-     Picture: req.body.uploadImage,
+     Picture: req.body.Picture,
      VideoAppeal: req.body.VideoAppeal,
-     PatientsAge: req.body.PatientAge,
+     PatientsAge: req.body.PatientsAge,
      GoalAmount: req.body.GoalAmount,
-     PatientsName: req.body.PatientName,
-     PatientsGender: req.body.PatientGender,
-     MedicalCon: req.body.MedicalCondition,
+     PatientsName: req.body.PatientsName,
+     PatientsGender: req.body.PatientsGender,
+     MedicalCon: req.body.MedicalCon,
      Story: req.body.Story,
        
     };
@@ -142,7 +142,7 @@ const updateCharity = async (req, res, next) => {
         success: false,
         message: "Unauthorized",
       });
-      charity.Picture= req.body.Picture||charity.Picture,
+    charity.Picture= req.body.Picture||charity.Picture,
      charity.VideoAppeal= req.body.VideoAppeal||charity.VideoAppeal,
      charity.PatientsAge= req.body.PatientsAge||charity.PatientsAge,
      charity.GoalAmount= req.body.GoalAmount||charity.GoalAmount,
@@ -151,10 +151,8 @@ const updateCharity = async (req, res, next) => {
      charity.MedicalCon= req.body.MedicalCon||charity.MedicalCon,
      charity.Story= req.body.Story||charity.Story,
      charity.CustSrtLink=req.body.CustSrtLink||charity.CustSrtLink,
-     charity.docs.MedEsti.fileUrl=req.body.MedEsti||charity.docs.MedEsti.fileUr,
-     charity.docs.LetFrmPatie.fileUrl=req.body.LetFrmPatie||charity.docs.LetFrmPatie.fileUrl,
-     charity.docs.MedRep.fileUrl=req.body.MedRep||charity.docs.MedRep.fileUrl
-  
+     charity.docs=req.body.docs||charity.docs,
+     charity.cardImage=req.body.CardImage||charity.CardImage,
           
 
 //     const updatedBusiness = await business.save();

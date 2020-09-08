@@ -54,10 +54,10 @@ const getProjectById = async (req, res, next) => {
 const getProjectByUser = async (req, res, next) => {
   console.log(req.user);
   const project = await Project.find()
-    // .where("createdBy")
-    // .equals(req.user.userId)
-    // .populate("createdBy")
-    // .exec();
+    .where("createdBy")
+    .equals(req.user.userId)
+    .populate("createdBy")
+    .exec();
   if (project)
     return res.send({
       success: true,
@@ -92,7 +92,7 @@ const createProject = async (req, res, next) => {
     };
 
     console.log(req.body);
-   
+  
     // console.log(JSON.stringify(projectDetails, null, 4));
     const project = new Project(projectDetails, (err) => {
       if (err)
@@ -103,7 +103,7 @@ const createProject = async (req, res, next) => {
         });
     });
    
-    // project.createdBy = req.user.userId;
+    project.createdBy = req.user.userId;
     await project.save();
    
     return res.send({
@@ -144,12 +144,14 @@ const deleteAllProject = async (req, res, next) => {
 
 
 const updateProject = async (req, res, next) => {
-  try {
-    const project = await Project.findOne({
-      _id: req.params.projectId,
-    })
-      // .where("createdBy")
-      // .equals(req.user.userId);
+ 
+    try {
+      const project = await Project.findById(req.params.projectId)
+      const userId = req.user.userId;
+      const createdBy = project.createdBy;
+  
+    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+    {
     if (!project || !req.body)
       return res.send({
         success: false,
@@ -198,18 +200,22 @@ const updateProject = async (req, res, next) => {
           // project.videosgallery=req.body.videosgallery||project.videosgallery,
          project.imagegallery=req.body.imagegallery||project.imagegallery;
          project.campaignTeam=req.body.campaignTeam;
-         project.update=req.body.update;
-
+         project.updates=req.body.updates;
 
 //     const updatedBusiness = await business.save();
-      console.log(project)
+      // console.log(project)
      await Project.findOneAndUpdate({_id:req.params.projectId},project)
      return res.send({
           success: true,
           message: "project Updated Successfull",
           responseData: project,
         });
-     
+      } else{
+        return res.send({
+              success: false,
+              message: "Unauthorized",
+            });
+      }
   } catch (error) {
     console.log(error);
     return res.send({
