@@ -34,7 +34,8 @@ const getCharityById = async (req, res, next) => {
         success: false,
         message: "Charity Not Found",
       });
-    const isAuthor = charity.createdby.equals(req.user.userId);
+      console.log(req.user.userId + charity.createdBy)
+    const isAuthor = charity.createdBy.equals(req.user.userId);
     return res.send({
       success: true,
       message: "Charity Found successfully",
@@ -83,6 +84,7 @@ const createCharity = (req, res, next) => {
      Story: req.body.Story,
        
     };
+    console.log(charityDetails)
     const charity = new Charity(charityDetails, (err) => {
       if (err)
         return res.send({
@@ -91,8 +93,9 @@ const createCharity = (req, res, next) => {
           responsedata: err,
         });
     });
-    console.log(JSON.stringify(charityDetails, null, 4));
-    // charity.createdBy = req.user.userId;
+    // console.log(req.user.userId)
+    // console.log(JSON.stringify(charityDetails, null, 4));
+    charity.createdBy = req.user.userId;
     charity.save();
     return res.send({
       success: true,
