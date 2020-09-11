@@ -28,7 +28,7 @@ const getCharityById = async (req, res, next) => {
   try {
     const charity = await Charity.findOne({
       _id: req.params.charityId,
-    }).populate("createdBy");
+    })
     if (!charity)
       return res.send({
         success: false,

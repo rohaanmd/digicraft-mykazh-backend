@@ -81,6 +81,7 @@ const BusinessSchema = new Schema(
         },
         role: String,
         text: String,
+        testphoto:String
       },
     ],
 
@@ -169,10 +170,11 @@ const BusinessSchema = new Schema(
         InvestorName: {
           type: String,
         },
-
-        
-        InvestorImage: String,
-
+        InvestorImage:{
+          type:String
+        },
+        Investorbio:String
+      
       },
     ],
     ExecutiveSummaryToogle: Boolean,
@@ -214,6 +216,7 @@ const BusinessSchema = new Schema(
 
 
     RisksDisclosures: String,
+    Risk:String
   },
   { timestamps: true }
 );
