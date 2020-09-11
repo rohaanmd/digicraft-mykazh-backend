@@ -21,6 +21,11 @@ const ngo = new Schema({
            url:String,
        }
    ],
+   verification:{
+    type: String,
+    enum: ["approved","disapproved","NULL"]
+    ,default:"NULL"
+  },
    location: {
      type:String 
     },

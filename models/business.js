@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 const BusinessSchema = new Schema(
   {
+    verification:{
+      type: String,
+      enum: ["approved","disapproved","NULL"]
+      ,default:"NULL"
+    }
+    ,
     companyName: {
       type: String,
       // required: true,

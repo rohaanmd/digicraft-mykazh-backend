@@ -24,6 +24,11 @@ const others = new Schema({
    location: {
      type:String 
     },
+    verification:{
+        type: String,
+        enum: ["approved","disapproved","NULL"]
+        ,default:"NULL"
+      },
     cardImage:String,
     story: String,
     createdBy: {

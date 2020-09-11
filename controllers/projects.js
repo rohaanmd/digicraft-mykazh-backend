@@ -202,7 +202,7 @@ const updateProject = async (req, res, next) => {
          project.campaignTeam=req.body.campaignTeam;
          project.updates=req.body.updates;
 
-//     const updatedBusiness = await business.save();
+//     const updatedproject = await project.save();
       // console.log(project)
      await Project.findOneAndUpdate({_id:req.params.projectId},project)
      return res.send({
@@ -234,14 +234,103 @@ const deleteProjectById = async (req, res, next) => {
   if (project)
     return res.send({
       success: true,
-      message: "business Delete Successfully",
+      message: "project Delete Successfully",
       responsedata: project,
     });
   else
     return res.send({
       success: false,
-      message: "business not found",
+      message: "project not found",
     });
+};
+const ApproveProject = async (req, res, next) => {
+  try {
+    const project = await Project.findById(req.params.projectId)  
+        console.log(project);
+        if (!project || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+project.verification="approved";
+await project.save();
+return res.send({
+  success: true,
+  message: "approve Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+const DisapproveProject = async (req, res, next) => {
+  try {
+    const project = await Project.findById(req.params.projectId)  
+        console.log(project);
+        if (!project || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+project.verification="disapproved";
+await project.save();
+return res.send({
+  success: true,
+  message: "disapprove Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+
+const getApproved =  async (req, res) => {
+  const project = await Project.find({verification: "approved"});
+  return res.send({
+    success: true,
+    message: "Approved project Listed",
+    responsedata: {
+      project,
+    },
+  });
+};
+const getDisapproved =  async (req, res) => {
+  const project = await Project.find({verification: "disapproved"});
+  return res.send({
+    success: true,
+    message: "Disapproved project Listed",
+    responsedata: {
+      project,
+    },
+  });
+};
+const getNULL =  async (req, res) => {
+  const project = await Project.find({verification: "NULL"});
+  return res.send({
+    success: true,
+    message: "NULL project Listed",
+    responsedata: {
+      project,
+    },
+  });
 };
 
 
@@ -253,5 +342,10 @@ module.exports = {
      getProjectByUser,
      getProjectById,
      getAllProject,
-     getProject
+     getProject,
+     ApproveProject,
+     DisapproveProject,
+     getNULL,
+     getDisapproved,
+     getApproved
 }

@@ -194,6 +194,95 @@ const deleteOthersById = async (req, res, next) => {
       message: "others not found",
     });
 };
+const ApproveOthers = async (req, res, next) => {
+  try {
+    const others = await Others.findById(req.params.othersId)  
+        console.log(others);
+        if (!others || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+others.verification="approved";
+await others.save();
+return res.send({
+  success: true,
+  message: "approve Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+const DisapproveOthers = async (req, res, next) => {
+  try {
+    const others = await Others.findById(req.params.othersId)  
+        console.log(others);
+        if (!others || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+others.verification="disapproved";
+await others.save();
+return res.send({
+  success: true,
+  message: "disapprove Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+
+const getApproved =  async (req, res) => {
+  const others = await Others.find({verification: "approved"});
+  return res.send({
+    success: true,
+    message: "Approved others Listed",
+    responsedata: {
+      others,
+    },
+  });
+};
+const getDisapproved =  async (req, res) => {
+  const others = await Others.find({verification: "disapproved"});
+  return res.send({
+    success: true,
+    message: "Disapproved others Listed",
+    responsedata: {
+      others,
+    },
+  });
+};
+const getNULL =  async (req, res) => {
+  const others = await Others.find({verification: "NULL"});
+  return res.send({
+    success: true,
+    message: "NULL others Listed",
+    responsedata: {
+      others,
+    },
+  });
+};
 
 
 module.exports = {
@@ -205,4 +294,9 @@ module.exports = {
     getOthersByUser,
     getOthersById,
     getAllOthers,
+    ApproveOthers,
+    DisapproveOthers,
+    getNULL,
+    getDisapproved,
+    getApproved
 }

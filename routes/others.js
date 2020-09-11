@@ -9,6 +9,12 @@ const {   getOthers,
     getOthersByUser,
     getOthersById,
     getAllOthers,
+    getNULL,
+    getDisapproved,
+    getApproved,
+    
+    ApproveOthers,
+    DisapproveOthers,
 } = require("../controllers/others");
 
 
@@ -20,6 +26,11 @@ router.post('/create',authUser,  createOthers);
 router.put('/update/:othersId',authUser, updateOthers);
 router.delete('/deleteall', deleteAllOthers);
 router.delete('/delete/:othersId', authUser,deleteOthersById);
+router.get('/getall',  getApproved);
+router.get('/getnull',  getNULL);
+router.get('/getdisapproved',  getDisapproved);
+router.put('/approve/:othersId',ApproveOthers);
+router.put('/disapprove/:othersId',DisapproveOthers);
 
 
 module.exports = router;

@@ -52,7 +52,7 @@ const getNgoById = async (req, res, next) => {
 
 const getNgoByUser = async (req, res, next) => {
   console.log(req.user);
-  const ngo = await ngo.find()
+  const ngo = await Ngo.find()
     .where("createdBy")
     .equals(req.user.userId)
     .populate("createdBy")
@@ -199,6 +199,95 @@ const deleteNgoById = async (req, res, next) => {
       message: "ngo not found",
     });
 };
+const ApproveNgo = async (req, res, next) => {
+  try {
+    const ngo = await Ngo.findById(req.params.ngoId)  
+        console.log(ngo);
+        if (!ngo || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+ngo.verification="approved";
+await ngo.save();
+return res.send({
+  success: true,
+  message: "approve Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+const DisapproveNgo = async (req, res, next) => {
+  try {
+    const ngo = await Ngo.findById(req.params.ngoId)  
+        console.log(ngo);
+        if (!ngo || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+ngo.verification="disapproved";
+await ngo.save();
+return res.send({
+  success: true,
+  message: "disapprove Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+
+const getApproved =  async (req, res) => {
+  const ngo = await Ngo.find({verification: "approved"});
+  return res.send({
+    success: true,
+    message: "Approved ngo Listed",
+    responsedata: {
+      ngo,
+    },
+  });
+};
+const getDisapproved =  async (req, res) => {
+  const ngo = await Ngo.find({verification: "disapproved"});
+  return res.send({
+    success: true,
+    message: "Disapproved ngo Listed",
+    responsedata: {
+      ngo,
+    },
+  });
+};
+const getNULL =  async (req, res) => {
+  const ngo = await Ngo.find({verification: "NULL"});
+  return res.send({
+    success: true,
+    message: "NULL ngo Listed",
+    responsedata: {
+      ngo,
+    },
+  });
+};
 
 
 module.exports = {
@@ -210,4 +299,10 @@ module.exports = {
   getNgoByUser,
   getNgoById,
   getAllNgo,
+  ApproveNgo,
+  DisapproveNgo,
+  getNULL,
+  getDisapproved,
+  getApproved,
+
 }

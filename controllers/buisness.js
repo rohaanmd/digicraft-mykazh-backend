@@ -226,12 +226,7 @@ const updateBusiness = async (req, res, next) => {
                  responseData: UpdateBusiness,
                });           
               
-            return res.send({
-              success: true,
-              message: "business Updated Successfull",
-              // responseData: GetBusiness,            
-            });
-
+      
       }
       else{
         return res.send({
@@ -249,6 +244,100 @@ const updateBusiness = async (req, res, next) => {
     });
   }
 };
+
+ 
+const ApproveBusiness = async (req, res, next) => {
+  try {
+    const business = await Business.findById(req.params.businessId)  
+        console.log(business);
+        if (!business || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+business.verification="approved";
+await business.save();
+return res.send({
+  success: true,
+  message: "approve Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+const DisapproveBusiness = async (req, res, next) => {
+  try {
+    const business = await Business.findById(req.params.businessId)  
+        console.log(business);
+        if (!business || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+business.verification="disapproved";
+await business.save();
+return res.send({
+  success: true,
+  message: "disapprove Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+
+const getApproved =  async (req, res) => {
+  const business = await Business.find({verification: "approved"});
+  return res.send({
+    success: true,
+    message: "Approved business Listed",
+    responsedata: {
+      business,
+    },
+  });
+};
+const getDisapproved =  async (req, res) => {
+  const business = await Business.find({verification: "disapproved"});
+  return res.send({
+    success: true,
+    message: "Disapproved business Listed",
+    responsedata: {
+      business,
+    },
+  });
+};
+const getNULL =  async (req, res) => {
+  const business = await Business.find({verification: "NULL"});
+  return res.send({
+    success: true,
+    message: "NULL business Listed",
+    responsedata: {
+      business,
+    },
+  });
+};
+
+
+
 
 const deleteBusinessById = async (req, res, next) => {
   const business = await Business.findByIdAndDelete(req.params.businessId)
@@ -278,4 +367,9 @@ module.exports = {
   getBusinessByUser,
   getBusinessById,
   getAllBusiness,
+  ApproveBusiness,
+  DisapproveBusiness,
+  getNULL,
+  getDisapproved,
+  getApproved
 }

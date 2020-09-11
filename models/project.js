@@ -16,6 +16,11 @@ const ProjectSchema = new Schema({
           type:String,
           // required:true
      },
+     verification:{
+          type: String,
+          enum: ["approved","disapproved","NULL"]
+          ,default:"NULL"
+        },
      campaigntagline:{
           type:String,
           // required:true

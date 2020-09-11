@@ -8,7 +8,12 @@ const {  deleteCharityById,
      getCharityByUser,
      getCharityById,
      getAllCharity,
-     getCharity
+     getCharity,
+     getNULL,
+     getDisapproved,
+     getApproved,
+     ApproveCharity,
+     DisapproveCharity,
 } = require("../controllers/medical")
 
 
@@ -20,6 +25,11 @@ router.post('/create',  createCharity);
 router.put('/update/:charityId', updateCharity);
 router.delete('/deleteall', deleteAllCharity);
 router.delete('/delete/:charityId', authUser, deleteCharityById);
+router.get('/getall',  getApproved);
+router.get('/getnull',  getNULL);
+router.get('/getdisapproved',  getDisapproved);
+router.put('/approve/:medicalId',ApproveCharity);
+router.put('/disapprove/:medicalId',DisapproveCharity);
 
 
 module.exports = router;

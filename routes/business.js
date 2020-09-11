@@ -9,15 +9,24 @@ const { getBusiness,
     getBusinessByUser,
     getBusinessById,
     getAllBusiness,
+    ApproveBusiness,
+    DisapproveBusiness,
+    getNULL,
+    getDisapproved,
+    getApproved
 } = require("../controllers/buisness")
 
 
 router.get('/businessapi', getBusiness);
-router.get('/getall',  getAllBusiness);
+router.get('/getall',  getApproved);
+router.get('/getnull',  getNULL);
+router.get('/getdisapproved',  getDisapproved);
 router.get('/',authUser, getBusinessByUser);
 router.get('/:businessId', getBusinessById);
 router.post('/create',authUser, createBusiness);
 router.put('/update/:businessId',authUser, updateBusiness);
+router.put('/approve/:businessId',ApproveBusiness);
+router.put('/disapprove/:businessId',DisapproveBusiness);
 router.delete('/deleteall', deleteAllBusiness);
 router.delete('/delete/:businessId',authUser, deleteBusinessById);
 

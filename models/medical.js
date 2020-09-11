@@ -48,6 +48,11 @@ docs:{
      },
  
  },
+ verification:{
+     type: String,
+     enum: ["approved","disapproved","NULL"],
+     default:"NULL"
+   },
  cardImage:String,
  
 

@@ -155,7 +155,7 @@ const updateCharity = async (req, res, next) => {
      charity.cardImage=req.body.CardImage||charity.CardImage,
           
 
-//     const updatedBusiness = await business.save();
+//     const updatedcharity = await charity.save();
       console.log(charity)
     await Charity.findOneAndUpdate({_id:req.params.charityId},charity)
      return res.send({
@@ -191,6 +191,95 @@ const deleteCharityById = async (req, res, next) => {
       message: "charity not found",
     });
 };
+const ApproveCharity = async (req, res, next) => {
+  try {
+    const charity = await Charity.findById(req.params.charityId)  
+        console.log(charity);
+        if (!charity || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+charity.verification="approved";
+await charity.save();
+return res.send({
+  success: true,
+  message: "approve Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+const DisapproveCharity = async (req, res, next) => {
+  try {
+    const charity = await Charity.findById(req.params.charityId)  
+        console.log(charity);
+        if (!charity || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+charity.verification="disapproved";
+await charity.save();
+return res.send({
+  success: true,
+  message: "disapprove Successfull",
+
+});
+
+
+
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: "something wrong happened",
+      responseData: error,
+    });
+  }
+};
+
+
+const getApproved =  async (req, res) => {
+  const charity = await Charity.find({verification: "approved"});
+  return res.send({
+    success: true,
+    message: "Approved charity Listed",
+    responsedata: {
+      charity,
+    },
+  });
+};
+const getDisapproved =  async (req, res) => {
+  const charity = await Charity.find({verification: "disapproved"});
+  return res.send({
+    success: true,
+    message: "Disapproved charity Listed",
+    responsedata: {
+      charity,
+    },
+  });
+};
+const getNULL =  async (req, res) => {
+  const charity = await Charity.find({verification: "NULL"});
+  return res.send({
+    success: true,
+    message: "NULL charity Listed",
+    responsedata: {
+      charity,
+    },
+  });
+};
 
 
 module.exports = {
@@ -201,5 +290,10 @@ module.exports = {
      getCharityByUser,
      getCharityById,
      getAllCharity,
-     getCharity
+     getCharity,
+     ApproveCharity,
+     DisapproveCharity,
+     getNULL,
+     getDisapproved,
+     getApproved
 }
