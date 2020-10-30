@@ -1,0 +1,94 @@
+{
+    "companyName":"String",
+    "companyOverview":"String",
+    "companyLogo": "String",
+   "campaigntitle":"string",
+   "campaigntagline":"string",
+   "campaigncardimage":"string",
+   "location": "string",
+   "selectCatergory":"string",
+   "SubCatergory":"string",
+   "campaignDuration":0,
+   "tags":"string",
+   "story":"string",
+   "faq":[
+        {
+             "Question":"String",
+             "Answer":"string"
+        },
+        {
+             "Question":"String",
+             "Answer":"string"
+        }
+   ],
+   "perk":[
+        {
+             "visibility":"string",
+
+             "perkimage":"String",
+             "price":0,
+             "retailprice":0,
+             "title":"string",
+             "includeditems":{
+                  "itemname":"string",
+                  "option":{
+                       "OptionName":"String",
+                       "OptionSize":0
+                  }
+             },
+             "Description":"string",
+             "perk":"String",
+             "Quantity":0,
+             "EstimateDeliverydate":"Date",
+             "Shipping":{
+                  "Shippinglocation":"String",
+                  "ShippingFee":0
+             }
+
+
+        }
+   ],
+   
+   "imagegallery":[
+        {"url":"String"},{"url":"String"}
+   ],
+   "facebookURL" : "String",
+   "twitterURL": "String",
+   "linkedinURL": "String",
+   "updates": [
+        {"text":"String"},{"text":"String"}
+   ],
+   "comments": "String",
+   "campaignTeam":[
+        {
+       
+        "legalFirstname":"string",
+        "legalLastname":"string",
+        "dateofbirth":"",
+        "phonenumber":0,
+        "country":"string",
+        "streetAddress":"string",
+        "extraAddress":"String",
+          
+        "supportEmailaddress":"String",
+        "newTeammemberemail":"String"
+
+        },{
+       
+        "legalFirstname":"string",
+        "legalLastname":"string",
+        "dateofbirth":"",
+        "phonenumber":0,
+        "country":"string",
+        "streetAddress":"string",
+        "extraAddress":"String",
+          
+        "supportEmailaddress":"String",
+        "newTeammemberemail":"String"
+
+        }
+   ],
+   "youtubeURL":"string",
+   "FundingAmount":0
+
+}

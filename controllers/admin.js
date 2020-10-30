@@ -4,7 +4,7 @@ const fs = require("fs");
 const Joi = require("@hapi/joi"); // Package for validating Admin data
 
 const {hashPassword , comparePassword} = require('../middleware/index');
-const { log } = require('console');
+
 
 const adminSchema = Joi.object({
     email: Joi.string().email({
@@ -27,7 +27,29 @@ const LogOut = async (req, res, next) => {
         });  
 } 
 
-
+const getCurrentAdmin = async (req, res,next) =>{
+  try {
+    const admin = await Admin.findOne({
+      _id: req.user.userId
+    });
+    if(admin)
+    return res.send({
+      success: true,
+      message: "user Found successfully",
+      responseData: admin ,
+    });
+  return res.send({
+    success: false,
+    message: "admin Not Found",
+  });
+  } catch (error) {
+    return res.send({
+      success: false,
+      message: "request cant be processed",
+      responseData: error
+    });
+  }
+}
 
 const Login = async (req, res, next) => {
     const email = req.body.email;
@@ -42,7 +64,7 @@ const Login = async (req, res, next) => {
           success: false,
           message: "Unauthorized",
         });
-        const isSame = await comparePassword(req.body.password, admin.password);
+        const isSame = await comparePassword(password, admin.password);
 
         
   if (isSame) {
@@ -99,16 +121,6 @@ const SignUp = async (req, res, next) => {
     ...response.value,
   });
     
-
-    
-                    // if(req.file.path)
-                    // {
-                    //     const imgResponse = cloudinary.uploader.upload(req.file.path);
-                    //     admin.picture=imgResponse.secure_url;
-                    //     fs.unlinkSync(req.file.path);
-                    // }
-                    
-
                     const token = await  admin.generateAuthToken(); 
                     await admin.save();
                     return res.send({
@@ -172,7 +184,9 @@ const getUsers = async (req, res) => {
 const Approved =  async (req, res, next) =>{
 
 try{
-  User.findByIdAndUpdate(req.params.userId, { isApproved: 'approved' }, function (err, docs) { 
+  User.findByIdAndUpdate(req.params.userId, { isApproved: 'approved' }, {
+    new: true
+  },function (err, docs) { 
     if (err){ 
         console.log(err) ;
         return res.send({
@@ -248,4 +262,5 @@ module.exports = {
     getApprovedUser,
     getDisapprovedUser,
     getUndefinedUser,
+    getCurrentAdmin,
 }

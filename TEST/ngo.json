@@ -1,0 +1,26 @@
+{
+    "purpose":"String",
+    "ngoName":"String",
+    "cause":"String",
+    "mediaLink":[
+        {
+            "url":"String"
+
+        },{
+            "url":"String"
+
+        },{
+            "url":"String"
+
+        }
+    ],
+    "location":"String",
+     "story": "String",
+ 
+     "GoalAmount":1000000,
+     "cardImage":"String",
+ 
+     "ngoCreater":"String",
+     "creatorbio":"String"
+   
+ }

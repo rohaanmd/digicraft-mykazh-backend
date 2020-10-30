@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const {ImgUploader,
+const {
+ImgUploader,
 authAdmin,
 } = require("../middleware/index.js");
 const {
     SignUp,
     Login,
+    getCurrentAdmin,
     getAllAdmin,
     LogOut,
     getUsers,
@@ -37,7 +39,13 @@ const {
   updateInvestor,
     
 } = require("../controllers/faq");
-const { get } = require("mongoose");
+
+const {
+  deleteTeamById,
+  createTeam,
+  updateTeam,
+  getAllTeams
+} = require("../controllers/teams");
 
 router.post("/signup" , ImgUploader,SignUp);
 router.post("/login",Login);
@@ -51,20 +59,17 @@ router.put('/disapprove/:userId',authAdmin,Disapproved);
 
 
 router.get("/userlist",authAdmin,getUsers);
-router.get("/",authAdmin,getAllAdmin);
+
 router.get("/approveduserlist",authAdmin,getApprovedUser);
 router.get("/undefineduserlist",authAdmin,getUndefinedUser);
 router.get("/disapproveduserlist",authAdmin,getDisapprovedUser);
 
 
 router.post("/info/create", postInfo);
-
 router.get("/terms", getTerms);
 router.put("/terms/update",updateTerms);
-
 router.get("/risk", getRisk);
 router.put("/risk/update",updateRisk);
-
 router.get("/privacy", getPrivacy);
 router.put("/privacy/update",updatePrivacy);
 
@@ -72,17 +77,18 @@ router.put("/privacy/update",updatePrivacy);
 
 
 router.post("/faq/create", postFaq);
-
 router.get("/knowledge", getKnowledge);
 router.put("/knowledge/update/:faqId",updateKnowledge);
-
 router.get("/investor", getInvestor);
 router.put("/investor/update/:faqId",updateInvestor);
-
 router.get("/entrepreneur", getEntrepreneur);
 router.put("/entrepreneur/update/:faqId",updateEntrepreneur);
 
+router.get("/teams",getAllTeams);
+router.put("/teams/:teamsId",updateTeam);
+router.post("/teams/create",createTeam)
+router.delete("/teams/:teamsId",deleteTeamById);
 
-
+router.get("/",authAdmin,getCurrentAdmin);
 
 module.exports = router ;

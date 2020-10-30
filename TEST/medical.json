@@ -1,0 +1,23 @@
+{"title": "String",
+    "Picture":"String",
+    "VideoAppeal":"st",
+    "PatientsAge":"",
+    "GoalAmount":1200,
+    "PatientsName":"String",
+    "PatientsGender":"male",
+    "MedicalCon":"String",
+    "Story":"String",
+    "CustSrtLink":"st",
+    "docs":{
+         "MedEsti":{
+             "fileUrl" :" String"
+         },
+         "LetFrmPatie":{
+             "fileUrl" : "String"
+         },
+         "MedRep": { 
+             "fileUrl" : "String"
+         }
+     
+     },
+     "cardImage":"String"}

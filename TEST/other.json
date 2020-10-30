@@ -1,0 +1,22 @@
+{
+    "GoalAmount":100000,
+    "purpose":"String",
+    "fundFor":"String",
+    "cause":"String",
+    "mediaLink":[
+        {
+            "url":"String"
+
+        },{
+            "url":"String"
+
+        },{
+            "url":"String"
+
+        }
+    ],
+    "location":"String",
+     "cardImage":"String",
+     "story": "String"
+     
+ }

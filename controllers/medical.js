@@ -27,7 +27,7 @@ const getAllCharity = async (req, res, next) => {
 const getCharityById = async (req, res, next) => {
   try {
     const charity = await Charity.findOne({
-      _id: req.params.charityId,
+      _id: req.params.medicalId,
     })
     if (!charity)
       return res.send({
@@ -93,8 +93,7 @@ const createCharity = (req, res, next) => {
           responsedata: err,
         });
     });
-    // console.log(req.user.userId)
-    // console.log(JSON.stringify(charityDetails, null, 4));
+  
     charity.createdBy = req.user.userId;
     charity.save();
     return res.send({
@@ -103,7 +102,7 @@ const createCharity = (req, res, next) => {
       responsedata: {
           charity,
       },
-    })
+    });
   }
   catch (err) {
     return res.send({
@@ -135,36 +134,21 @@ const deleteAllCharity = async (req, res, next) => {
 
 const updateCharity = async (req, res, next) => {
   try {
-    const charity = await Charity.findOne({
-      _id: req.params.charityId,
-    })
-      // .where("createdBy")
-      // .equals(req.user.userId);
-    if (!charity || !req.body)
+    const charity = await Charity.findById(req.params.medicalId)
+    const userId = req.user.userId;
+    const createdBy = charity.createdBy;
+    if(createdBy == userId)
+    return res.send({
+      success: false,
+      message: "Unauthorized",
+    });
+    let newCharity= req.body;
+    
+   const updatedCharity =  await Charity.findOneAndUpdate({_id:req.params.medicalId},newCharity)
       return res.send({
-        success: false,
-        message: "Unauthorized",
-      });
-    charity.Picture= req.body.Picture||charity.Picture,
-     charity.VideoAppeal= req.body.VideoAppeal||charity.VideoAppeal,
-     charity.PatientsAge= req.body.PatientsAge||charity.PatientsAge,
-     charity.GoalAmount= req.body.GoalAmount||charity.GoalAmount,
-     charity.PatientsName= req.body.PatientsName||charity.PatientsName,
-     charity.PatientsGender= req.body.PatientsGender||charity.PatientsGender,
-     charity.MedicalCon= req.body.MedicalCon||charity.MedicalCon,
-     charity.Story= req.body.Story||charity.Story,
-     charity.CustSrtLink=req.body.CustSrtLink||charity.CustSrtLink,
-     charity.docs=req.body.docs||charity.docs,
-     charity.cardImage=req.body.CardImage||charity.CardImage,
-          
-
-//     const updatedcharity = await charity.save();
-      console.log(charity)
-    await Charity.findOneAndUpdate({_id:req.params.charityId},charity)
-     return res.send({
           success: true,
           message: "charity Updated Successfull",
-          responseData: charity,
+          responseData: updatedCharity,
         });
      
   } catch (error) {
@@ -178,7 +162,7 @@ const updateCharity = async (req, res, next) => {
 };
 
 const deleteCharityById = async (req, res, next) => {
-  const charity = await Charity.findByIdAndDelete(req.params.charityId)
+  const charity = await Charity.findByIdAndDelete(req.params.medicalId)
     .where("createdBy")
     .equals(req.user.userId);
   console.log(charity);
@@ -195,60 +179,71 @@ const deleteCharityById = async (req, res, next) => {
     });
 };
 const ApproveCharity = async (req, res, next) => {
-  try {
-    const charity = await Charity.findById(req.params.charityId)  
-        console.log(charity);
-        if (!charity || !req.body){
-            return res.send({
-              success: false,
-              message: "Buisness not found",
-            });}
-charity.verification="approved";
-await charity.save();
-return res.send({
-  success: true,
-  message: "approve Successfull",
-
-});
-
-
-
-  } catch (error) {
-    console.log(error);
-    return res.send({
-      success: false,
-      message: "something wrong happened",
-      responseData: error,
-    });
-  }
+  try{
+    Charity.findByIdAndUpdate(req.params.medicalId, { verification: 'approved' }, {
+     new: true
+   },function (err, docs) { 
+     if (err){ 
+         console.log(err) ;
+         return res.send({
+                   success: false,
+                   message: "approve not successful",
+                   responseData: err,
+                 });
+     } 
+     else{ 
+         
+      console.log("Updated User : ", docs); 
+         return res.send({
+               success: true,
+               message: "User approve Successful",
+               responsedata: docs,
+             });
+     } 
+ }); 
+ } catch (err){
+    
+   return res.send({
+     success: false,
+     message: "Something went wrong",
+     responsedata:err,
+   });
+ 
+ }  
 };
 
 const DisapproveCharity = async (req, res, next) => {
-  try {
-    const charity = await Charity.findById(req.params.charityId)  
-        console.log(charity);
-        if (!charity || !req.body){
-            return res.send({
-              success: false,
-              message: "Buisness not found",
-            });}
-charity.verification="disapproved";
-await charity.save();
-return res.send({
-  success: true,
-  message: "disapprove Successfull",
-
-});
-
-
-
-  } catch (error) {
-    console.log(error);
+  
+   try{
+    Charity.findByIdAndUpdate(req.params.medicalId, { verification: 'disapproved' }, {
+      new: true
+    }, function (err, docs) { 
+      if (err){ 
+          console.log(err) ;
+          return res.send({
+                    success: false,
+                    message: "disapprove not successful",
+                    responseData: err,
+                  });
+      } 
+      else{ 
+         
+          
+          return res.send({
+                success: true,
+                message: "Charity disapprove Successful",
+                responsedata: docs,
+              });
+      } 
+  }); 
+  } catch (err){
+     
     return res.send({
       success: false,
-      message: "something wrong happened",
-      responseData: error,
+      message: "Something went wrong",
+      responsedata:err,
     });
+  
   }
 };
 
@@ -263,6 +258,7 @@ const getApproved =  async (req, res) => {
     },
   });
 };
+
 const getDisapproved =  async (req, res) => {
   const charity = await Charity.find({verification: "disapproved"});
   return res.send({

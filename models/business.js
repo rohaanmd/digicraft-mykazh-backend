@@ -5,7 +5,7 @@ const BusinessSchema = new Schema(
   {
     verification:{
       type: String,
-      enum: ["approved","disapproved","NULL"]
+      enum: ["`approved","disapproved","NULL"]
       ,default:"NULL"
     }
     ,

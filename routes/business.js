@@ -1,5 +1,5 @@
 const express = require('express')
-const { ImgUploader, authUser } = require("../middleware/index");
+const { ImgUploader, authUser ,authAdmin } = require("../middleware/index");
 const router = express.Router();
 const { getBusiness,
     createBusiness,
@@ -18,15 +18,15 @@ const { getBusiness,
 
 
 router.get('/businessapi', getBusiness);
-router.get('/getall',  getApproved);
-router.get('/getnull',  getNULL);
-router.get('/getdisapproved',  getDisapproved);
+router.get('/getall', getApproved);
+router.get('/getnull', authAdmin, getNULL);
+router.get('/getdisapproved', authAdmin , getDisapproved);
 router.get('/',authUser, getBusinessByUser);
 router.get('/:businessId', getBusinessById);
 router.post('/create',authUser, createBusiness);
 router.put('/update/:businessId',authUser, updateBusiness);
-router.put('/approve/:businessId',ApproveBusiness);
-router.put('/disapprove/:businessId',DisapproveBusiness);
+router.put('/approve/:businessId',authAdmin,ApproveBusiness);
+router.put('/disapprove/:businessId',authAdmin,DisapproveBusiness);
 router.delete('/deleteall', deleteAllBusiness);
 router.delete('/delete/:businessId',authUser, deleteBusinessById);
 

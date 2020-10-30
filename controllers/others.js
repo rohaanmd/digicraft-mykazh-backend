@@ -52,7 +52,7 @@ const getOthersById = async (req, res, next) => {
 
 const getOthersByUser = async (req, res, next) => {
   console.log(req.user);
-  const others = await Others.find()
+  const others = await Others.find({})
     .where("createdBy")
     .equals(req.user.userId)
     .populate("createdBy")
@@ -61,7 +61,7 @@ const getOthersByUser = async (req, res, next) => {
     return res.send({
       success: true,
       message: "others Found successfully",
-      responseData: { others },
+      responseData: others ,
     });
   return res.send({
     success: false,
@@ -87,7 +87,7 @@ const createOthers = async (req, res, next) => {
         });
     });
     console.log(JSON.stringify(others, null, 4));
-    Others.createdBy = req.user.userId;
+    others.createdBy = req.user.userId;
     // console.log(JSON.stringify(othersDetails, null, 4));
     await others.save();
     console.log(JSON.stringify(othersDetails, null, 4));
@@ -143,16 +143,7 @@ console.log(req.user);
             });}
           
 
-            const othersDetails = {
-                GoalAmount:req.body.amount||others.amount,
-                purpose:req.body.purpose||others.purpose,
-                fundFor:req.body.fundFor||others.fundFor,
-                cause:req.body.cause||others.cause,
-                mediaLink:req.body.mediaLink||others.mediaLink,
-                location:req.body.location||others.location,
-                story: req.body.story||others.story,
-                cardImage:req.body.cardImage || others.cardImage,
-              };
+            const othersDetails = req.body
           const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails);  
               
             return res.send({
@@ -195,60 +186,68 @@ const deleteOthersById = async (req, res, next) => {
     });
 };
 const ApproveOthers = async (req, res, next) => {
-  try {
-    const others = await Others.findById(req.params.othersId)  
-        console.log(others);
-        if (!others || !req.body){
-            return res.send({
-              success: false,
-              message: "Buisness not found",
-            });}
-others.verification="approved";
-await others.save();
-return res.send({
-  success: true,
-  message: "approve Successfull",
-
-});
-
-
-
-  } catch (error) {
-    console.log(error);
-    return res.send({
-      success: false,
-      message: "something wrong happened",
-      responseData: error,
-    });
-  }
+  try{
+    Others.findByIdAndUpdate(req.params.othersId, { verification: 'approved' }, {
+     new: true
+   },function (err, docs) { 
+     if (err){ 
+         console.log(err) ;
+         return res.send({
+                   success: false,
+                   message: "approve not successful",
+                   responseData: err,
+                 });
+     } 
+     else{ 
+         return res.send({
+               success: true,
+               message: "Others approve Successful",
+               responsedata: docs,
+             });
+     } 
+ }); 
+ } catch (err){
+    
+   return res.send({
+     success: false,
+     message: "Something went wrong",
+     responsedata:err,
+   });
+ 
+ }  
 };
 
 const DisapproveOthers = async (req, res, next) => {
-  try {
-    const others = await Others.findById(req.params.othersId)  
-        console.log(others);
-        if (!others || !req.body){
-            return res.send({
-              success: false,
-              message: "Buisness not found",
-            });}
-others.verification="disapproved";
-await others.save();
-return res.send({
-  success: true,
-  message: "disapprove Successfull",
-
-});
-
-
-
-  } catch (error) {
-    console.log(error);
+  try{
+    Others.findByIdAndUpdate(req.params.othersId, { verification: 'disapproved' }, {
+      new: true
+    }, function (err, docs) { 
+      if (err){ 
+          console.log(err) ;
+          return res.send({
+                    success: false,
+                    message: "disapprove not successful",
+                    responseData: err,
+                  });
+      } 
+      else{ 
+         
+          
+          return res.send({
+                success: true,
+                message: "Others disapprove Successful",
+                responsedata: docs,
+              });
+      } 
+  }); 
+  } catch (err){
+     
     return res.send({
       success: false,
-      message: "something wrong happened",
-      responseData: error,
+      message: "Something went wrong",
+      responsedata:err,
     });
+  
   }
 };
 

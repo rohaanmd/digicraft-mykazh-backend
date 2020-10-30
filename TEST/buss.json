@@ -1,0 +1,165 @@
+{
+    "companyName": "companyName",
+    "companyOverview":"companyOverview",
+    "companyLogo": "companyLogo",
+    "customContentInput": "StringcustomContentInput",
+    "customContentTextarea": "String",
+    "location": {
+      "country":"INDIA",
+      "stateAndCity": "DELHI"
+    },
+    "press": "String",
+
+    "companyTagline": "String",
+    "companyKeyword": "String",
+    "email": "String",
+    "canSms": true,
+    
+    "conatctPhone": "999999999",
+    "linkedinURL": "String",
+    "facebookURL": "String",
+    "twitterURL": "String",
+    "url": "url",
+    "team": [
+      { 
+        
+        "level": true,
+        "visible": true,
+        "role": "Leader",
+        "name": "String",
+        "photo":"String",
+        "bio":"String"
+      },{ 
+        
+        "level": true,
+        "visible": true,
+        "role": "Leader",
+        "name": "String",
+        "photo":"String",
+        "bio":"String"
+      }
+    ],
+    "kpi": [
+      {
+        "option": 2,
+        "role": "String",
+        "text": "String"
+      },
+      {
+        "option": 2,
+        "role": "String",
+        "text": "String"
+      }
+    ],
+
+    "featuredImg": "image",
+    "video": "video",
+    "youtubeUrls": "String",
+    "test": [
+      {
+        "name":"name",
+        "role": "String",
+        "text": "String",
+        "testphoto":"String"
+      },{
+        "name":"name",
+        "role": "String",
+        "text": "String",
+        "testphoto":"String"
+      }
+    ],
+
+    "traction": [
+      {
+        "date": "",
+        "text": "String"
+      },{
+        "date": "",
+        "text": "String"
+      }
+    ],
+    "qus": [
+      {
+        "qus": "String",
+        "ans": "String"
+      },{
+        "qus": "String",
+        "ans": "String"
+      }
+    ],
+
+    "CampaignVisibility":"public",
+    "goal": "100000",
+    "MaximumInvestmentAmount": "100",
+    "MinimumInvestmentAmount": "1",
+    "deal_stage": 0,
+    "ClosingDate": "",
+    "ExemptionType": "regA",
+    "equity": {
+      "PreMoneyEvaluation": "20"
+    },
+
+    "TermLength": 0,
+    "ConversionDiscount": 0,
+    "Intrest": 0,
+    "ValuationCap": 0,
+    "WarrantCoverage": 0,
+    "return": 0,
+    "PaymentFrequency": 0,
+    "MaximumReturn": 0,
+    "ReturnType": 0,
+    "PaybackStartDate": "Exact Date",
+    "FundingSource": 0,
+    "FundingAmount": 320,
+    "FundingDate": "",
+    "FundingType": 0,
+
+    "dealHighligths": [{ "highlight": "String" },
+    { "highlight": "String" }],
+    "ElevatorPitch": "String",
+    "investor": [
+      {
+        "InvestorType": 0,
+        "InvestorName": "name",
+        "InvestorImage":"string",
+        "Investorbio":"String"
+      
+      },{
+        "InvestorType": 0,
+        "InvestorName": "name",
+        "InvestorImage":"string",
+        "Investorbio":"String"
+      
+      }
+    ],
+    "ExecutiveSummaryToogle": true,
+    "TermSheetToogle": true,
+    "AdditionalToogle": true,
+
+    "docs": {
+      "executiveSummary": {
+        "Doctype": "public",
+        "fileUrl": "String"
+      },
+      "termSheet": {
+        "Doctype": "public",
+        "fileUrl": "String"
+      },
+      "additionalDoc": {
+        "Doctype": "String",
+        "fileUrl": "String"
+      }
+     
+    },
+    "sideshareURL":"String",
+    "PreMoneyValuation":20,
+    "fundraisingGoal":"1000",
+    "DateRoundOpened":"",
+    "websiteURL":"String",
+    "tranctionDate":"",
+
+
+
+    "RisksDisclosures": "String",
+    "Risk":"String"
+  }

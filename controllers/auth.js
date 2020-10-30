@@ -65,6 +65,29 @@ const Login = async (req, res, next) => {
 
 }
 
+const getCurrentUser = async (req, res,next) =>{
+  try {
+    const user = await User.findOne({
+      _id: req.user.userId
+    });
+    if(user)
+    return res.send({
+      success: true,
+      message: "user Found successfully",
+      responseData: user ,
+    });
+  return res.send({
+    success: false,
+    message: "user Not Found",
+  });
+  } catch (error) {
+    return res.send({
+      success: false,
+      message: "request cant be processed",
+      responseData: error
+    });
+  }
+}
 
 const SignUp = async (req, res, next) => {
   validationData = {
@@ -125,4 +148,5 @@ module.exports = {
   Login,
   getAllUser,
   LogOut,
+  getCurrentUser
 }

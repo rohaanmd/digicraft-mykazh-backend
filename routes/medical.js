@@ -1,5 +1,5 @@
 const express = require('express')
-const { ImgUploader, authUser } = require("../middleware/index");
+const { ImgUploader, authUser,authAdmin } = require("../middleware/index");
 const router = express.Router();
 const {  deleteCharityById,
      updateCharity,
@@ -18,18 +18,20 @@ const {  deleteCharityById,
 
 
 router.get('/charityapi', getCharity);
+router.get('/getapproved', getApproved);
+router.get('/getnull',authAdmin, getNULL);
+router.get('/getdisapproved',authAdmin,  getDisapproved);
+router.put('/approve/:medicalId',authAdmin,ApproveCharity);
+router.put('/disapprove/:medicalId',authAdmin,DisapproveCharity);
 router.get('/getall', authUser, getAllCharity);
 router.get('/', authUser, getCharityByUser);
-router.get('/:charityId', authUser, getCharityById);
+
 router.post('/create', authUser, createCharity);
-router.put('/update/:charityId',authUser ,updateCharity);
+router.put('/update/:medicalId',authUser ,updateCharity);
+router.get('/:medicalId', authUser, getCharityById);
 router.delete('/deleteall', deleteAllCharity);
-router.delete('/delete/:charityId', authUser, deleteCharityById);
-router.get('/getall',  getApproved);
-router.get('/getnull',  getNULL);
-router.get('/getdisapproved',  getDisapproved);
-router.put('/approve/:medicalId',ApproveCharity);
-router.put('/disapprove/:medicalId',DisapproveCharity);
+router.delete('/delete/:medicalId', authUser, deleteCharityById);
+
 
 
 module.exports = router;

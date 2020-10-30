@@ -57,6 +57,6 @@ docs:{
  
 
 
-});
+},{timestamps:true});
 
 module.exports = mongoose.model("charity", CharitySchema);

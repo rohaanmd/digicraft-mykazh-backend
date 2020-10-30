@@ -52,7 +52,7 @@ const getNgoById = async (req, res, next) => {
 
 const getNgoByUser = async (req, res, next) => {
   console.log(req.user);
-  const ngo = await Ngo.find()
+  const ngo = await Ngo.find({})
     .where("createdBy")
     .equals(req.user.userId)
     .populate("createdBy")
@@ -61,7 +61,7 @@ const getNgoByUser = async (req, res, next) => {
     return res.send({
       success: true,
       message: "ngo Found successfully",
-      responseData: { ngo },
+      responseData:  ngo ,
     });
   return res.send({
     success: false,
@@ -142,19 +142,7 @@ const updateNgo = async (req, res, next) => {
             });}
           
 
-            const ngoDetails = {
-              GoalAmount:req.body.GoalAmount||ngo.GoalAmount,
-              purpose:req.body.purpose||ngo.purpose,
-              ngoName:req.body.ngoName||ngo.ngoName,
-              cause:req.body.cause||ngo.cause,
-                mediaLink:req.body.mediaLink||ngo.mediaLink,
-                location:req.body.location||ngo.location,
-                 story: req.body.story||ngo.story,
-                 cardImage:req.body.cardImage || ngo.cardImage,
-                 ngoCreater:req.body.ngoCreater||ngo.ngoCreater,
-                 creatorbio:req.body.creatorbio||ngo.creatorbio,
-             
-              };
+            const ngoDetails = req.body
 
            const Getngo = await Ngo.findOneAndUpdate({_id:req.params.ngoId},ngoDetails)
               
@@ -200,61 +188,71 @@ const deleteNgoById = async (req, res, next) => {
     });
 };
 const ApproveNgo = async (req, res, next) => {
-  try {
-    const ngo = await Ngo.findById(req.params.ngoId)  
-        console.log(ngo);
-        if (!ngo || !req.body){
-            return res.send({
-              success: false,
-              message: "Buisness not found",
-            });}
-ngo.verification="approved";
-await ngo.save();
-return res.send({
-  success: true,
-  message: "approve Successfull",
+  try{
+    Ngo.findByIdAndUpdate(req.params.ngoId, { verification: 'approved' }, {
+     new: true
+   },function (err, docs) { 
+     if (err){ 
+         console.log(err) ;
+         return res.send({
+                   success: false,
+                   message: "approve not successful",
+                   responseData: err,
+                 });
+     } 
+     else{ 
+         return res.send({
+               success: true,
+               message: "Ngo approve Successful",
+               responsedata: docs,
+             });
+     } 
+ }); 
+ } catch (err){
+    
+   return res.send({
+     success: false,
+     message: "Something went wrong",
+     responsedata:err,
+   });
+ 
+ }  
 
-});
-
-
-
-  } catch (error) {
-    console.log(error);
-    return res.send({
-      success: false,
-      message: "something wrong happened",
-      responseData: error,
-    });
-  }
 };
 
 const DisapproveNgo = async (req, res, next) => {
-  try {
-    const ngo = await Ngo.findById(req.params.ngoId)  
-        console.log(ngo);
-        if (!ngo || !req.body){
-            return res.send({
-              success: false,
-              message: "Buisness not found",
-            });}
-ngo.verification="disapproved";
-await ngo.save();
-return res.send({
-  success: true,
-  message: "disapprove Successfull",
-
-});
-
-
-
-  } catch (error) {
-    console.log(error);
+  try{
+    Ngo.findByIdAndUpdate(req.params.ngoId, { verification: 'disapproved' }, {
+      new: true
+    }, function (err, docs) { 
+      if (err){ 
+          console.log(err) ;
+          return res.send({
+                    success: false,
+                    message: "disapprove not successful",
+                    responseData: err,
+                  });
+      } 
+      else{ 
+         
+          
+          return res.send({
+                success: true,
+                message: "Ngo disapprove Successful",
+                responsedata: docs,
+              });
+      } 
+  }); 
+  } catch (err){
+     
     return res.send({
       success: false,
-      message: "something wrong happened",
-      responseData: error,
+      message: "Something went wrong",
+      responsedata:err,
     });
+  
   }
+
 };
 
 
