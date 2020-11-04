@@ -54,6 +54,13 @@ const {
   getAllPress
 }= require("../controllers/press");
 
+const {
+  deleteHelpSupportById,
+  createHelpSupport,
+  updateHelpSupport,
+  getAllHelpSupport
+}= require("../controllers/helpAndSupport");
+
 router.post("/signup" , ImgUploader,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
@@ -97,6 +104,11 @@ router.get("/press",getAllPress);
 router.put("/press/:pressId",updatePress);
 router.post("/press/create",createPress)
 router.delete("/press/:pressId",deletePressById);
+
+router.get("/help",getAllHelpSupport);
+router.put("/help/:helpId",updateHelpSupport);
+router.post("/help/create",createHelpSupport)
+router.delete("/help/:helpId",deleteHelpSupportById);
 
 router.get("/",authAdmin,getCurrentAdmin);
 
