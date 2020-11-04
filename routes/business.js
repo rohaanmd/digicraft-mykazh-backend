@@ -18,9 +18,10 @@ const { getBusiness,
 
 
 router.get('/businessapi', getBusiness);
-router.get('/getall', getApproved);
+router.get('/getapproved', getApproved);
 router.get('/getnull', authAdmin, getNULL);
 router.get('/getdisapproved', authAdmin , getDisapproved);
+router.get('/getall', authAdmin , getAllBusiness);
 router.get('/',authUser, getBusinessByUser);
 router.get('/:businessId', getBusinessById);
 router.post('/create',authUser, createBusiness);
