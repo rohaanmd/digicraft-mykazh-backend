@@ -23,7 +23,7 @@ router.get('/getnull',authAdmin, getNULL);
 router.get('/getdisapproved',authAdmin,  getDisapproved);
 router.put('/approve/:medicalId',authAdmin,ApproveCharity);
 router.put('/disapprove/:medicalId',authAdmin,DisapproveCharity);
-router.get('/getall', authUser, getAllCharity);
+router.get('/getall', authAdmin, getAllCharity);
 router.get('/', authUser, getCharityByUser);
 
 router.post('/create', authUser, createCharity);

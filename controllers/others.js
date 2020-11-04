@@ -9,7 +9,6 @@ const getOthers = (req, res, next) => {
 
 const getAllOthers = async (req, res, next) => {
   const others = await Others.find({})
-    .populate("createdBy")
   if (!others)
     return res.send({
       success: false,
@@ -131,7 +130,7 @@ const updateOthers = async (req, res, next) => {
   try {
     const others = await Others.findById(req.params.othersId)
     const userId = req.user.userId;
-    const createdBy = Others.createdBy;
+    const createdBy = others.createdBy;
 console.log(req.user);
     if(JSON.stringify(userId)==JSON.stringify(createdBy))
       // if(Others.createdBy = req.user.userId)
@@ -155,7 +154,7 @@ console.log(req.user);
       else{
         return res.send({
               success: false,
-              message: "Unauthorized kutter",
+              message: "Unauthorized",
             });
       }
   } catch (error) {

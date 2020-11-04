@@ -20,7 +20,7 @@ const {   getOthers,
 
 router.get('/otherapi', getOthers);
 router.get('/getall', authAdmin, getAllOthers);
-router.get('/getapproved',  getApproved);
+router.get('/getapproved', getApproved);
 router.get('/getnull', authAdmin, getNULL);
 router.get('/getdisapproved',authAdmin,  getDisapproved);
 router.put('/approve/:othersId',authAdmin,ApproveOthers);
