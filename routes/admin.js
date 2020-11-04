@@ -47,6 +47,13 @@ const {
   getAllTeams
 } = require("../controllers/teams");
 
+const {
+  deletePressById,
+  createPress,
+  updatePress,
+  getAllPress
+}= require("../controllers/press");
+
 router.post("/signup" , ImgUploader,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
@@ -72,10 +79,6 @@ router.get("/risk", getRisk);
 router.put("/risk/update",updateRisk);
 router.get("/privacy", getPrivacy);
 router.put("/privacy/update",updatePrivacy);
-
-
-
-
 router.post("/faq/create", postFaq);
 router.get("/knowledge", getKnowledge);
 router.put("/knowledge/update/:faqId",updateKnowledge);
@@ -88,6 +91,12 @@ router.get("/teams",getAllTeams);
 router.put("/teams/:teamsId",updateTeam);
 router.post("/teams/create",createTeam)
 router.delete("/teams/:teamsId",deleteTeamById);
+
+
+router.get("/press",getAllPress);
+router.put("/press/:pressId",updatePress);
+router.post("/press/create",createPress)
+router.delete("/press/:pressId",deletePressById);
 
 router.get("/",authAdmin,getCurrentAdmin);
 
