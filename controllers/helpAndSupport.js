@@ -24,7 +24,7 @@ const createHelpSupport = async (req, res, next) => {
                 return res.send({
                     success: false,
                     message: "Request not found",
-                    responsedata: err,
+                    responseData: err,
                 });
         });
         
@@ -34,7 +34,7 @@ const createHelpSupport = async (req, res, next) => {
         return res.send({
             success: true,
             message: "helpSupport successfully created",
-            responsedata: {
+            responseData: {
                 helpSupport,
             }
         });
@@ -42,7 +42,7 @@ const createHelpSupport = async (req, res, next) => {
         return res.send({
             success: false,
             message: "something wrong happend",
-            responsedata: err,
+            responseData: err,
         });
     }
 }
@@ -52,7 +52,7 @@ const deleteHelpSupportById = async (req, res, next) => {
         return res.send({
             success: true,
             message: "helpSupport Delete Successfully",
-            responsedata: helpSupport,
+            responseData: helpSupport,
         });
     else
         return res.send({

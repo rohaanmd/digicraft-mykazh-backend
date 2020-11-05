@@ -99,7 +99,7 @@ const createProject = async (req, res, next) => {
         return res.send({
           success: false,
           message: "Request not found",
-          responsedata: err,
+          responseData: err,
         });
     });
    
@@ -109,7 +109,7 @@ const createProject = async (req, res, next) => {
     return res.send({
       success: true,
       message: "Project successfully created",
-      responsedata: {
+      responseData: {
           project,
       },
     })
@@ -119,7 +119,7 @@ const createProject = async (req, res, next) => {
     return res.send({
       success: false,
       message: "something wrong happend",
-      responsedata: err,
+      responseData: err,
     });
   }
 }
@@ -237,7 +237,7 @@ const deleteProjectById = async (req, res, next) => {
     return res.send({
       success: true,
       message: "project Delete Successfully",
-      responsedata: project,
+      responseData: project,
     });
   else
     return res.send({
@@ -264,7 +264,7 @@ const ApproveProject = async (req, res, next) => {
          return res.send({
                success: true,
                message: "project approve Successful",
-               responsedata: docs,
+               responseData: docs,
              });
      } 
  }); 
@@ -273,7 +273,7 @@ const ApproveProject = async (req, res, next) => {
    return res.send({
      success: false,
      message: "Something went wrong",
-     responsedata:err,
+     responseData:err,
    });
  
  }  
@@ -299,7 +299,7 @@ const DisapproveProject = async (req, res, next) => {
           return res.send({
                 success: true,
                 message: "BUISSNESS disapprove Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -308,7 +308,7 @@ const DisapproveProject = async (req, res, next) => {
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   } 
@@ -320,7 +320,7 @@ const getApproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Approved project Listed",
-    responsedata: {
+    responseData: {
       project,
     },
   });
@@ -330,7 +330,7 @@ const getDisapproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Disapproved project Listed",
-    responsedata: {
+    responseData: {
       project,
     },
   });
@@ -340,7 +340,7 @@ const getNULL =  async (req, res) => {
   return res.send({
     success: true,
     message: "NULL project Listed",
-    responsedata: {
+    responseData: {
       project,
     },
   });

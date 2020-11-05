@@ -67,7 +67,7 @@ const postFaq = async (req,res, next) =>{
           return res.send({
             success: true,
             message: "faq created successfully",
-            responsedata: {
+            responseData: {
               faq,
             },
           });
@@ -101,7 +101,7 @@ const updateKnowledge = async (req, res, next) => {
       return res.send({
         success: true,
         message: "knowledge updated succefully",
-        responsedata: {
+        responseData: {
           updatedKnowledge,
         },
       });
@@ -132,7 +132,7 @@ const updateKnowledge = async (req, res, next) => {
       return res.send({
         success: true,
         message: "investor updated succefully",
-        responsedata: {
+        responseData: {
           updatedinvestor,
         },
       });
@@ -166,7 +166,7 @@ const updateEntrepreneur = async (req, res, next) => {
       return res.send({
         success: true,
         message: "entrepreneur updated succefully",
-        responsedata: {
+        responseData: {
           updatedentrepreneur,
         },
       });

@@ -85,7 +85,7 @@ const createBusiness = async (req, res, next) => {
         return res.send({
           success: false,
           message: "Request not found",
-          responsedata: err,
+          responseData: err,
         });
     });
     business.createdBy = req.user.userId;
@@ -95,7 +95,7 @@ const createBusiness = async (req, res, next) => {
     return res.send({
       success: true,
       message: "company successfully created",
-      responsedata: {
+      responseData: {
         business,
       },
     })
@@ -104,7 +104,7 @@ const createBusiness = async (req, res, next) => {
     return res.send({
       success: false,
       message: "something wrong happend",
-      responsedata: err,
+      responseData: err,
     });
   }
 }
@@ -265,7 +265,7 @@ const ApproveBusiness = async (req, res, next) => {
           return res.send({
                 success: true,
                 message: "User approve Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -274,7 +274,7 @@ const ApproveBusiness = async (req, res, next) => {
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   }  
@@ -299,7 +299,7 @@ const DisapproveBusiness = async (req, res, next) => {
           return res.send({
                 success: true,
                 message: "BUISSNESS disapprove Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -308,7 +308,7 @@ const DisapproveBusiness = async (req, res, next) => {
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   } 
@@ -320,7 +320,7 @@ const getApproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Approved business Listed",
-    responsedata: {
+    responseData: {
       business,
     },
   });
@@ -330,7 +330,7 @@ const getDisapproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Disapproved business Listed",
-    responsedata: {
+    responseData: {
       business,
     },
   });
@@ -340,7 +340,7 @@ const getNULL =  async (req, res) => {
   return res.send({
     success: true,
     message: "NULL business Listed",
-    responsedata: {
+    responseData: {
       business,
     },
   });
@@ -358,7 +358,7 @@ const deleteBusinessById = async (req, res, next) => {
     return res.send({
       success: true,
       message: "business Delete Successfully",
-      responsedata: business,
+      responseData: business,
     });
   else
     return res.send({

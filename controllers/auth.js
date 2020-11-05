@@ -47,7 +47,7 @@ const Login = async (req, res, next) => {
     return res.send({
       success: true,
       message: "User logged in successfully",
-      responsedata: {
+      responseData: {
         details: {
           userId: user._id,
           email: user.email,

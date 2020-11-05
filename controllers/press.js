@@ -25,7 +25,7 @@ const createPress = async (req, res, next) => {
                 return res.send({
                     success: false,
                     message: "Request not found",
-                    responsedata: err,
+                    responseData: err,
                 });
         });
         
@@ -35,7 +35,7 @@ const createPress = async (req, res, next) => {
         return res.send({
             success: true,
             message: "press successfully created",
-            responsedata: {
+            responseData: {
                 press,
             }
         });
@@ -43,7 +43,7 @@ const createPress = async (req, res, next) => {
         return res.send({
             success: false,
             message: "something wrong happend",
-            responsedata: err,
+            responseData: err,
         });
     }
 }
@@ -53,7 +53,7 @@ const deletePressById = async (req, res, next) => {
         return res.send({
             success: true,
             message: "press Delete Successfully",
-            responsedata: press,
+            responseData: press,
         });
     else
         return res.send({

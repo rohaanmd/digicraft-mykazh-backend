@@ -67,7 +67,7 @@ const postInfo = async (req,res, next) =>{
           return res.send({
             success: true,
             message: "Info created successfully",
-            responsedata: {
+            responseData: {
               info,
             },
           });
@@ -98,7 +98,7 @@ const updateTerms = async (req, res, next) => {
       return res.send({
         success: true,
         message: "terms updated succefully",
-        responsedata: {
+        responseData: {
           updatedterms,
         },
       });
@@ -129,7 +129,7 @@ const updateTerms = async (req, res, next) => {
       return res.send({
         success: true,
         message: "privacy updated succefully",
-        responsedata: {
+        responseData: {
           updatedprivacy,
         },
       });
@@ -161,7 +161,7 @@ const updateRisk = async (req, res, next) => {
       return res.send({
         success: true,
         message: "risk updated succefully",
-        responsedata: {
+        responseData: {
           updatedrisk,
         },
       });

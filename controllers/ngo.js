@@ -83,7 +83,7 @@ const createNgo = async (req, res, next) => {
         return res.send({
           success: false,
           message: "Request not found",
-          responsedata: err,
+          responseData: err,
         });
     });
     ngo.createdBy = req.user.userId;
@@ -93,7 +93,7 @@ const createNgo = async (req, res, next) => {
     return res.send({
       success: true,
       message: "company successfully created",
-      responsedata: {
+      responseData: {
         ngo,
       },
     })
@@ -102,7 +102,7 @@ const createNgo = async (req, res, next) => {
     return res.send({
       success: false,
       message: "something wrong happend",
-      responsedata: err,
+      responseData: err,
     });
   }
 }
@@ -179,7 +179,7 @@ const deleteNgoById = async (req, res, next) => {
     return res.send({
       success: true,
       message: "ngo Delete Successfully",
-      responsedata: ngo,
+      responseData: ngo,
     });
   else
     return res.send({
@@ -204,7 +204,7 @@ const ApproveNgo = async (req, res, next) => {
          return res.send({
                success: true,
                message: "Ngo approve Successful",
-               responsedata: docs,
+               responseData: docs,
              });
      } 
  }); 
@@ -213,7 +213,7 @@ const ApproveNgo = async (req, res, next) => {
    return res.send({
      success: false,
      message: "Something went wrong",
-     responsedata:err,
+     responseData:err,
    });
  
  }  
@@ -239,7 +239,7 @@ const DisapproveNgo = async (req, res, next) => {
           return res.send({
                 success: true,
                 message: "Ngo disapprove Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -248,7 +248,7 @@ const DisapproveNgo = async (req, res, next) => {
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   }
@@ -261,7 +261,7 @@ const getApproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Approved ngo Listed",
-    responsedata: {
+    responseData: {
       ngo,
     },
   });
@@ -271,7 +271,7 @@ const getDisapproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Disapproved ngo Listed",
-    responsedata: {
+    responseData: {
       ngo,
     },
   });
@@ -281,7 +281,7 @@ const getNULL =  async (req, res) => {
   return res.send({
     success: true,
     message: "NULL ngo Listed",
-    responsedata: {
+    responseData: {
       ngo,
     },
   });

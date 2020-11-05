@@ -72,7 +72,7 @@ const Login = async (req, res, next) => {
     return res.send({
       success: true,
       message: "admin logged in successfully",
-      responsedata: {
+      responseData: {
         details: {
           adminId: admin._id,
           email: admin.email,
@@ -141,7 +141,7 @@ const getUsers = async (req, res) => {
     return res.send({
       success: true,
       message: "Users Listed",
-      responsedata: {
+      responseData: {
         users,
       },
     });
@@ -152,7 +152,7 @@ const getUsers = async (req, res) => {
     return res.send({
       success: true,
       message: "Undefined Users Listed",
-      responsedata: {
+      responseData: {
         users,
       },
     });
@@ -163,7 +163,7 @@ const getUsers = async (req, res) => {
     return res.send({
       success: true,
       message: "approved Users Listed",
-      responsedata: {
+      responseData: {
         users,
       },
     });
@@ -174,7 +174,7 @@ const getUsers = async (req, res) => {
     return res.send({
       success: true,
       message: "disappr Users Listed",
-      responsedata: {
+      responseData: {
         users,
       },
     });
@@ -201,7 +201,7 @@ try{
         return res.send({
               success: true,
               message: "User approve Successful",
-              responsedata: docs,
+              responseData: docs,
             });
     } 
 }); 
@@ -210,7 +210,7 @@ try{
   return res.send({
     success: false,
     message: "Something went wrong",
-    responsedata:err,
+    responseData:err,
   });
 
 }   
@@ -235,7 +235,7 @@ const Disapproved =  async (req, res, next) =>{
           return res.send({
                 success: true,
                 message: "User disapprove Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -244,7 +244,7 @@ const Disapproved =  async (req, res, next) =>{
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   }   

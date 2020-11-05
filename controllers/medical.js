@@ -90,7 +90,7 @@ const createCharity = (req, res, next) => {
         return res.send({
           success: false,
           message: "Request not found",
-          responsedata: err,
+          responseData: err,
         });
     });
   
@@ -99,7 +99,7 @@ const createCharity = (req, res, next) => {
     return res.send({
       success: true,
       message: "charity successfully created",
-      responsedata: {
+      responseData: {
           charity,
       },
     });
@@ -108,7 +108,7 @@ const createCharity = (req, res, next) => {
     return res.send({
       success: false,
       message: "something wrong happend",
-      responsedata: err,
+      responseData: err,
     });
   }
 }
@@ -170,7 +170,7 @@ const deleteCharityById = async (req, res, next) => {
     return res.send({
       success: true,
       message: "charity Delete Successfully",
-      responsedata: charity,
+      responseData: charity,
     });
   else
     return res.send({
@@ -197,7 +197,7 @@ const ApproveCharity = async (req, res, next) => {
          return res.send({
                success: true,
                message: "User approve Successful",
-               responsedata: docs,
+               responseData: docs,
              });
      } 
  }); 
@@ -206,7 +206,7 @@ const ApproveCharity = async (req, res, next) => {
    return res.send({
      success: false,
      message: "Something went wrong",
-     responsedata:err,
+     responseData:err,
    });
  
  }  
@@ -232,7 +232,7 @@ const DisapproveCharity = async (req, res, next) => {
           return res.send({
                 success: true,
                 message: "Charity disapprove Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -241,7 +241,7 @@ const DisapproveCharity = async (req, res, next) => {
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   }
@@ -253,7 +253,7 @@ const getApproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Approved charity Listed",
-    responsedata: {
+    responseData: {
       charity,
     },
   });
@@ -264,7 +264,7 @@ const getDisapproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Disapproved charity Listed",
-    responsedata: {
+    responseData: {
       charity,
     },
   });
@@ -274,7 +274,7 @@ const getNULL =  async (req, res) => {
   return res.send({
     success: true,
     message: "NULL charity Listed",
-    responsedata: {
+    responseData: {
       charity,
     },
   });

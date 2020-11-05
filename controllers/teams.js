@@ -25,7 +25,7 @@ const createTeam = async (req, res, next) => {
                 return res.send({
                     success: false,
                     message: "Request not found",
-                    responsedata: err,
+                    responseData: err,
                 });
         });
         
@@ -35,7 +35,7 @@ const createTeam = async (req, res, next) => {
         return res.send({
             success: true,
             message: "team successfully created",
-            responsedata: {
+            responseData: {
                 team,
             }
         });
@@ -43,7 +43,7 @@ const createTeam = async (req, res, next) => {
         return res.send({
             success: false,
             message: "something wrong happend",
-            responsedata: err,
+            responseData: err,
         });
     }
 }
@@ -53,7 +53,7 @@ const deleteTeamById = async (req, res, next) => {
         return res.send({
             success: true,
             message: "team Delete Successfully",
-            responsedata: team,
+            responseData: team,
         });
     else
         return res.send({

@@ -82,7 +82,7 @@ const createOthers = async (req, res, next) => {
         return res.send({
           success: false,
           message: "Request not found",
-          responsedata: err,
+          responseData: err,
         });
     });
     console.log(JSON.stringify(others, null, 4));
@@ -93,7 +93,7 @@ const createOthers = async (req, res, next) => {
     return res.send({
       success: true,
       message: "company successfully created",
-      responsedata: {
+      responseData: {
         others,
       },
     })
@@ -102,7 +102,7 @@ const createOthers = async (req, res, next) => {
     return res.send({
       success: false,
       message: "something wrong happend",
-      responsedata: err,
+      responseData: err,
     });
   }
 }
@@ -176,7 +176,7 @@ const deleteOthersById = async (req, res, next) => {
     return res.send({
       success: true,
       message: "others Delete Successfully",
-      responsedata: others,
+      responseData: others,
     });
   else
     return res.send({
@@ -201,7 +201,7 @@ const ApproveOthers = async (req, res, next) => {
          return res.send({
                success: true,
                message: "Others approve Successful",
-               responsedata: docs,
+               responseData: docs,
              });
      } 
  }); 
@@ -210,7 +210,7 @@ const ApproveOthers = async (req, res, next) => {
    return res.send({
      success: false,
      message: "Something went wrong",
-     responsedata:err,
+     responseData:err,
    });
  
  }  
@@ -235,7 +235,7 @@ const DisapproveOthers = async (req, res, next) => {
           return res.send({
                 success: true,
                 message: "Others disapprove Successful",
-                responsedata: docs,
+                responseData: docs,
               });
       } 
   }); 
@@ -244,7 +244,7 @@ const DisapproveOthers = async (req, res, next) => {
     return res.send({
       success: false,
       message: "Something went wrong",
-      responsedata:err,
+      responseData:err,
     });
   
   }
@@ -256,7 +256,7 @@ const getApproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Approved others Listed",
-    responsedata: {
+    responseData: {
       others,
     },
   });
@@ -266,7 +266,7 @@ const getDisapproved =  async (req, res) => {
   return res.send({
     success: true,
     message: "Disapproved others Listed",
-    responsedata: {
+    responseData: {
       others,
     },
   });
@@ -276,7 +276,7 @@ const getNULL =  async (req, res) => {
   return res.send({
     success: true,
     message: "NULL others Listed",
-    responsedata: {
+    responseData: {
       others,
     },
   });
