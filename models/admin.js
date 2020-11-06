@@ -22,7 +22,10 @@ const AdminSchema = new Schema({
   number: {
     type: Number,
   },
-  picture: String,
+  picture: {
+    secure_url: String,
+    public_id: String
+  },
 }, { timestamps: true });
 
 

@@ -216,7 +216,10 @@ const BusinessSchema = new Schema(
       },
       additionalDoc: {
         Doctype: String,
-        fileUrl: String,
+        fileUrl:{
+          secure_url: String,
+          public_id: String
+        },
       },
      
     },
