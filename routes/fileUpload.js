@@ -1,12 +1,13 @@
 const express = require('express')
-const { fileMiddleware, authUser} = require("../middleware/index");
+const { fileMiddleware, authUser ,authAdmin} = require("../middleware/index");
 const router = express.Router();
 const {  fileController,fileDeleteController
 } = require("../controllers/file");
 
 router.post("/upload",authUser,fileMiddleware,fileController);
 router.post("/delete/:id",authUser,fileDeleteController);
-
+router.post("/admin/upload",authAdmin,fileMiddleware,fileController);
+router.post("/admin/delete/:id",authAdmin,fileDeleteController);
 // router.get('/otherapi', getOthers);
 // router.get('/getall', authAdmin, getAllOthers);
 // router.get('/getapproved', getApproved);
