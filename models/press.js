@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 const press = new Schema({
 
     title: String,
-    image: String,
+    image: {
+        secure_url: String,
+        public_id: String
+      },
     bio: String,
     publishedAt: Date,
     link: String,

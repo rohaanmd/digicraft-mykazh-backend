@@ -8,11 +8,14 @@ createdBy: {
      //  required: true,
 },
 title: String,
-Picture:String,
+Picture:{
+     secure_url: String,
+     public_id: String
+   },
 VideoAppeal:{
-     type:String,
-     // required:true
-},
+     secure_url: String,
+     public_id: String
+   },
 PatientsAge:Date,
 GoalAmount:{
      type:Number,
@@ -38,13 +41,22 @@ CustSrtLink:{
 },
 docs:{
      MedEsti:{
-         fileUrl : String,
+         fileUrl : {
+          secure_url: String,
+          public_id: String
+        },
      },
      LetFrmPatie:{
-         fileUrl : String,
+         fileUrl : {
+          secure_url: String,
+          public_id: String
+        },
      },
      MedRep: { 
-         fileUrl : String,
+         fileUrl : {
+          secure_url: String,
+          public_id: String
+        },
      },
  
  },
@@ -53,7 +65,10 @@ docs:{
      enum: ["approved","disapproved","NULL"],
      default:"NULL"
    },
- cardImage:String,
+ cardImage:{
+     secure_url: String,
+     public_id: String
+   },
  
 
 

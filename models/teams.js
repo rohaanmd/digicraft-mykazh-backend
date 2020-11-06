@@ -4,7 +4,10 @@ const teams = new Schema({
     type:String,
     data:[
         {
-            photo:String,
+            photo:{
+                secure_url: String,
+                public_id: String
+              },
             name:String,
             bio:String
         }

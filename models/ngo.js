@@ -18,7 +18,10 @@ const ngo = new Schema({
    },
    mediaLink:[
        {
-           url:String,
+           url:{
+            secure_url: String,
+            public_id: String
+          },
        }
    ],
    verification:{
@@ -32,7 +35,10 @@ const ngo = new Schema({
     story: String,
 
     GoalAmount:Number,
-    cardImage:String,
+    cardImage:{
+        secure_url: String,
+        public_id: String
+      },
 
     ngoCreater:String,
     creatorbio:String,

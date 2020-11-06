@@ -7,10 +7,15 @@ exports.fileController = async (req,res) =>{
         console.log(req.file);    
        
         var fileResponse = await cloudinary.uploader.upload(req.file.path);
+        var reqObj = {
+            secure_url:fileResponse.secure_url,
+            public_id:fileResponse.public_id,
+            
+        }
         return res.send({
             success: true,
             message: "File Uploaded",
-            responseData: fileResponse,
+            responseData: reqObj,
           });
     }} catch (error) {
         return res.send({

@@ -18,7 +18,10 @@ const others = new Schema({
    },
    mediaLink:[
        {
-           url:String,
+           url:{
+            secure_url: String,
+            public_id: String
+          },
        }
    ],
    location: {
@@ -29,7 +32,10 @@ const others = new Schema({
         enum: ["approved","disapproved","NULL"]
         ,default:"NULL"
       },
-    cardImage:String,
+    cardImage:{
+        secure_url: String,
+        public_id: String
+      },
     story: String,
     createdBy: {
         type: Schema.Types.ObjectId,

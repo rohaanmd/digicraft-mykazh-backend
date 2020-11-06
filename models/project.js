@@ -10,7 +10,10 @@ const ProjectSchema = new Schema({
       },
       companyName:String,
       companyOverview:String,
-      companyLogo: String,
+      companyLogo: {
+          secure_url: String,
+          public_id: String
+        },
      //  bigList:Number,
      campaigntitle:{
           type:String,
@@ -26,9 +29,9 @@ const ProjectSchema = new Schema({
           // required:true
      },
      campaigncardimage:{
-          type:String,
-          // required:true
-     },
+          secure_url: String,
+          public_id: String
+        },
      location: {
         type:String
         // required:true
@@ -66,7 +69,10 @@ const ProjectSchema = new Schema({
                     enum: ["Visible","Hidden"],
                },
 
-               perkimage:String,
+               perkimage:{
+                    secure_url: String,
+                    public_id: String
+                  },
                price:{
                     type:Number,
                     // required:true
@@ -103,13 +109,16 @@ const ProjectSchema = new Schema({
      ],
      
      imagegallery:[
-          {url:String}
+          {url:{
+               secure_url: String,
+               public_id: String
+             }}
      ],
      facebookURL : String,
      twitterURL: String,
      linkedinURL: String,
      updates: [
-          {text:String}
+    {text:String}
      ],
      comments: String,
      campaignTeam:[
@@ -150,7 +159,7 @@ const ProjectSchema = new Schema({
      ],
      youtubeURL:{
           type:String,
-          // required:true
+         
      },
      
  

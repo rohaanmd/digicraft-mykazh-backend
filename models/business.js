@@ -17,7 +17,10 @@ const BusinessSchema = new Schema(
       type: String,
       // required: true,
     },
-    companyLogo: { type:String },
+    companyLogo: {
+      secure_url: String,
+      public_id: String
+    },
 
     createdBy: {
       type: Schema.Types.ObjectId,
@@ -55,7 +58,10 @@ const BusinessSchema = new Schema(
         visible: Boolean,
         role: String,
         name: String,
-        photo:String,
+        photo:{
+          secure_url: String,
+          public_id: String
+        },
         bio:String
       },
     ],
@@ -68,10 +74,12 @@ const BusinessSchema = new Schema(
     ],
 
     featuredImg: {
-      type: String,
+      secure_url: String,
+      public_id: String
     },
     video: {
-      type: String,
+      secure_url: String,
+      public_id: String
     },
     youtubeUrls: String,
     test: [
@@ -81,7 +89,10 @@ const BusinessSchema = new Schema(
         },
         role: String,
         text: String,
-        testphoto:String
+        testphoto:{
+          secure_url: String,
+          public_id: String
+        }
       },
     ],
 
@@ -171,7 +182,8 @@ const BusinessSchema = new Schema(
           type: String,
         },
         InvestorImage:{
-          type:String
+          secure_url: String,
+          public_id: String
         },
         Investorbio:String
       
@@ -187,14 +199,20 @@ const BusinessSchema = new Schema(
           type: String,
           enum: ["public", "confidential"],
         },
-        fileUrl: String,
+        fileUrl:{
+          secure_url: String,
+          public_id: String
+        },
       },
       termSheet: {
         Doctype: {
           type: String,
           enum: ["public", "confidential"],
         },
-        fileUrl: String,
+        fileUrl: {
+          secure_url: String,
+          public_id: String
+        },
       },
       additionalDoc: {
         Doctype: String,
@@ -212,10 +230,7 @@ const BusinessSchema = new Schema(
       default:0,
     },
     tranctionDate:Date,
-
-
-
-    RisksDisclosures: String,
+   RisksDisclosures: String,
     Risk:String
   },
   { timestamps: true }
