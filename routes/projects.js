@@ -23,7 +23,7 @@ router.get('/getapproved', getApproved);
 router.get('/getnull',authAdmin, getNULL);
 router.get('/getdisapproved',authAdmin, getDisapproved);
 router.get('/',authUser,  getProjectByUser);
-router.get('/:projectId', authUser, getProjectById);
+router.get('/:projectId',  getProjectById);
 router.post('/create',authUser, createProject);
 router.put('/update/:projectId',authUser, updateProject);
 router.delete('/deleteall', deleteAllProject);

@@ -42,6 +42,10 @@ const others = new Schema({
         ref: "User",
         // required: true,
       },
+      AmountRaised:{
+        type:Number,
+        default:0,
+      },
 
 },{timestamp:true});
 // Compile model from schema

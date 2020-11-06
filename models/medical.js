@@ -39,6 +39,10 @@ CustSrtLink:{
      type:String,
      // required:true
 },
+AmountRaised:{
+     type:Number,
+     default:0,
+   },
 docs:{
      MedEsti:{
          fileUrl : {

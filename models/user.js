@@ -33,7 +33,9 @@ const UserSchema = new Schema({
     default: "undefined",
 
   },
-}, { timestamps: true });
+}, {
+  timestamps: true
+});
 
 
 UserSchema.methods.generateAuthToken = async function () {
@@ -44,25 +46,21 @@ UserSchema.methods.generateAuthToken = async function () {
     isApproved: user.isApproved,
   };
 
-  const accessToken = jwt.sign(
-    {
+  const accessToken = jwt.sign({
       _id: user._id,
       email: user.email,
     },
-    process.env.JWT_SECRET,
-    {
+    process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_SECRET_EXPIRY,
     }
   );
 
-  const refreshToken = jwt.sign(
-    {
+  const refreshToken = jwt.sign({
       _id: user._id,
       email: user.email,
       isApproved: user.isApproved,
     },
-    process.env.JWT_REFRESH_SECRET,
-    {
+    process.env.JWT_REFRESH_SECRET, {
       expiresIn: process.env.JWT_REFRESH_EXPIRY,
     }
   );

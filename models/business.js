@@ -114,7 +114,9 @@ const BusinessSchema = new Schema(
       // required: true,
       enum: ["private", "public"],
     },
-    goal: Number,
+  
+
+
     MaximumInvestmentAmount: Number,
     MinimumInvestmentAmount: Number,
     deal_stage: {
@@ -225,13 +227,14 @@ const BusinessSchema = new Schema(
     },
     sideshareURL:String,
     PreMoneyValuation:Number,
-    fundraisingGoal:Number,
-    DateRoundOpened:Date,
-    websiteURL:String,
+    goal:Number,
     AmountRaised:{
       type:Number,
       default:0,
     },
+    DateRoundOpened:Date,
+    websiteURL:String,
+  
     tranctionDate:Date,
    RisksDisclosures: String,
     Risk:String

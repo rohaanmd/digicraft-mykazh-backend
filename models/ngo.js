@@ -47,6 +47,10 @@ const ngo = new Schema({
         ref: "User",
         // required: true,
       },
+      AmountRaised:{
+        type:Number,
+        default:0,
+      },
 
 
 },{timestamp:true});

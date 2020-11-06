@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const { string } = require("@hapi/joi");
+const {
+     string
+} = require("@hapi/joi");
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
@@ -7,170 +9,165 @@ const ProjectSchema = new Schema({
           type: Schema.Types.ObjectId,
           ref: "User",
           // required: true,
-      },
-      companyName:String,
-      companyOverview:String,
-      companyLogo: {
+     },
+     companyName: String,
+     companyOverview: String,
+     companyLogo: {
           secure_url: String,
           public_id: String
-        },
+     },
      //  bigList:Number,
-     campaigntitle:{
-          type:String,
-          // required:true
-     },
-     verification:{
+     campaigntitle: {
           type: String,
-          enum: ["approved","disapproved","NULL"]
-          ,default:"NULL"
-        },
-     campaigntagline:{
-          type:String,
           // required:true
      },
-     campaigncardimage:{
+     verification: {
+          type: String,
+          enum: ["approved", "disapproved", "NULL"],
+          default: "NULL"
+     },
+     campaigntagline: {
+          type: String,
+          // required:true
+     },
+     campaigncardimage: {
           secure_url: String,
           public_id: String
-        },
+     },
      location: {
-        type:String
-        // required:true
-     },
-     selectCatergory:{
-          type:String,
+          type: String
           // required:true
      },
-     SubCatergory:{
-          type:String,
+     selectCatergory: {
+          type: String,
           // required:true
      },
-     campaignDuration:{
-          type:Number
-     },
-     tags:{
-          type:String,
+     SubCatergory: {
+          type: String,
           // required:true
      },
-     
-     story:{
-          type:String,
+     campaignDuration: {
+          type: Number
+     },
+     tags: {
+          type: String,
           // required:true
      },
-     faq:[
-          {
-               Question:String,
-               Answer:String
-          }
-     ],
-     perk:[
-          {
-               visibility:{
-                    type:String,
-                    enum: ["Visible","Hidden"],
-               },
 
-               perkimage:{
-                    secure_url: String,
-                    public_id: String
-                  },
-               price:{
-                    type:Number,
-                    // required:true
-               },
-               retailprice:Number,
-               title:{
-                    type:String,
-                    // required:true
-               },
-               includeditems:{
-                    itemname:{
-                    type:String,
-                    // required:true
-                    },
-                    option:{
-                         OptionName:String,
-                         OptionSize:Number
-                    }
-               },
-               Description:{
-                    type:String,
-                    // required:true
-               },
-               perk:String,
-               Quantity:Number,
-               EstimateDeliverydate:Date,
-               Shipping:{
-                    Shippinglocation:String,
-                    ShippingFee:Number
-               }
+     story: {
+          type: String,
+          // required:true
+     },
+     faq: [{
+          Question: String,
+          Answer: String
+     }],
+     perk: [{
+          visibility: {
+               type: String,
+               enum: ["Visible", "Hidden"],
+          },
 
-
-          }
-     ],
-     
-     imagegallery:[
-          {url:{
+          perkimage: {
                secure_url: String,
                public_id: String
-             }}
-     ],
-     facebookURL : String,
+          },
+          price: {
+               type: Number,
+               // required:true
+          },
+          retailprice: Number,
+          title: {
+               type: String,
+               // required:true
+          },
+          includeditems: {
+               itemname: {
+                    type: String,
+                    // required:true
+               },
+               option: {
+                    OptionName: String,
+                    OptionSize: Number
+               }
+          },
+          Description: {
+               type: String,
+               // required:true
+          },
+          perk: String,
+          Quantity: Number,
+          EstimateDeliverydate: Date,
+          Shipping: {
+               Shippinglocation: String,
+               ShippingFee: Number
+          }
+     }],
+     imagegallery: [{
+          url: {
+               secure_url: String,
+               public_id: String
+          }
+     }],
+     facebookURL: String,
      twitterURL: String,
      linkedinURL: String,
-     updates: [
-    {text:String}
-     ],
+     AmountRaised:{
+          type:Number,
+          default:0,
+        },
+     updates: [{
+          text: String
+     }],
      comments: String,
-     campaignTeam:[
-          {
-         
-          legalFirstname:{
-          type:String,
-          // required:true
-          },
-          legalLastname:{
-          type:String,
-          // required:true
-          },
-          dateofbirth:{
-          type:Date,
-          // required:true
-          },
-          phonenumber:{
-               type:Number,
-               // required:true
-          },
-          country:{
-               type:String,
-               // required:true
-          },
-          streetAddress:{
-               type:String,
-               // required:true
-          },
-          extraAddress:{
-               type:String,
-               // required:true
-          },
-          supportEmailaddress:String,
-          newTeammemberemail:String,
+     campaignTeam: [{
 
-          }
-     ],
-     youtubeURL:{
-          type:String,
-         
+          legalFirstname: {
+               type: String,
+               // required:true
+          },
+          legalLastname: {
+               type: String,
+               // required:true
+          },
+          dateofbirth: {
+               type: Date,
+               // required:true
+          },
+          phonenumber: {
+               type: Number,
+               // required:true
+          },
+          country: {
+               type: String,
+               // required:true
+          },
+          streetAddress: {
+               type: String,
+               // required:true
+          },
+          extraAddress: {
+               type: String,
+               // required:true
+          },
+          supportEmailaddress: String,
+          newTeammemberemail: String,
+
+     }],
+     youtubeURL: {
+          type: String,
+
      },
-     
- 
+
+
      // uploadImage:String,
      // videooverlayimg:String,
      // fundingType:{
      //      type:String,
      //      enum:['Fixible Funding',"Fixed Funding"]
      // },
-     FundingAmount:{
-          type:Number,
+     FundingAmount: {
+          type: Number,
           default: 0
           // required:true
      },
@@ -182,8 +179,8 @@ const ProjectSchema = new Schema({
      //      type:String,
      //      // required:true
      // },
-     
-  
+
+
      // draftcampaignlink:String,
      // facebookshareimage:String,
      // marketingimage:String,
