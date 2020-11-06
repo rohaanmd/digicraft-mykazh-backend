@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {
-ImgUploader,
+fileMiddleware,
 authAdmin,
 } = require("../middleware/index.js");
 const {
@@ -61,7 +61,7 @@ const {
   getAllHelpSupport
 }= require("../controllers/helpAndSupport");
 
-router.post("/signup" , ImgUploader,SignUp);
+router.post("/signup" , fileMiddleware,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
 

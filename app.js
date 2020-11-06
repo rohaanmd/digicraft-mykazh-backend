@@ -9,7 +9,8 @@ const compression = require("compression");
 const port = 3000
 require('dotenv').config();
 const router = express.Router({ mergeParams: true });
-
+// const cloudinaryConfig = require('./config/cloudinary');
+const cloudinary = require("cloudinary");
 /* ENGINES */
 app.use(
   bodyParser.urlencoded({
@@ -19,12 +20,20 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 app.use(compression());
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+  });
+
 
 //mongoose setup
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
   if (err) throw err;
   console.log("DB Connected Successfully");
 });
+// multer Storage setup
+app.use(express.static(__dirname + "./TEMP/"));
 
 
 /* Routers */
@@ -35,6 +44,7 @@ const medicalRouter=require('./routes/medical');
 const adminRouter = require("./routes/admin");
 const ngoRouter = require("./routes/ngo");
 const othersRouter = require("./routes/others");
+const fileRouter = require("./routes/fileUpload");
 /*  links */
 // app.use("/", function (req, res,next ){
 //   res.send("<h1> Welcome to mykazh-backend </h1>");
@@ -43,12 +53,11 @@ const othersRouter = require("./routes/others");
 router.use('/business', businessRouter);
 router.use('/project',projectRouter)
 router.use('/medical',medicalRouter)
-
-
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 router.use('/ngo',ngoRouter);
 router.use('/others',othersRouter);
+router.use('/file',fileRouter);
 app.use("/api", router);
 
 /* ERROR HANDLERS */

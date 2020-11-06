@@ -1,7 +1,6 @@
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
 const User = require('../models/user');
 const Admin = require('../models/admin');
 const hashPassword = async (password) => {
@@ -98,23 +97,25 @@ const checkUser= (objectId,IncomingId)=>{
 
 }
 
-
 // multer storage engine
-const Storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-    cb(null, "./uploads/");
-  },
-});
 
+// const Storage = ;
 
 //multer middleware
-const ImgUploader = multer({
-  storage: Storage,
-}).single("picture");
 
+const fileMiddleware = multer({
+  storage: multer.diskStorage({}),
+}).single("file");
+
+// {
+//   destination: function (req, res, cb) {
+//     cb(null, "../TEMP/uploads");
+//   },
+// }
 
 module.exports = {
-  ImgUploader,
+  fileMiddleware,
+
   authUser,
   authAdmin,
   comparePassword,

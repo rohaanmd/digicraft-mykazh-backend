@@ -1,5 +1,5 @@
 const express = require('express')
-const { ImgUploader, authUser,authAdmin } = require("../middleware/index");
+const { fileMiddleware, authUser,authAdmin } = require("../middleware/index");
 const router = express.Router();
 const {   getNgo,
     createNgo,
