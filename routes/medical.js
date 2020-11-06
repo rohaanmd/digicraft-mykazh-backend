@@ -28,7 +28,7 @@ router.get('/', authUser, getCharityByUser);
 
 router.post('/create', authUser, createCharity);
 router.put('/update/:medicalId',authUser ,updateCharity);
-router.get('/:medicalId', authUser, getCharityById);
+router.get('/:medicalId',  getCharityById);
 router.delete('/deleteall', deleteAllCharity);
 router.delete('/delete/:medicalId', authUser, deleteCharityById);
 

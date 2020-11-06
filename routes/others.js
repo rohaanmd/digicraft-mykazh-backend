@@ -26,7 +26,7 @@ router.get('/getdisapproved',authAdmin,  getDisapproved);
 router.put('/approve/:othersId',authAdmin,ApproveOthers);
 router.put('/disapprove/:othersId',authAdmin,DisapproveOthers);
 router.get('/', authUser, getOthersByUser);
-router.get('/:othersId',  getOthersById);
+router.get('/:othersId', getOthersById);
 router.post('/create',authUser,  createOthers);
 router.put('/update/:othersId',authUser, updateOthers);
 router.delete('/deleteall', deleteAllOthers);
