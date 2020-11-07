@@ -84,13 +84,13 @@ const ProjectSchema = new Schema({
           includeditems: {
                itemname: {
                     type: String,
-                    // required:true
                },
                option: {
                     OptionName: String,
                     OptionSize: Number
                }
           },
+          claimed:{type:Number,default:0},
           Description: {
                type: String,
                // required:true

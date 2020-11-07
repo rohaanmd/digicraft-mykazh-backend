@@ -12,13 +12,15 @@ const router = express.Router({ mergeParams: true });
 // const cloudinaryConfig = require('./config/cloudinary');
 const cloudinary = require("cloudinary");
 /* ENGINES */
+app.use(cors());
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
 app.use(bodyParser.json());
-app.use(cors());
+
 app.use(compression());
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
