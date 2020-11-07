@@ -37,7 +37,7 @@ const getCharityById = async (req, res, next) => {
     return res.send({
       success: true,
       message: "Charity Found successfully",
-      responseData: { charity3},
+      responseData: { charity},
     });
   } catch (error) {
     console.log(error);
