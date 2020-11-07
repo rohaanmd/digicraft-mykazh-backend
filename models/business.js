@@ -13,6 +13,10 @@ const BusinessSchema = new Schema(
       type: String,
       // required: true,
     },
+    cardImage:{
+      secure_url: String,
+      public_id: String
+    },
     companyOverview: {
       type: String,
       // required: true,
@@ -36,8 +40,8 @@ const BusinessSchema = new Schema(
       },
       stateAndCity: String,
     },
+    dealType:String,
     press: String,
-
     companyTagline: String,
     companyKeyword: String,
     email: String,
@@ -51,6 +55,7 @@ const BusinessSchema = new Schema(
       type: String,
       // required: true,
     },
+    
     team: [
       { 
         

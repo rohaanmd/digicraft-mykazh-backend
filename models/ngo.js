@@ -29,9 +29,13 @@ const ngo = new Schema({
     enum: ["approved","disapproved","NULL"]
     ,default:"NULL"
   },
-   location: {
-     type:String 
+  location: {
+    country: {
+      type: String,
+      // required: true,
     },
+    stateAndCity: String,
+  },
     story: String,
 
     GoalAmount:Number,

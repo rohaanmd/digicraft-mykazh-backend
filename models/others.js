@@ -25,8 +25,12 @@ const others = new Schema({
        }
    ],
    location: {
-     type:String 
+    country: {
+      type: String,
+      // required: true,
     },
+    stateAndCity: String,
+  },
     verification:{
         type: String,
         enum: ["approved","disapproved","NULL"]

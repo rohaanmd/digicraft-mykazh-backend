@@ -39,6 +39,13 @@ CustSrtLink:{
      type:String,
      // required:true
 },
+location: {
+     country: {
+       type: String,
+       // required: true,
+     },
+     stateAndCity: String,
+   },
 AmountRaised:{
      type:Number,
      default:0,

@@ -35,9 +35,12 @@ const ProjectSchema = new Schema({
           public_id: String
      },
      location: {
-          type: String
-          // required:true
-     },
+          country: {
+            type: String,
+            // required: true,
+          },
+          stateAndCity: String,
+        },
      selectCatergory: {
           type: String,
           // required:true
