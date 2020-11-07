@@ -28,18 +28,16 @@ const getCharityById = async (req, res, next) => {
   try {
     const charity = await Charity.findOne({
       _id: req.params.medicalId,
-    })
+    }).populate("createdBy")
     if (!charity)
       return res.send({
         success: false,
         message: "Charity Not Found",
       });
-      console.log(req.user.userId + charity.createdBy)
-    const isAuthor = charity.createdBy.equals(req.user.userId);
     return res.send({
       success: true,
       message: "Charity Found successfully",
-      responseData: { charity, isAuthor },
+      responseData: { charity3},
     });
   } catch (error) {
     console.log(error);
