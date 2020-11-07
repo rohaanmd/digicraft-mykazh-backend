@@ -16,7 +16,7 @@ VideoAppeal:{
      secure_url: String,
      public_id: String
    },
-PatientsAge:Date,
+PatientsAge:Number,
 GoalAmount:{
      type:Number,
      // required:true
@@ -43,6 +43,7 @@ AmountRaised:{
      type:Number,
      default:0,
    },
+   update:[{type:String}],
 docs:{
      MedEsti:{
          fileUrl : {
