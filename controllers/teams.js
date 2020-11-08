@@ -74,12 +74,10 @@ const updateTeam = async (req, res, next) => {
                 });
             }
 
-
             const teamDetails = req.body
-
             const GetTeam = await Team.findOneAndUpdate({
                 _id: req.params.teamsId
-            }, teamDetails)
+            }, teamDetails,{new: true})
 if(GetTeam)
             return res.send({
                 success: true,

@@ -143,7 +143,7 @@ console.log(req.user);
           
 
             const othersDetails = req.body
-          const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails);  
+          const Getothers = await Others.findOneAndUpdate({_id:req.params.othersId},othersDetails,{new: true});  
               
             return res.send({
               success: true,

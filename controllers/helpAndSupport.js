@@ -78,7 +78,7 @@ const updateHelpSupport = async (req, res, next) => {
 
             const Getpress = await HelpSupport.findOneAndUpdate({
                 _id: req.params.helpId
-            }, pressDetails)
+            }, pressDetails,{new: true})
 if(Getpress)
             return res.send({
                 success: true,

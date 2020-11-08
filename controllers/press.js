@@ -79,7 +79,7 @@ const updatePress = async (req, res, next) => {
 
             const Getpress = await Press.findOneAndUpdate({
                 _id: req.params.pressId
-            }, pressDetails)
+            }, pressDetails,{new: true})
 if(Getpress)
             return res.send({
                 success: true,

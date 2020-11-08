@@ -144,7 +144,7 @@ const updateNgo = async (req, res, next) => {
 
             const ngoDetails = req.body
 
-           const Getngo = await Ngo.findOneAndUpdate({_id:req.params.ngoId},ngoDetails)
+           const Getngo = await Ngo.findOneAndUpdate({_id:req.params.ngoId},ngoDetails,{new: true})
               
             return res.send({
               success: true,

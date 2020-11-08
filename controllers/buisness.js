@@ -219,7 +219,7 @@ const updateBusiness = async (req, res, next) => {
             // };
             // console.log(req.body);
 
-          const UpdateBusiness = await Business.findOneAndUpdate({_id:req.params.businessId},req.body)
+          const UpdateBusiness = await Business.findOneAndUpdate({_id:req.params.businessId},req.body,{new: true})
             return res.send({
                  success: true,
                  message: "project Updated Successfull",

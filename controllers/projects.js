@@ -206,7 +206,7 @@ const updateProject = async (req, res, next) => {
 // //     const updatedproject = await project.save();
 //       // console.log(project)
 
-     await Project.findOneAndUpdate({_id:req.params.projectId},req.body)
+     await Project.findOneAndUpdate({_id:req.params.projectId},req.body,{new: true})
      return res.send({
           success: true,
           message: "project Updated Successfull",

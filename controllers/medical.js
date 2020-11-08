@@ -142,7 +142,7 @@ const updateCharity = async (req, res, next) => {
     });
     let newCharity= req.body;
     
-   const updatedCharity =  await Charity.findOneAndUpdate({_id:req.params.medicalId},newCharity)
+   const updatedCharity =  await Charity.findOneAndUpdate({_id:req.params.medicalId},newCharity,{new: true})
       return res.send({
           success: true,
           message: "charity Updated Successfull",
