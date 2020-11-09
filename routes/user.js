@@ -8,12 +8,15 @@ const {
     Login,
     getAllUser,
     LogOut,
+    updateUser,
     getCurrentUser
 } = require ("../controllers/auth");
 
 router.post("/signup" , fileMiddleware,SignUp);
 router.post("/login",Login);
 router.post('/logout',LogOut);
+router.put('/:userId',authUser,updateUser);
 router.get('/',authUser,getCurrentUser);
+
 // router.get("/",authUser,getAllUser);
 module.exports = router ;

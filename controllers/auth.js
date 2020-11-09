@@ -25,6 +25,40 @@ const LogOut = async (req, res, next) => {
     message: "user LoggedOut successfully",
   });
 }
+const updateUser = async (req,res,next)=>{
+ try{ console.log("olal");
+   const user = await User.findById(req.params.userId)
+  const userId = req.user.userId;
+  console.log(user);
+  console.log(userId);
+  if(JSON.stringify(userId)==JSON.stringify(user._id))
+  {
+    if (!user || !req.body)
+    return res.send({
+      success: false,
+      message: "Unauthorized",
+    });
+    await User.findOneAndUpdate({_id:req.params.userId},req.body,{new: true})
+    return res.send({
+         success: true,
+         message: "user Updated Successfull",
+         responseData: user,
+       });
+  }
+  else{
+    return res.send({
+      success: false,
+      message: "Unauthorized",
+    });
+  }}
+  catch (err){
+    res.send({
+      success: false,
+      message: "Unauthorized",
+      responseData: err
+    });
+  }
+}
 
 const Login = async (req, res, next) => {
   const email = req.body.email;
@@ -52,7 +86,8 @@ const Login = async (req, res, next) => {
         details: {
           userId: user._id,
           email: user.email,
-          name: name
+          name: name,
+          profilePicture: user.picture.secure_url
         },
         token,
       },
@@ -149,5 +184,6 @@ module.exports = {
   Login,
   getAllUser,
   LogOut,
-  getCurrentUser
+  getCurrentUser,
+  updateUser
 }

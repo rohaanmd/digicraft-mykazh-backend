@@ -158,53 +158,6 @@ const updateProject = async (req, res, next) => {
         message: "Unauthorized",
       });
 
-//           project.companyName= req.body.companyName;
-//           project.companyOverview=req.body.companyOverview;
-//           project.companyLogo= req.body.companyLogo;
-//           project.campaigntitle= req.body.campaigntitle||project.campaigntitle;
-//           project.campaigntagline= req.body.campaigntagline||project.campaigntagline,
-//           project.location= req.body.location||project.location,
-//           project.campaigncardimage= req.body.compaigncardimage||project.campaigncardimage,
-//           project.selectCatergory= req.body.selectCatergory||project.catergory,
-//           project.SubCatatergory= req.body.SubCatatergory||project.catergory,
-//           project.tags= req.body.tags||project.tags,
-//           project.story=req.body.story;
-//           project.campaignDuration=req.body.campaignDuration||project.campaignDuration
-//           project.youtubeURL= req.body.youtubeURL||project.youtubeURL,
-//           // project.videooverlayimg= req.body.videooverlayimg||project.videooverlayimg,
-//           project.faq=req.body.faq||project.faq,
-//           project.perk=req.body.perk||project.perk,
-//           project.FundingAmount=req.body.FundingAmount;
-//           project.facebookURL = req.body.facebookURL;
-//           project.twitterURL=req.body.twitterURL;
-//           project.linkedinURL=req.body.linkedinURL;
-//           // project.fundingType=req.body.fundingType||project.fundingType,
-//           // project.campaigngoalAmountCurrency=req.body.campaigngoalAmountCurrency||project.campaigngoalAmountCurrency,
-//           // project.countryoflegalresidence=req.body.countryoflegalresidence||project.countryoflegalresidence,
-//           // project.customerBillingStatement=req.bodycustomerBillingStatement||project.customerBillingStatement,
-//           // project.legalFirstname=req.body.legalFirstname||project.legalFirstname,
-//           // project.legalLastname=req.body.legalLastname||project.legalLastname,
-//           // project.dateofbirth=req.body.dateofbirth||project.dateofbirth,
-//           // project.phonenumber=req.body.phonenumber||project.phonenumber,
-//           // project.country=req.body.country||project.country,
-//           // project.streetAddress=req.body.streetAddress||project.streetAddress,
-//           // project.ExtraAddress=req.body.ExtraAddress||project.ExtraAddress,
-//           // project.supportEmailaddress=req.body.supportEmailaddress||project.supportEmailaddress,
-//           // project.campaignTeam=req.body.campaignTeam||project.campaignTeam,
-//           // project.draftcampaignlink=req.body.draftcampaignlink||project.draftcampaignlink,
-//           // project.facebookshareimage=req.body.facebookshareimage||project.facebookshareimage,
-//           // project.marketingimage=req.body.marketingimage||project.marketingimage,
-//           // project.customshorturl=req.body.customshorturl||project.customshorturl,
-//           // project.googleAnalytics=req.body.googleAnalytics||project.googleAnalytics,
-//           // project.googleAdtracking=req.body.googleAdtracking|project.googleAdtracking,
-//           // project.facebookAdtracking=req.body.facebookAdtracking||project.facebookAdtracking,
-//           // project.videosgallery=req.body.videosgallery||project.videosgallery,
-//          project.imagegallery=req.body.imagegallery||project.imagegallery;
-//          project.campaignTeam=req.body.campaignTeam;
-//          project.updates=req.body.updates;
-
-// //     const updatedproject = await project.save();
-//       // console.log(project)
 
      await Project.findOneAndUpdate({_id:req.params.projectId},req.body,{new: true})
      return res.send({
