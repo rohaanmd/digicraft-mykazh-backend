@@ -31,8 +31,17 @@ const BusinessSchema = new Schema(
       ref: "User",
       // required: true,
     },
-    customContentInput: String,
-    customContentTextarea: String,
+    customContent:[{
+      input: String,
+     textarea: String,
+    image:[{
+      secure_url: String,
+      public_id: String
+      }]}],
+   cardImage:{
+    secure_url: String,
+    public_id: String
+    },
     location: {
       country: {
         type: String,
@@ -82,7 +91,11 @@ const BusinessSchema = new Schema(
       secure_url: String,
       public_id: String
     },
-    video: {
+    videoFile: {
+      secure_url: String,
+      public_id: String
+    },
+    slideShareFile: {
       secure_url: String,
       public_id: String
     },
