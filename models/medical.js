@@ -7,6 +7,13 @@ createdBy: {
      ref: "User",
      //  required: true,
 },
+customContent:[{
+     input: String,
+    textarea: String,
+   image:[{
+     secure_url: String,
+     public_id: String
+     }]}],
 title: String,
 Picture:{
      secure_url: String,
@@ -72,6 +79,13 @@ docs:{
      },
  
  },
+ customContent:[{
+     input: String,
+    textarea: String,
+   image:[{
+     secure_url: String,
+     public_id: String
+     }]}],
  verification:{
      type: String,
      enum: ["approved","disapproved","NULL"],

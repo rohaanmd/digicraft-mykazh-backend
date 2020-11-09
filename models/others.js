@@ -36,6 +36,13 @@ const others = new Schema({
         enum: ["approved","disapproved","NULL"]
         ,default:"NULL"
       },
+      customContent:[{
+        input: String,
+       textarea: String,
+      image:[{
+        secure_url: String,
+        public_id: String
+        }]}],
     cardImage:{
         secure_url: String,
         public_id: String

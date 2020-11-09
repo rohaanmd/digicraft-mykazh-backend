@@ -119,7 +119,14 @@ const ProjectSchema = new Schema({
           type:Number,
           default:0,
         },
-     updates: [{
+        customContent:[{
+          input: String,
+         textarea: String,
+        image:[{
+          secure_url: String,
+          public_id: String
+          }]}],
+     update: [{
           text: String
      }],
      comments: String,

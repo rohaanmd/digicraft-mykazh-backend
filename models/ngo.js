@@ -36,8 +36,23 @@ const ngo = new Schema({
     },
     stateAndCity: String,
   },
+  customContent:[{
+    input: String,
+   textarea: String,
+  image:[{
+    secure_url: String,
+    public_id: String
+    }]}],
     story: String,
-
+    update:[{type:String}],
+    docs:
+         [
+          {
+            secure_url: String,
+            public_id: String
+            }
+         ]
+     ,
     GoalAmount:Number,
     cardImage:{
         secure_url: String,
