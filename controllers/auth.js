@@ -44,6 +44,7 @@ const Login = async (req, res, next) => {
 
   if (isSame) {
     const token = await user.generateAuthToken();
+    const name = user.firstname +" "+ user.lastname
     return res.send({
       success: true,
       message: "User logged in successfully",
@@ -51,7 +52,7 @@ const Login = async (req, res, next) => {
         details: {
           userId: user._id,
           email: user.email,
-          name:user.firstname
+          name: name
         },
         token,
       },
