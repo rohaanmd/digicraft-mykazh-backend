@@ -181,7 +181,7 @@ console.log(req.user);
               message: "Buisness not found",
             });}
 
-  const others = await Others.findByIdAndDelete(req.params.othersId)
+   await Others.findByIdAndDelete(req.params.othersId)
  
   console.log(others);
   if (others)
