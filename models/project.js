@@ -99,10 +99,12 @@ const ProjectSchema = new Schema({
                // required:true
           },
           perk: String,
-          Quantity: Number,
+          Quantity:Number,
+       
           EstimateDeliverydate: Date,
           Shipping: {
                Shippinglocation: String,
+               
                ShippingFee: Number
           }
      }],
@@ -181,14 +183,14 @@ const ProjectSchema = new Schema({
           default: 0
           // required:true
      },
-     // countryoflegalresidence:{
-     //      countryname:String,
-     //      BankAccountCountry:String
-     // },
-     // customerBillingStatement:{
-     //      type:String,
-     //      // required:true
-     // },
+     countryoflegalresidence:{
+          countryname:String,
+          BankAccountCountry:String
+     },
+     customerBillingStatement:{
+          type:String,
+          // required:true
+     },
 
 
      // draftcampaignlink:String,

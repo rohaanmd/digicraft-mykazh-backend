@@ -255,7 +255,14 @@ const BusinessSchema = new Schema(
   
     tranctionDate:Date,
    RisksDisclosures: String,
-    Risk:String
+    Risk:String,
+    keyPartner:[{
+      name:String,
+      image:{
+        secure_url: String,
+        public_id: String
+      }
+    }]
   },
   { timestamps: true }
 );
