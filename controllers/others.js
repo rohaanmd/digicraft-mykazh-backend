@@ -168,9 +168,21 @@ console.log(req.user);
 };
 
 const deleteOthersById = async (req, res, next) => {
+  const others = await Others.findById(req.params.othersId)
+    const userId = req.user.userId;
+    const createdBy = others.createdBy;
+console.log(req.user);
+    if(JSON.stringify(userId)==JSON.stringify(createdBy))
+      // if(Others.createdBy = req.user.userId)
+      {
+        if (!others || !req.body){
+            return res.send({
+              success: false,
+              message: "Buisness not found",
+            });}
+
   const others = await Others.findByIdAndDelete(req.params.othersId)
-    .where("createdBy")
-    .equals(req.user.userId);
+ 
   console.log(others);
   if (others)
     return res.send({
@@ -183,6 +195,12 @@ const deleteOthersById = async (req, res, next) => {
       success: false,
       message: "others not found",
     });
+  }
+  else
+  return res.send({
+    success: false,
+    message: "Unauthorised",
+  });
 };
 const ApproveOthers = async (req, res, next) => {
   try{

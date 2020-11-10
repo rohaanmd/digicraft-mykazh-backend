@@ -160,9 +160,16 @@ const updateCharity = async (req, res, next) => {
 };
 
 const deleteCharityById = async (req, res, next) => {
-  const charity = await Charity.findByIdAndDelete(req.params.medicalId)
-    .where("createdBy")
-    .equals(req.user.userId);
+  const charity = await Charity.findById(req.params.medicalId)
+  const userId = req.user.userId;
+  const createdBy = charity.createdBy;
+  if(createdBy == userId)
+  return res.send({
+    success: false,
+    message: "Unauthorized",
+  });
+  await Charity.findByIdAndDelete(req.params.medicalId)
+
   console.log(charity);
   if (charity)
     return res.send({

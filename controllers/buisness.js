@@ -350,9 +350,18 @@ const getNULL =  async (req, res) => {
 
 
 const deleteBusinessById = async (req, res, next) => {
-  const business = await Business.findByIdAndDelete(req.params.businessId)
-    .where("createdBy")
-    .equals(req.user.userId);
+  const business = await Business.findById(req.params.businessId)
+    if(business.createdBy = req.user.userId)
+    {
+      console.log(business);
+      if (!business || !req.body){
+          return res.send({
+            success: false,
+            message: "Buisness not found",
+          });}
+        
+   await Business.findByIdAndDelete(req.params.businessId)
+  
   console.log(business);
   if (business)
     return res.send({
@@ -363,8 +372,15 @@ const deleteBusinessById = async (req, res, next) => {
   else
     return res.send({
       success: false,
-      message: "business not found",
+      message: "business NOT DELETED",
     });
+  }
+  else{
+    return res.send({
+      success: false,
+      message: "Unautharized",
+    });
+  }
 };
 
 

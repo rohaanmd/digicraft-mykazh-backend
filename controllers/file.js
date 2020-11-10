@@ -12,11 +12,13 @@ exports.fileController = async (req,res) =>{
             public_id:fileResponse.public_id,
             
         }
+        await fs.unlinkSync(req.file.path);
         return res.send({
             success: true,
             message: "File Uploaded",
             responseData: reqObj,
           });
+
     }} catch (error) {
         return res.send({
             success: false,

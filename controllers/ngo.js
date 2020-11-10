@@ -171,9 +171,21 @@ const updateNgo = async (req, res, next) => {
 };
 
 const deleteNgoById = async (req, res, next) => {
+
+  const ngo = await Ngo.findById(req.params.ngoId)
+  const userId = req.user.userId;
+  const createdBy = ngo.createdBy;
+
+  if(JSON.stringify(userId)==JSON.stringify(createdBy))
+{
+      if (!ngo || !req.body){
+          return res.send({
+            success: false,
+            message: "NGO not found",
+          });}
+        
   const ngo = await Ngo.findByIdAndDelete(req.params.ngoId)
-    .where("createdBy")
-    .equals(req.user.userId);
+  
   console.log(ngo);
   if (ngo)
     return res.send({
@@ -186,7 +198,17 @@ const deleteNgoById = async (req, res, next) => {
       success: false,
       message: "ngo not found",
     });
+  }
+  else
+  return res.send({
+    success: false,
+    message: "Unauthorized",
+  });
 };
+
+
+
+
 const ApproveNgo = async (req, res, next) => {
   try{
     Ngo.findByIdAndUpdate(req.params.ngoId, { verification: 'approved' }, {

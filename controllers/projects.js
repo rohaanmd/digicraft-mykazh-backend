@@ -182,22 +182,73 @@ const updateProject = async (req, res, next) => {
 };
 
 const deleteProjectById = async (req, res, next) => {
-  const project = await Project.findByIdAndDelete(req.params.projectId)
-    .where("createdBy")
-    .equals(req.user.userId);
-  console.log(project);
-  if (project)
-    return res.send({
-      success: true,
-      message: "project Delete Successfully",
-      responseData: project,
-    });
-  else
+ 
+  try {
+    const project = await Project.findById(req.params.projectId)
+    const userId = req.user.userId;
+    const createdBy = project.createdBy;
+
+  if(JSON.stringify(userId)==JSON.stringify(createdBy))
+  {
+  if (!project || !req.body)
     return res.send({
       success: false,
-      message: "project not found",
+      message: "Unauthorized",
     });
+
+
+   await Project.findByIdAndDelete(req.params.projectId)
+   return res.send({
+        success: true,
+        message: "project Updated Successfull",
+        responseData: project,
+      });
+    } else{
+      return res.send({
+            success: false,
+            message: "Unauthorized",
+          });
+    }
+} catch (error) {
+  console.log(error);
+  return res.send({
+    success: false,
+    message: "something wrong happened",
+    responseData: error,
+  });
+}
 };
+// {
+
+//     const project = await Project.findById(req.params.projectId)
+//     const userId = req.user.userId;
+//     const createdBy = project.createdBy;
+
+//   if(JSON.stringify(userId)==JSON.stringify(createdBy))
+//   {
+//   if (!project || !req.body)
+//     return res.send({
+//       success: false,
+//       message: "Unauthorized",
+//     });
+//   }
+  
+//   await Project.findByIdAndDelete(req.params.projectId)
+ 
+
+//   console.log(project);
+//   if (project)
+//     return res.send({
+//       success: true,
+//       message: "project Delete Successfully",
+//       responseData: project,
+//     });
+//   else
+//     return res.send({
+//       success: false,
+//       message: "Unauthrized",
+//     });
+// };
 const ApproveProject = async (req, res, next) => {
   try{
     Project.findByIdAndUpdate(req.params.projectId, { verification: 'approved' }, {

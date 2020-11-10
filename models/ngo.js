@@ -59,7 +59,7 @@ const ngo = new Schema({
         public_id: String
       },
       
-      walletId:[{type:String}],
+      walletID:[{type:String}],
     ngoCreater:String,
     creatorbio:String,
     createdBy: {
