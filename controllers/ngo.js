@@ -184,7 +184,7 @@ const deleteNgoById = async (req, res, next) => {
             message: "NGO not found",
           });}
         
-  const ngo = await Ngo.findByIdAndDelete(req.params.ngoId)
+ await Ngo.findByIdAndDelete(req.params.ngoId)
   
   console.log(ngo);
   if (ngo)
