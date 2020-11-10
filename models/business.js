@@ -194,8 +194,8 @@ const BusinessSchema = new Schema(
     investor: [
       {
         InvestorType: {
-          type: Number,
-          // type: String,
+          
+          type: String,
           // enum: ["individual", "institutional"]
         },
         InvestorName: {
