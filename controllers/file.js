@@ -1,5 +1,5 @@
-
-// const {dataUri} =require( "../middleware/index");
+// consconst fs = require("fs");t {dataUri} =require( "../middleware/index");
+const fs = require("fs");
 const cloudinary = require("cloudinary");
 exports.fileController = async (req,res) =>{
     try {
@@ -20,6 +20,7 @@ exports.fileController = async (req,res) =>{
           });
 
     }} catch (error) {
+        console.log(error);
         return res.send({
             success: false,
             message: "File not Uploaded",

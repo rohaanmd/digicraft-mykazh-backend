@@ -6,7 +6,7 @@ const errorController = require('./controllers/errors');
 const mongoose = require('mongoose');
 const cors = require("cors");
 const compression = require("compression");
-const port = 3000
+const port = 3001
 require('dotenv').config();
 const router = express.Router({ mergeParams: true });
 // const cloudinaryConfig = require('./config/cloudinary');
